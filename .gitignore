@@ -6,3 +6,7 @@ __pycache__/
 .DS_Store
 # Customer/partner-branded decks (logos, templates) stay local, never in git
 pptx-*/
+# Exported decks (.pptx/.pdf) are for local testing only, never pushed
+pptx/
+*.pptx
+*.pdf
