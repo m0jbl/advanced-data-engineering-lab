@@ -1,6 +1,6 @@
 # Airport Payments: Spark + Kafka Lab
 
-Hands-on lab for the **DataOps using Spark and Kafka** course. Every lab uses one dataset: card payments at
+Hands-on lab for the **Advanced Data Engineering** course. Every lab uses one dataset: card payments at
 an airport (tickets, duty free, currency exchange, food, car rental). Some are fraudulent. The lab builds a
 pipeline that lands, validates, enriches, scores, and monitors them, all on your laptop with Docker Compose.
 
