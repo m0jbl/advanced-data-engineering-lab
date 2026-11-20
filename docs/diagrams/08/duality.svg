@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1090 800" width="1090" height="800">
+<rect x="0" y="0" width="1090" height="800" fill="#FFFFFF"/>
+<rect x="245" y="40" width="600" height="170" rx="8" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<text x="545" y="122" font-family="IBM Plex Sans" font-size="40" text-anchor="middle" fill="#111111">log</text>
+<text x="545" y="158" font-family="IBM Plex Sans" font-size="26" text-anchor="middle" fill="#5C5C5C">ordered changes</text>
+<rect x="245" y="560" width="600" height="170" rx="8" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<text x="545" y="642" font-family="IBM Plex Sans" font-size="40" text-anchor="middle" fill="#111111">table</text>
+<text x="545" y="678" font-family="IBM Plex Sans" font-size="26" text-anchor="middle" fill="#5C5C5C">latest state</text>
+<polyline points="880,130 990,130 990,640 900,640" fill="none" stroke="#111111" stroke-width="4"/><polygon points="880,640 900,651 900,629" fill="#111111"/>
+<polyline points="210,640 100,640 100,130 190,130" fill="none" stroke="#CC3A1C" stroke-width="4"/><polygon points="210,130 190,119 190,141" fill="#CC3A1C"/>
+<text x="970" y="396" font-family="IBM Plex Sans" font-size="30" text-anchor="end" fill="#111111" font-weight="700">replay</text>
+<text x="120" y="396" font-family="IBM Plex Sans" font-size="30" text-anchor="start" fill="#CC3A1C" font-weight="700">capture</text>
+<text x="120" y="436" font-family="IBM Plex Sans" font-size="30" text-anchor="start" fill="#CC3A1C" font-weight="700">changes</text>
+</svg>

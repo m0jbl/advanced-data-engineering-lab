@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1090 800" width="1090" height="800">
+<rect x="0" y="0" width="1090" height="800" fill="#FFFFFF"/>
+<line x1="100" y1="600" x2="1000" y2="600" stroke="#767676" stroke-width="2" stroke-linecap="round"/>
+<line x1="100" y1="120" x2="100" y2="600" stroke="#767676" stroke-width="2" stroke-linecap="round"/>
+<text x="1000" y="634" font-family="IBM Plex Sans" font-size="22" font-weight="400" fill="#5C5C5C" text-anchor="end">scored day</text>
+<text x="108" y="108" font-family="IBM Plex Sans" font-size="22" font-weight="400" fill="#5C5C5C" text-anchor="start">alert rate</text>
+<rect x="140" y="484.5" width="60" height="115.5" rx="2" fill="#767676" stroke="none"/>
+<rect x="235" y="468.0" width="60" height="132.0" rx="2" fill="#767676" stroke="none"/>
+<rect x="330" y="495.5" width="60" height="104.5" rx="2" fill="#767676" stroke="none"/>
+<rect x="425" y="479.0" width="60" height="121.0" rx="2" fill="#767676" stroke="none"/>
+<rect x="520" y="457.0" width="60" height="143.0" rx="2" fill="#767676" stroke="none"/>
+<rect x="615" y="490.0" width="60" height="110.0" rx="2" fill="#767676" stroke="none"/>
+<rect x="710" y="473.5" width="60" height="126.5" rx="2" fill="#767676" stroke="none"/>
+<rect x="805" y="226.0" width="60" height="374.0" rx="2" fill="#CC3A1C" stroke="none"/>
+<rect x="900" y="479.0" width="60" height="121.0" rx="2" fill="#767676" stroke="none"/>
+<line x1="100" y1="325" x2="1000" y2="325" stroke="#CC3A1C" stroke-width="3" stroke-linecap="round" stroke-dasharray="10 8"/>
+<text x="120" y="311" font-family="IBM Plex Sans" font-size="24" font-weight="700" fill="#CC3A1C" text-anchor="start">5 %: BatchAlertRateHigh</text>
+<text x="100" y="700" font-family="IBM Plex Sans" font-size="22" font-weight="400" fill="#5C5C5C" text-anchor="start">Illustrative shape, not lab output</text>
+</svg>

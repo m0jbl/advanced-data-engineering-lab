@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1090 800" width="1090" height="800">
+<style>
+.h{font-family:IBM Plex Sans Light;font-size:30px;fill:#111111}
+.s{font-family:IBM Plex Sans;font-size:22px;fill:#5C5C5C}
+.m{font-family:IBM Plex Mono;font-size:26px;fill:#111111}
+.c{text-anchor:middle}
+.w{fill:#FFFFFF}
+.r{fill:#CC3A1C}
+.panel{fill:#F5F5F5;stroke:#767676;stroke-width:2}
+.cell{fill:#FFFFFF;stroke:#767676;stroke-width:2}
+.bad{fill:#FFFFFF;stroke:#CC3A1C;stroke-width:4}
+.dark{fill:#111111}
+.ln{stroke:#111111;stroke-width:3;fill:none}
+.ar{fill:#111111}
+.arr{fill:#CC3A1C}
+.lr{stroke:#CC3A1C;stroke-width:3;fill:none}
+</style>
+<rect class="panel" x="24" y="40" width="1042" height="330" rx="14"/>
+<text x="56" y="90" class="h">Monday</text>
+<rect class="dark" x="80" y="120" width="280" height="50"/><text x="220" y="154" class="m c w">amount</text>
+<rect class="cell" x="80" y="170" width="280" height="50"/><text x="220" y="204" class="m c">12.50</text>
+<rect class="cell" x="80" y="220" width="280" height="50"/><text x="220" y="254" class="m c">48.00</text>
+<rect class="cell" x="80" y="270" width="280" height="50"/><text x="220" y="304" class="m c">7.90</text>
+<text x="470" y="200" class="s c">inferred</text>
+<line class="ln" x1="390" y1="220" x2="546" y2="220"/><polygon class="ar" points="544,211 560,220 544,229"/>
+<rect class="cell" x="580" y="180" width="440" height="80" rx="10"/><text x="800" y="230" class="m c">amount: double</text>
+<rect class="panel" x="24" y="430" width="1042" height="330" rx="14"/>
+<text x="56" y="480" class="h">Tuesday</text>
+<rect class="dark" x="80" y="510" width="280" height="50"/><text x="220" y="544" class="m c w">amount</text>
+<rect class="cell" x="80" y="560" width="280" height="50"/><text x="220" y="594" class="m c">12.50</text>
+<rect class="bad" x="80" y="610" width="280" height="50"/><text x="220" y="644" class="m c r">12,50</text>
+<rect class="cell" x="80" y="660" width="280" height="50"/><text x="220" y="694" class="m c">7.90</text>
+<text x="470" y="590" class="s c">inferred</text>
+<line class="lr" x1="390" y1="610" x2="546" y2="610"/><polygon class="arr" points="544,601 560,610 544,619"/>
+<rect class="bad" x="580" y="570" width="440" height="80" rx="10"/><text x="800" y="620" class="m c r">amount: string</text>
+</svg>

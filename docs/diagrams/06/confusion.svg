@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1230 520" width="1230" height="520">
+<style>
+.t{font-family:IBM Plex Sans;font-size:26px;fill:#111111}
+.s{font-family:IBM Plex Sans;font-size:24px;fill:#5C5C5C}
+.h{font-family:IBM Plex Sans Light;font-size:30px;fill:#111111}
+.m{font-family:IBM Plex Mono;font-size:24px;fill:#111111}
+.c{text-anchor:middle}
+.e{text-anchor:end}
+.w{fill:#FFFFFF}
+.r{fill:#CC3A1C}
+.tp{fill:#111111}
+.bad{fill:#FFFFFF;stroke:#CC3A1C;stroke-width:4}
+.tn{fill:#F5F5F5;stroke:#767676;stroke-width:2}
+</style>
+<text x="320" y="70" class="s c">actual fraud</text>
+<text x="560" y="70" class="s c">legitimate</text>
+<text x="184" y="178" class="s e">alert</text>
+<text x="184" y="338" class="s e">no alert</text>
+<rect class="tp" x="200" y="90" width="240" height="160"/><text x="320" y="180" class="t c w">caught</text>
+<rect class="bad" x="440" y="90" width="240" height="160"/><text x="560" y="180" class="t c r">false alarm</text>
+<rect class="bad" x="200" y="250" width="240" height="160"/><text x="320" y="340" class="t c r">missed</text>
+<rect class="tn" x="440" y="250" width="240" height="160"/><text x="560" y="340" class="t c">quiet</text>
+<text x="760" y="160" class="h">precision</text>
+<text x="760" y="204" class="m">caught / all alerts</text>
+<text x="760" y="320" class="h">recall</text>
+<text x="760" y="364" class="m">caught / all fraud</text>
+</svg>

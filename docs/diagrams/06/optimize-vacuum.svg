@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1230 520" width="1230" height="520">
+<style>
+.t{font-family:IBM Plex Sans;font-size:24px;fill:#111111}
+.s{font-family:IBM Plex Sans;font-size:22px;fill:#5C5C5C}
+.mh{font-family:IBM Plex Mono;font-size:28px;fill:#111111}
+.c{text-anchor:middle}
+.r{fill:#CC3A1C}
+.panel{fill:#FFFFFF;stroke:#767676;stroke-width:2}
+.sm{fill:#F5F5F5;stroke:#767676;stroke-width:2}
+.big{fill:#111111}
+.old{fill:#FFFFFF;stroke:#CC3A1C;stroke-width:3;stroke-dasharray:8 6}
+.cur{fill:#F5F5F5;stroke:#111111;stroke-width:2}
+.ln{stroke:#111111;stroke-width:3;fill:none}
+.ar{fill:#111111}
+</style>
+<defs>
+<g id="r4"><rect class="sm" x="0" width="48" height="40"/><rect class="sm" x="64" width="48" height="40"/><rect class="sm" x="128" width="48" height="40"/><rect class="sm" x="192" width="48" height="40"/></g>
+</defs>
+<rect class="panel" x="24" y="24" width="567" height="472" rx="14"/>
+<text x="48" y="74" class="mh">OPTIMIZE</text>
+<use xlink:href="#r4" href="#r4" x="48" y="120"/>
+<use xlink:href="#r4" href="#r4" x="48" y="176"/>
+<use xlink:href="#r4" href="#r4" x="48" y="232"/>
+<use xlink:href="#r4" href="#r4" x="48" y="288"/>
+<line class="ln" x1="304" y1="224" x2="360" y2="224"/><polygon class="ar" points="360,215 376,224 360,233"/>
+<rect class="big" x="392" y="120" width="170" height="96" rx="8"/>
+<rect class="big" x="392" y="232" width="170" height="96" rx="8"/>
+<text x="307" y="410" class="t c">small files become large</text>
+<rect class="panel" x="639" y="24" width="567" height="472" rx="14"/>
+<text x="663" y="74" class="mh">VACUUM</text>
+<rect class="old" x="663" y="130" width="96" height="130" rx="8"/>
+<rect class="old" x="775" y="130" width="96" height="130" rx="8"/>
+<rect class="old" x="887" y="130" width="96" height="130" rx="8"/>
+<rect class="cur" x="999" y="130" width="96" height="130" rx="8"/>
+<rect class="cur" x="1111" y="130" width="72" height="130" rx="8"/>
+<text x="823" y="300" class="t c r">unreferenced, &gt; 7 days</text>
+<text x="823" y="336" class="t c r">deleted</text>
+<text x="1091" y="300" class="t c">current</text>
+<text x="1091" y="336" class="t c">kept</text>
+<text x="922" y="410" class="s c">log kept 30 days</text>
+</svg>

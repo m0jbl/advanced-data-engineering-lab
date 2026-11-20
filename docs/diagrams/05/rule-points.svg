@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1090 800" width="1090" height="800">
+<style>
+.m{font-family:IBM Plex Mono;font-size:20px;fill:#111111}
+.n{font-family:IBM Plex Sans;font-size:24px;fill:#111111}
+.t{font-family:IBM Plex Sans;font-size:24px;fill:#CC3A1C}
+.e{text-anchor:end}
+.c{text-anchor:middle}
+.bar{fill:#F5F5F5;stroke:#767676;stroke-width:2}
+.dark{fill:#111111}
+.thr{stroke:#CC3A1C;stroke-width:3;stroke-dasharray:10 8}
+</style>
+<text x="735" y="80" class="t c">alert at 50</text>
+<line class="thr" x1="735" y1="96" x2="735" y2="680"/>
+<text x="440" y="140" class="m e">BLOCKED_PASSENGER</text><rect class="dark" x="460" y="110" width="550" height="44"/><text x="1000" y="141" class="n e" style="fill:#FFFFFF">100</text>
+<text x="440" y="224" class="m e">AMOUNT_SPIKE</text><rect class="bar" x="460" y="194" width="220" height="44"/><text x="692" y="225" class="n">40</text>
+<text x="440" y="308" class="m e">CARD_NOT_PRESENT_HIGH_RISK</text><rect class="bar" x="460" y="278" width="110" height="44"/><text x="582" y="309" class="n">20</text>
+<text x="440" y="392" class="m e">NIGHT_PAYMENT</text><rect class="bar" x="460" y="362" width="83" height="44"/><text x="555" y="393" class="n">15</text>
+<text x="440" y="476" class="m e">LAST_MINUTE</text><rect class="bar" x="460" y="446" width="83" height="44"/><text x="555" y="477" class="n">15</text>
+<text x="440" y="560" class="m e">NEW_FOREIGN_PATTERN</text><rect class="bar" x="460" y="530" width="55" height="44"/><text x="527" y="561" class="n">10</text>
+<text x="440" y="644" class="m e">NEW_ACCOUNT</text><rect class="bar" x="460" y="614" width="55" height="44"/><text x="527" y="645" class="n">10</text>
+<text x="545" y="740" class="n c">score = sum of fired rules</text>
+</svg>

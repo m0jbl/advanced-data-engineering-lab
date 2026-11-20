@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1230 520" width="1230" height="520">
+<style>
+.t{font-family:IBM Plex Sans;font-size:24px;fill:#111111}
+.s{font-family:IBM Plex Sans;font-size:20px;fill:#5C5C5C}
+.c{text-anchor:middle}
+.w{fill:#FFFFFF}
+.r{fill:#CC3A1C}
+.win{fill:#F5F5F5;stroke:#111111;stroke-width:2}
+.ln{stroke:#111111;stroke-width:4;fill:none}
+.lr{stroke:#CC3A1C;stroke-width:4;fill:none}
+.dash{stroke:#767676;stroke-width:2;stroke-dasharray:8 6}
+.br{stroke:#CC3A1C;stroke-width:2;fill:none}
+.p{fill:#111111}
+.pr{fill:#CC3A1C}
+.emit{fill:#CC3A1C}
+</style>
+<text x="24" y="118" class="t">window</text>
+<rect class="win" x="200" y="80" width="300" height="60" rx="8"/>
+<text x="350" y="118" class="t c">10:00–10:05</text>
+<text x="200" y="172" class="s c">10:00</text><text x="500" y="172" class="s c">10:05</text><text x="1100" y="172" class="s c">10:15</text>
+<text x="24" y="238" class="t">max event time</text>
+<line class="ln" x1="200" y1="230" x2="1100" y2="230"/><circle class="p" cx="1100" cy="230" r="10"/>
+<text x="24" y="338" class="t">watermark</text>
+<line class="lr" x1="200" y1="330" x2="500" y2="330"/><circle class="pr" cx="500" cy="330" r="10"/>
+<line class="dash" x1="500" y1="184" x2="500" y2="320"/>
+<rect class="emit" x="540" y="300" width="240" height="60" rx="10"/><text x="660" y="339" class="t c w">window emitted</text>
+<path class="br" d="M500 400 V416 H1100 V400"/>
+<text x="800" y="452" class="t c r">10 minutes of delay</text>
+</svg>

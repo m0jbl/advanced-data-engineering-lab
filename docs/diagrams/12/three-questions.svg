@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1230 520" width="1230" height="520">
+<rect x="0" y="0" width="1230" height="520" fill="#FFFFFF"/>
+<rect x="24" y="60" width="382" height="400" rx="8" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<rect x="24" y="60" width="382" height="12" rx="0" fill="#CC3A1C" stroke="none"/>
+<text x="52" y="160" font-family="IBM Plex Sans" font-size="32" font-weight="700" fill="#111111" text-anchor="start">What is it?</text>
+<text x="52" y="240" font-family="IBM Plex Mono" font-size="22" font-weight="400" fill="#5C5C5C" text-anchor="start">class: pii, financial, …</text>
+<text x="52" y="420" font-family="IBM Plex Sans" font-size="22" font-weight="400" fill="#111111" text-anchor="start">contract: classification</text>
+<rect x="424" y="60" width="382" height="400" rx="8" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<rect x="424" y="60" width="382" height="12" rx="0" fill="#111111" stroke="none"/>
+<text x="452" y="160" font-family="IBM Plex Sans" font-size="32" font-weight="700" fill="#111111" text-anchor="start">Who may read it?</text>
+<text x="452" y="240" font-family="IBM Plex Mono" font-size="22" font-weight="400" fill="#5C5C5C" text-anchor="start">access: restricted, standard</text>
+<text x="452" y="420" font-family="IBM Plex Sans" font-size="22" font-weight="400" fill="#111111" text-anchor="start">contract: access</text>
+<rect x="824" y="60" width="382" height="400" rx="8" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<rect x="824" y="60" width="382" height="12" rx="0" fill="#111111" stroke="none"/>
+<text x="852" y="160" font-family="IBM Plex Sans" font-size="28" font-weight="700" fill="#111111" text-anchor="start">How long do we keep it?</text>
+<text x="852" y="240" font-family="IBM Plex Mono" font-size="22" font-weight="400" fill="#5C5C5C" text-anchor="start">bronze 90 d, silver 730 d</text>
+<text x="852" y="420" font-family="IBM Plex Sans" font-size="22" font-weight="400" fill="#111111" text-anchor="start">contract: retention</text>
+</svg>

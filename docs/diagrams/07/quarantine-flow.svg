@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1230 520" width="1230" height="520">
+<rect x="0" y="0" width="1230" height="520" fill="#FFFFFF"/>
+<rect x="24" y="200" width="220" height="120" rx="8" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<text x="134" y="252" font-family="IBM Plex Sans" font-size="28" text-anchor="middle" fill="#111111">bronze</text>
+<text x="134" y="288" font-family="IBM Plex Sans" font-size="28" text-anchor="middle" fill="#111111">CSV</text>
+<polyline points="248,260 318,260" fill="none" stroke="#111111" stroke-width="3"/><polygon points="332,260 318,252 318,268" fill="#111111"/>
+<rect x="336" y="180" width="240" height="160" rx="8" fill="#111111" stroke="#111111" stroke-width="2"/>
+<text x="456" y="252" font-family="IBM Plex Sans" font-size="28" text-anchor="middle" fill="#FFFFFF">six checks</text>
+<text x="456" y="288" font-family="IBM Plex Sans" font-size="28" text-anchor="middle" fill="#FFFFFF">first reason</text>
+<polyline points="580,240 660,240 660,110 726,110" fill="none" stroke="#111111" stroke-width="3"/><polygon points="740,110 726,102 726,118" fill="#111111"/>
+<polyline points="580,280 660,280 660,410 726,410" fill="none" stroke="#CC3A1C" stroke-width="3"/><polygon points="740,410 726,402 726,418" fill="#CC3A1C"/>
+<rect x="744" y="40" width="462" height="140" rx="8" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<text x="975" y="106" font-family="IBM Plex Sans" font-size="30" text-anchor="middle" fill="#111111">silver</text>
+<text x="975" y="136" font-family="IBM Plex Sans" font-size="20" text-anchor="middle" fill="#5C5C5C">s3a://silver/transactions/</text>
+<rect x="744" y="340" width="462" height="140" rx="8" fill="#FFFFFF" stroke="#CC3A1C" stroke-width="3"/>
+<text x="975" y="406" font-family="IBM Plex Sans" font-size="30" text-anchor="middle" fill="#111111">quarantine</text>
+<text x="975" y="436" font-family="IBM Plex Sans" font-size="20" text-anchor="middle" fill="#5C5C5C">+ reject_reason, quarantined_at</text>
+<text x="690" y="98" font-family="IBM Plex Sans" font-size="22" text-anchor="end" fill="#5C5C5C">pass</text>
+<text x="690" y="448" font-family="IBM Plex Sans" font-size="22" text-anchor="end" fill="#CC3A1C">fail</text>
+</svg>

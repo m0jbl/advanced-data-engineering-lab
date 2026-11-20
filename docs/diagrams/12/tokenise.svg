@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1090 800" width="1090" height="800">
+<rect x="0" y="0" width="1090" height="800" fill="#FFFFFF"/>
+<rect x="60" y="140" width="300" height="130" rx="8" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+<text x="210.0" y="197" font-family="IBM Plex Sans" font-size="28" font-weight="700" fill="#111111" text-anchor="middle">Card terminal</text>
+<text x="210.0" y="231" font-family="IBM Plex Sans" font-size="22" font-weight="400" fill="#5C5C5C" text-anchor="middle">PAN</text>
+<rect x="420" y="140" width="300" height="130" rx="8" fill="#CC3A1C" stroke="none"/>
+<text x="570.0" y="197" font-family="IBM Plex Sans" font-size="28" font-weight="700" fill="#FFFFFF" text-anchor="middle">Token vault</text>
+<text x="570.0" y="231" font-family="IBM Plex Sans" font-size="22" font-weight="400" fill="#FFFFFF" text-anchor="middle">PCI DSS scope</text>
+<rect x="780" y="140" width="250" height="130" rx="8" fill="#111111" stroke="none"/>
+<text x="905.0" y="197" font-family="IBM Plex Sans" font-size="28" font-weight="700" fill="#FFFFFF" text-anchor="middle">Event</text>
+<text x="905.0" y="231" font-family="IBM Plex Sans" font-size="22" font-weight="400" fill="#FFFFFF" text-anchor="middle">card token</text>
+<line x1="360" y1="205" x2="406.0" y2="205.0" stroke="#111111" stroke-width="3" stroke-linecap="round"/>
+<polygon points="420,205 406.0,212.7 406.0,197.3" fill="#111111"/>
+<line x1="720" y1="205" x2="766.0" y2="205.0" stroke="#111111" stroke-width="3" stroke-linecap="round"/>
+<polygon points="780,205 766.0,212.7 766.0,197.3" fill="#111111"/>
+<rect x="40" y="100" width="700" height="210" rx="12" fill="none" stroke="#CC3A1C" stroke-width="2" stroke-dasharray="10 8"/>
+<text x="60" y="350" font-family="IBM Plex Sans" font-size="22" font-weight="700" fill="#CC3A1C" text-anchor="start">in scope</text>
+<rect x="780" y="440" width="250" height="120" rx="8" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+<text x="905.0" y="491" font-family="IBM Plex Sans" font-size="24" font-weight="700" fill="#111111" text-anchor="middle">Kafka, Spark</text>
+<text x="905.0" y="522" font-family="IBM Plex Sans" font-size="22" font-weight="400" fill="#5C5C5C" text-anchor="middle">out of scope</text>
+<line x1="905" y1="270" x2="905.0" y2="426.0" stroke="#111111" stroke-width="3" stroke-linecap="round"/>
+<polygon points="905,440 897.3,426.0 912.7,426.0" fill="#111111"/>
+<text x="60" y="520" font-family="IBM Plex Sans" font-size="26" font-weight="700" fill="#111111" text-anchor="start">Only the vault can map</text>
+<text x="60" y="560" font-family="IBM Plex Sans" font-size="26" font-weight="700" fill="#111111" text-anchor="start">a token back to a card.</text>
+</svg>

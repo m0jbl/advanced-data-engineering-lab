@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1090 800" width="1090" height="800">
+<style>
+.h{font-family:IBM Plex Sans Light;font-size:30px;fill:#111111}
+.s{font-family:IBM Plex Sans;font-size:22px;fill:#5C5C5C}
+.t{font-family:IBM Plex Sans;font-size:24px;fill:#111111}
+.m{font-family:IBM Plex Mono;font-size:22px;fill:#CC3A1C}
+.c{text-anchor:middle}
+.r{fill:#CC3A1C}
+.panel{fill:#FFFFFF;stroke:#767676;stroke-width:2}
+.row{fill:#F5F5F5;stroke:#767676;stroke-width:2}
+.del{fill:#CC3A1C;fill-opacity:.2;stroke:#CC3A1C;stroke-width:2}
+.newr{fill:#FFFFFF;stroke:#111111;stroke-width:2}
+.dv{fill:#FFFFFF;stroke:#CC3A1C;stroke-width:4}
+.ln{stroke:#111111;stroke-width:3;fill:none}
+.lr{stroke:#CC3A1C;stroke-width:3;stroke-dasharray:8 6;fill:none}
+.ar{fill:#111111}
+</style>
+<rect class="panel" x="24" y="24" width="1042" height="350" rx="14"/>
+<text x="60" y="72" class="h">Without: rewrite the file</text>
+<rect class="row" x="80" y="110" width="280" height="36"/><rect class="row" x="80" y="146" width="280" height="36"/><rect class="del" x="80" y="182" width="280" height="36"/><rect class="row" x="80" y="218" width="280" height="36"/><rect class="row" x="80" y="254" width="280" height="36"/><rect class="row" x="80" y="290" width="280" height="36"/>
+<line class="ln" x1="400" y1="218" x2="584" y2="218"/><polygon class="ar" points="584,209 600,218 584,227"/>
+<text x="500" y="200" class="s c">copy 5 rows</text>
+<rect class="newr" x="620" y="128" width="280" height="36"/><rect class="newr" x="620" y="164" width="280" height="36"/><rect class="newr" x="620" y="200" width="280" height="36"/><rect class="newr" x="620" y="236" width="280" height="36"/><rect class="newr" x="620" y="272" width="280" height="36"/>
+<text x="760" y="346" class="t c">new file</text>
+<rect class="panel" x="24" y="420" width="1042" height="350" rx="14"/>
+<text x="60" y="468" class="h">With a deletion vector</text>
+<rect class="row" x="80" y="506" width="280" height="36"/><rect class="row" x="80" y="542" width="280" height="36"/><rect class="del" x="80" y="578" width="280" height="36"/><rect class="row" x="80" y="614" width="280" height="36"/><rect class="row" x="80" y="650" width="280" height="36"/><rect class="row" x="80" y="686" width="280" height="36"/>
+<path class="lr" d="M360 596 H600"/>
+<rect class="dv" x="620" y="556" width="280" height="80" rx="10"/><text x="760" y="605" class="m c">skip row 3</text>
+<text x="760" y="690" class="t c">file untouched</text>
+</svg>

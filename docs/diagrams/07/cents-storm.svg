@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1230 520" width="1230" height="520">
+<rect x="0" y="0" width="1230" height="520" fill="#FFFFFF"/>
+<text x="24" y="69" font-family="IBM Plex Sans" font-size="26" text-anchor="start" fill="#5C5C5C" font-weight="700">Scorer</text>
+<rect x="24" y="100" width="254" height="104" rx="8" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<text x="151" y="160" font-family="IBM Plex Sans" font-size="24" text-anchor="middle" fill="#111111">4,500 in cents</text>
+<polyline points="282,152 316,152" fill="none" stroke="#111111" stroke-width="3"/><polygon points="330,152 316,144 316,160" fill="#111111"/>
+<rect x="334" y="100" width="254" height="104" rx="8" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<text x="460" y="160" font-family="IBM Plex Sans" font-size="24" text-anchor="middle" fill="#111111">ratio ≈ 100×</text>
+<polyline points="591,152 625,152" fill="none" stroke="#111111" stroke-width="3"/><polygon points="639,152 625,144 625,160" fill="#111111"/>
+<rect x="643" y="100" width="254" height="104" rx="8" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<text x="770" y="160" font-family="IBM Plex Mono" font-size="24" text-anchor="middle" fill="#111111">AMOUNT_SPIKE +40</text>
+<polyline points="900,152 934,152" fill="none" stroke="#111111" stroke-width="3"/><polygon points="948,152 934,144 934,160" fill="#111111"/>
+<rect x="952" y="100" width="254" height="104" rx="8" fill="#CC3A1C" stroke="#CC3A1C" stroke-width="2"/>
+<text x="1079" y="160" font-family="IBM Plex Sans" font-size="24" text-anchor="middle" fill="#FFFFFF">alert at ≥ 50</text>
+<text x="1079" y="243" font-family="IBM Plex Sans" font-size="20" text-anchor="middle" fill="#5C5C5C">plus any 15-point rule</text>
+<text x="24" y="309" font-family="IBM Plex Sans" font-size="26" text-anchor="start" fill="#5C5C5C" font-weight="700">Finance</text>
+<rect x="24" y="340" width="357" height="104" rx="8" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<text x="202" y="400" font-family="IBM Plex Sans" font-size="24" text-anchor="middle" fill="#111111">4,500 in cents</text>
+<polyline points="385,392 419,392" fill="none" stroke="#111111" stroke-width="3"/><polygon points="433,392 419,384 419,400" fill="#111111"/>
+<rect x="437" y="340" width="357" height="104" rx="8" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<text x="615" y="400" font-family="IBM Plex Sans" font-size="24" text-anchor="middle" fill="#111111">daily revenue</text>
+<polyline points="797,392 831,392" fill="none" stroke="#111111" stroke-width="3"/><polygon points="845,392 831,384 831,400" fill="#111111"/>
+<rect x="849" y="340" width="357" height="104" rx="8" fill="#CC3A1C" stroke="#CC3A1C" stroke-width="2"/>
+<text x="1028" y="400" font-family="IBM Plex Sans" font-size="24" text-anchor="middle" fill="#FFFFFF">café total ×100</text>
+<text x="615" y="498" font-family="IBM Plex Sans" font-size="24" text-anchor="middle" fill="#111111" font-weight="700">One wrong unit, two wrong outputs</text>
+</svg>

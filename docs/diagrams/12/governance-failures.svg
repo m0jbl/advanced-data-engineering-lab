@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1230 520" width="1230" height="520">
+<rect x="0" y="0" width="1230" height="520" fill="#FFFFFF"/>
+<rect x="24.0" y="24.0" width="579.0" height="224.0" rx="8" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<rect x="24.0" y="24.0" width="10" height="224.0" rx="0" fill="#CC3A1C" stroke="none"/>
+<text x="64.0" y="94.0" font-family="IBM Plex Sans" font-size="32" font-weight="700" fill="#111111" text-anchor="start">Hash treated as anonymous</text>
+<text x="64.0" y="144.0" font-family="IBM Plex Sans" font-size="24" font-weight="400" fill="#5C5C5C" text-anchor="start">it is still personal data</text>
+<rect x="627.0" y="24.0" width="579.0" height="224.0" rx="8" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<rect x="627.0" y="24.0" width="10" height="224.0" rx="0" fill="#CC3A1C" stroke="none"/>
+<text x="667.0" y="94.0" font-family="IBM Plex Sans" font-size="32" font-weight="700" fill="#111111" text-anchor="start">Catalog as side project</text>
+<text x="667.0" y="144.0" font-family="IBM Plex Sans" font-size="24" font-weight="400" fill="#5C5C5C" text-anchor="start">metadata typed by hand, stale</text>
+<rect x="24.0" y="272.0" width="579.0" height="224.0" rx="8" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<rect x="24.0" y="272.0" width="10" height="224.0" rx="0" fill="#CC3A1C" stroke="none"/>
+<text x="64.0" y="342.0" font-family="IBM Plex Sans" font-size="32" font-weight="700" fill="#111111" text-anchor="start">Table-only access</text>
+<text x="64.0" y="392.0" font-family="IBM Plex Sans" font-size="24" font-weight="400" fill="#5C5C5C" text-anchor="start">every column for everyone</text>
+<rect x="627.0" y="272.0" width="579.0" height="224.0" rx="8" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<rect x="627.0" y="272.0" width="10" height="224.0" rx="0" fill="#CC3A1C" stroke="none"/>
+<text x="667.0" y="342.0" font-family="IBM Plex Sans" font-size="32" font-weight="700" fill="#111111" text-anchor="start">Deletion by rerun</text>
+<text x="667.0" y="392.0" font-family="IBM Plex Sans" font-size="24" font-weight="400" fill="#5C5C5C" text-anchor="start">history lost, nothing logged</text>
+</svg>

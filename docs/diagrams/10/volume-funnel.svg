@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1090 800" width="1090" height="800">
+<rect x="0" y="0" width="1090" height="800" fill="#FFFFFF"/>
+<rect x="60" y="120" width="900" height="130" rx="8" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<text x="90" y="178" font-family="IBM Plex Sans" font-size="30" font-weight="700" fill="#111111" text-anchor="start">Bronze</text>
+<text x="90" y="218" font-family="IBM Plex Sans" font-size="24" font-weight="400" fill="#5C5C5C" text-anchor="start">rows landed: 1,200</text>
+<line x1="460" y1="250" x2="460.0" y2="306.0" stroke="#111111" stroke-width="3" stroke-linecap="round"/>
+<polygon points="460,320 452.3,306.0 467.7,306.0" fill="#111111"/>
+<rect x="60" y="320" width="820" height="130" rx="8" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<text x="90" y="378" font-family="IBM Plex Sans" font-size="30" font-weight="700" fill="#111111" text-anchor="start">Silver</text>
+<text x="90" y="418" font-family="IBM Plex Sans" font-size="24" font-weight="400" fill="#5C5C5C" text-anchor="start">valid rows</text>
+<line x1="460" y1="450" x2="460.0" y2="506.0" stroke="#111111" stroke-width="3" stroke-linecap="round"/>
+<polygon points="460,520 452.3,506.0 467.7,506.0" fill="#111111"/>
+<rect x="60" y="520" width="820" height="130" rx="8" fill="#111111" stroke="none"/>
+<text x="90" y="578" font-family="IBM Plex Sans" font-size="30" font-weight="700" fill="#FFFFFF" text-anchor="start">Scored</text>
+<text x="90" y="618" font-family="IBM Plex Sans" font-size="24" font-weight="400" fill="#FFFFFF" text-anchor="start">rows in gold/fraud_scores</text>
+<rect x="900" y="300" width="150" height="130" rx="8" fill="#CC3A1C" stroke="none"/>
+<text x="975" y="356" font-family="IBM Plex Sans" font-size="22" font-weight="400" fill="#FFFFFF" text-anchor="middle">Quarantine</text>
+<text x="975" y="392" font-family="IBM Plex Mono" font-size="20" font-weight="400" fill="#FFFFFF" text-anchor="middle">reject_reason</text>
+<line x1="880" y1="260" x2="947.5" y2="293.7" stroke="#CC3A1C" stroke-width="3" stroke-linecap="round"/>
+<polygon points="960,300 944.0,300.6 950.9,286.9" fill="#CC3A1C"/>
+<text x="60" y="730" font-family="IBM Plex Sans" font-size="26" font-weight="700" fill="#111111" text-anchor="start">Bronze = silver + quarantine. Silver = scored.</text>
+</svg>

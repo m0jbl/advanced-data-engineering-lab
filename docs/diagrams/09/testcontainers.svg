@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1230 520" width="1230" height="520">
+<rect x="0" y="0" width="1230" height="520" fill="#FFFFFF"/>
+<rect x="24" y="190" width="220" height="130" rx="8" fill="#111111" stroke="#111111" stroke-width="2"/>
+<text x="134" y="247" font-family="IBM Plex Sans" font-size="26" text-anchor="middle" fill="#FFFFFF">pytest</text>
+<text x="134" y="281" font-family="IBM Plex Sans" font-size="26" text-anchor="middle" fill="#FFFFFF">fixture</text>
+<polyline points="248,230 321,150" fill="none" stroke="#111111" stroke-width="3"/><polygon points="330,140 315,145 326,156" fill="#111111"/>
+<polyline points="248,280 321,360" fill="none" stroke="#111111" stroke-width="3"/><polygon points="330,370 326,354 315,365" fill="#111111"/>
+<rect x="334" y="80" width="260" height="110" rx="8" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<text x="464" y="129" font-family="IBM Plex Sans" font-size="26" text-anchor="middle" fill="#111111">Kafka</text>
+<text x="464" y="160" font-family="IBM Plex Sans" font-size="22" text-anchor="middle" fill="#5C5C5C">container</text>
+<rect x="334" y="320" width="260" height="110" rx="8" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<text x="464" y="369" font-family="IBM Plex Sans" font-size="26" text-anchor="middle" fill="#111111">Postgres</text>
+<text x="464" y="400" font-family="IBM Plex Sans" font-size="22" text-anchor="middle" fill="#5C5C5C">container</text>
+<polyline points="598,135 671,219" fill="none" stroke="#111111" stroke-width="3"/><polygon points="680,230 677,214 665,224" fill="#111111"/>
+<polyline points="598,375 671,291" fill="none" stroke="#111111" stroke-width="3"/><polygon points="680,280 665,286 677,296" fill="#111111"/>
+<rect x="684" y="190" width="240" height="130" rx="8" fill="#FFFFFF" stroke="#CC3A1C" stroke-width="3"/>
+<text x="804" y="247" font-family="IBM Plex Sans" font-size="26" text-anchor="middle" fill="#111111">job under</text>
+<text x="804" y="281" font-family="IBM Plex Sans" font-size="26" text-anchor="middle" fill="#111111">test</text>
+<polyline points="928,255 976,255" fill="none" stroke="#111111" stroke-width="3"/><polygon points="990,255 976,247 976,263" fill="#111111"/>
+<rect x="994" y="190" width="212" height="130" rx="8" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<text x="1100" y="264" font-family="IBM Plex Sans" font-size="26" text-anchor="middle" fill="#111111">assertions</text>
+<text x="615" y="498" font-family="IBM Plex Sans" font-size="24" text-anchor="middle" fill="#5C5C5C">start, test, throw away: minutes per run</text>
+</svg>

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1230 520" width="1230" height="520">
+<rect x="0" y="0" width="1230" height="520" fill="#FFFFFF"/>
+<rect x="24" y="180" width="200" height="100" rx="8" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+<text x="124.0" y="237" font-family="IBM Plex Sans" font-size="26" font-weight="700" fill="#111111" text-anchor="middle">Scheduled</text>
+<rect x="274" y="180" width="200" height="100" rx="8" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+<text x="374.0" y="237" font-family="IBM Plex Sans" font-size="26" font-weight="700" fill="#111111" text-anchor="middle">Pending</text>
+<rect x="524" y="180" width="200" height="100" rx="8" fill="#111111" stroke="none"/>
+<text x="624.0" y="237" font-family="IBM Plex Sans" font-size="26" font-weight="700" fill="#FFFFFF" text-anchor="middle">Running</text>
+<line x1="224" y1="230" x2="260.0" y2="230.0" stroke="#111111" stroke-width="3" stroke-linecap="round"/>
+<polygon points="274,230 260.0,237.7 260.0,222.3" fill="#111111"/>
+<line x1="474" y1="230" x2="510.0" y2="230.0" stroke="#111111" stroke-width="3" stroke-linecap="round"/>
+<polygon points="524,230 510.0,237.7 510.0,222.3" fill="#111111"/>
+<rect x="900" y="40" width="240" height="100" rx="8" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+<text x="1020.0" y="97" font-family="IBM Plex Sans" font-size="26" font-weight="700" fill="#111111" text-anchor="middle">Completed</text>
+<rect x="900" y="320" width="240" height="100" rx="8" fill="#CC3A1C" stroke="none"/>
+<text x="1020.0" y="377" font-family="IBM Plex Sans" font-size="26" font-weight="700" fill="#FFFFFF" text-anchor="middle">Failed</text>
+<rect x="524" y="400" width="200" height="100" rx="8" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+<text x="624.0" y="456" font-family="IBM Plex Sans" font-size="22" font-weight="700" fill="#111111" text-anchor="middle">AwaitingRetry</text>
+<line x1="724" y1="210" x2="888.1" y2="107.4" stroke="#111111" stroke-width="3" stroke-linecap="round"/>
+<polygon points="900,100 892.2,113.9 884.0,100.9" fill="#111111"/>
+<text x="800" y="130" font-family="IBM Plex Sans" font-size="22" font-weight="400" fill="#5C5C5C" text-anchor="middle">success</text>
+<line x1="724" y1="250" x2="888.1" y2="352.6" stroke="#111111" stroke-width="3" stroke-linecap="round"/>
+<polygon points="900,360 884.0,359.1 892.2,346.1" fill="#111111"/>
+<text x="830" y="300" font-family="IBM Plex Sans" font-size="22" font-weight="400" fill="#CC3A1C" text-anchor="start">no retries left</text>
+<line x1="600" y1="280" x2="600.0" y2="386.0" stroke="#111111" stroke-width="3" stroke-linecap="round"/>
+<polygon points="600,400 592.3,386.0 607.7,386.0" fill="#111111"/>
+<text x="590" y="350" font-family="IBM Plex Sans" font-size="22" font-weight="400" fill="#5C5C5C" text-anchor="end">error</text>
+<line x1="650" y1="400" x2="650.0" y2="294.0" stroke="#111111" stroke-width="3" stroke-linecap="round"/>
+<polygon points="650,280 657.7,294.0 642.3,294.0" fill="#111111"/>
+<text x="662" y="350" font-family="IBM Plex Sans" font-size="22" font-weight="400" fill="#5C5C5C" text-anchor="start">after delay</text>
+</svg>

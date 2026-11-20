@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1090 800" width="1090" height="800">
+<style>
+.t{font-family:IBM Plex Sans;font-size:26px;fill:#111111}
+.s{font-family:IBM Plex Sans;font-size:22px;fill:#5C5C5C}
+.h{font-family:IBM Plex Sans Light;font-size:30px;fill:#111111}
+.c{text-anchor:middle}
+.r{fill:#CC3A1C}
+.exec{fill:#F5F5F5;stroke:#767676;stroke-width:2}
+.part{fill:#FFFFFF;stroke:#111111;stroke-width:2}
+.copy{fill:#FFFFFF;stroke:#CC3A1C;stroke-width:4}
+.lr{stroke:#CC3A1C;stroke-width:3;fill:none}
+.arr{fill:#CC3A1C}
+</style>
+<rect class="copy" x="345" y="32" width="400" height="110" rx="12"/>
+<text x="545" y="80" class="t c r">features</text>
+<text x="545" y="116" class="s c">small table</text>
+<line class="lr" x1="480" y1="142" x2="209" y2="366"/><polygon class="arr" points="201,356 197,376 216,370"/>
+<line class="lr" x1="545" y1="142" x2="567" y2="364"/><polygon class="arr" points="558,364 568,380 576,362"/>
+<line class="lr" x1="610" y1="142" x2="913" y2="366"/><polygon class="arr" points="906,371 925,376 917,357"/>
+<rect class="exec" x="24" y="300" width="326" height="340" rx="14"/>
+<rect class="exec" x="382" y="300" width="326" height="340" rx="14"/>
+<rect class="exec" x="740" y="300" width="326" height="340" rx="14"/>
+<text x="187" y="350" class="t c">Executor 1</text>
+<text x="545" y="350" class="t c">Executor 2</text>
+<text x="903" y="350" class="t c">Executor 3</text>
+<rect class="copy" x="140" y="380" width="94" height="70" rx="8"/><text x="187" y="424" class="s c r">copy</text>
+<rect class="copy" x="498" y="380" width="94" height="70" rx="8"/><text x="545" y="424" class="s c r">copy</text>
+<rect class="copy" x="856" y="380" width="94" height="70" rx="8"/><text x="903" y="424" class="s c r">copy</text>
+<rect class="part" x="64" y="474" width="246" height="130" rx="8"/><text x="187" y="530" class="t c">payments</text><text x="187" y="566" class="s c">partition 1</text>
+<rect class="part" x="422" y="474" width="246" height="130" rx="8"/><text x="545" y="530" class="t c">payments</text><text x="545" y="566" class="s c">partition 2</text>
+<rect class="part" x="780" y="474" width="246" height="130" rx="8"/><text x="903" y="530" class="t c">payments</text><text x="903" y="566" class="s c">partition 3</text>
+<text x="545" y="730" class="h c">Payments never shuffle</text>
+</svg>

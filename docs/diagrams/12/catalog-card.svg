@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1230 520" width="1230" height="520">
+<rect x="0" y="0" width="1230" height="520" fill="#FFFFFF"/>
+<rect x="24" y="24" width="760" height="472" rx="8" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+<rect x="24" y="24" width="760" height="80" rx="8" fill="#111111" stroke="none"/>
+<text x="56" y="76" font-family="IBM Plex Mono" font-size="28" font-weight="400" fill="#FFFFFF" text-anchor="start">gold/transactions_masked</text>
+<text x="56" y="160" font-family="IBM Plex Sans" font-size="24" font-weight="700" fill="#5C5C5C" text-anchor="start">Owner</text>
+<text x="290" y="160" font-family="IBM Plex Sans" font-size="24" font-weight="400" fill="#111111" text-anchor="start">payments-platform</text>
+<text x="56" y="226" font-family="IBM Plex Sans" font-size="24" font-weight="700" fill="#5C5C5C" text-anchor="start">Classification</text>
+<text x="290" y="226" font-family="IBM Plex Sans" font-size="24" font-weight="400" fill="#111111" text-anchor="start">no direct identifiers</text>
+<text x="56" y="292" font-family="IBM Plex Sans" font-size="24" font-weight="700" fill="#5C5C5C" text-anchor="start">Quality</text>
+<text x="290" y="292" font-family="IBM Plex Sans" font-size="24" font-weight="400" fill="#111111" text-anchor="start">4 critical rules, passing</text>
+<text x="56" y="358" font-family="IBM Plex Sans" font-size="24" font-weight="700" fill="#5C5C5C" text-anchor="start">Freshness</text>
+<text x="290" y="358" font-family="IBM Plex Sans" font-size="24" font-weight="400" fill="#111111" text-anchor="start">updated 06:12 today</text>
+<text x="56" y="424" font-family="IBM Plex Sans" font-size="24" font-weight="700" fill="#5C5C5C" text-anchor="start">Lineage</text>
+<text x="290" y="424" font-family="IBM Plex Sans" font-size="24" font-weight="400" fill="#111111" text-anchor="start">silver/transactions → mask job</text>
+<text x="830" y="80" font-family="IBM Plex Sans" font-size="26" font-weight="700" fill="#111111" text-anchor="start">Search finds it</text>
+<text x="830" y="120" font-family="IBM Plex Sans" font-size="26" font-weight="700" fill="#111111" text-anchor="start">Owner answers for it</text>
+<text x="830" y="160" font-family="IBM Plex Sans" font-size="26" font-weight="700" fill="#111111" text-anchor="start">Lineage shows impact</text>
+<text x="830" y="260" font-family="IBM Plex Sans" font-size="24" font-weight="400" fill="#5C5C5C" text-anchor="start">DataHub</text>
+<text x="830" y="300" font-family="IBM Plex Sans" font-size="24" font-weight="400" fill="#5C5C5C" text-anchor="start">OpenMetadata</text>
+<text x="830" y="340" font-family="IBM Plex Sans" font-size="24" font-weight="400" fill="#5C5C5C" text-anchor="start">Unity Catalog OSS</text>
+<text x="830" y="460" font-family="IBM Plex Sans" font-size="22" font-weight="700" fill="#CC3A1C" text-anchor="start">Published by CI and jobs</text>
+</svg>

@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1090 800" width="1090" height="800">
+<rect x="0" y="0" width="1090" height="800" fill="#FFFFFF"/>
+<text x="60" y="150" font-family="IBM Plex Mono" font-size="26" font-weight="400" fill="#5C5C5C" text-anchor="start">airport.transactions, partition 0</text>
+<rect x="60" y="200" width="72" height="90" rx="8" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<text x="96.0" y="251" font-family="IBM Plex Sans" font-size="22" font-weight="700" fill="#111111" text-anchor="middle">100</text>
+<rect x="140" y="200" width="72" height="90" rx="8" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<text x="176.0" y="251" font-family="IBM Plex Sans" font-size="22" font-weight="700" fill="#111111" text-anchor="middle">101</text>
+<rect x="220" y="200" width="72" height="90" rx="8" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<text x="256.0" y="251" font-family="IBM Plex Sans" font-size="22" font-weight="700" fill="#111111" text-anchor="middle">102</text>
+<rect x="300" y="200" width="72" height="90" rx="8" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<text x="336.0" y="251" font-family="IBM Plex Sans" font-size="22" font-weight="700" fill="#111111" text-anchor="middle">103</text>
+<rect x="380" y="200" width="72" height="90" rx="8" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<text x="416.0" y="251" font-family="IBM Plex Sans" font-size="22" font-weight="700" fill="#111111" text-anchor="middle">104</text>
+<rect x="460" y="200" width="72" height="90" rx="8" fill="#FFFFFF" stroke="#CC3A1C" stroke-width="2"/>
+<text x="496.0" y="251" font-family="IBM Plex Sans" font-size="22" font-weight="700" fill="#CC3A1C" text-anchor="middle">105</text>
+<rect x="540" y="200" width="72" height="90" rx="8" fill="#FFFFFF" stroke="#CC3A1C" stroke-width="2"/>
+<text x="576.0" y="251" font-family="IBM Plex Sans" font-size="22" font-weight="700" fill="#CC3A1C" text-anchor="middle">106</text>
+<rect x="620" y="200" width="72" height="90" rx="8" fill="#FFFFFF" stroke="#CC3A1C" stroke-width="2"/>
+<text x="656.0" y="251" font-family="IBM Plex Sans" font-size="22" font-weight="700" fill="#CC3A1C" text-anchor="middle">107</text>
+<rect x="700" y="200" width="72" height="90" rx="8" fill="#FFFFFF" stroke="#CC3A1C" stroke-width="2"/>
+<text x="736.0" y="251" font-family="IBM Plex Sans" font-size="22" font-weight="700" fill="#CC3A1C" text-anchor="middle">108</text>
+<rect x="780" y="200" width="72" height="90" rx="8" fill="#FFFFFF" stroke="#CC3A1C" stroke-width="2"/>
+<text x="816.0" y="251" font-family="IBM Plex Sans" font-size="22" font-weight="700" fill="#CC3A1C" text-anchor="middle">109</text>
+<rect x="860" y="200" width="72" height="90" rx="8" fill="#FFFFFF" stroke="#CC3A1C" stroke-width="2"/>
+<text x="896.0" y="251" font-family="IBM Plex Sans" font-size="22" font-weight="700" fill="#CC3A1C" text-anchor="middle">110</text>
+<rect x="940" y="200" width="72" height="90" rx="8" fill="#FFFFFF" stroke="#CC3A1C" stroke-width="2"/>
+<text x="976.0" y="251" font-family="IBM Plex Sans" font-size="22" font-weight="700" fill="#CC3A1C" text-anchor="middle">111</text>
+<line x1="416" y1="400" x2="416.0" y2="314.0" stroke="#111111" stroke-width="3" stroke-linecap="round"/>
+<polygon points="416,300 423.7,314.0 408.3,314.0" fill="#111111"/>
+<text x="416" y="440" font-family="IBM Plex Sans" font-size="24" font-weight="700" fill="#111111" text-anchor="middle">committed: 104</text>
+<line x1="976" y1="400" x2="976.0" y2="314.0" stroke="#CC3A1C" stroke-width="3" stroke-linecap="round"/>
+<polygon points="976,300 983.7,314.0 968.3,314.0" fill="#CC3A1C"/>
+<text x="976" y="440" font-family="IBM Plex Sans" font-size="24" font-weight="700" fill="#CC3A1C" text-anchor="end">log end: 111</text>
+<line x1="460" y1="520" x2="1012" y2="520" stroke="#CC3A1C" stroke-width="4" stroke-linecap="round"/>
+<line x1="460" y1="505" x2="460" y2="535" stroke="#CC3A1C" stroke-width="4" stroke-linecap="round"/>
+<line x1="1012" y1="505" x2="1012" y2="535" stroke="#CC3A1C" stroke-width="4" stroke-linecap="round"/>
+<text x="740.0" y="580" font-family="IBM Plex Sans" font-size="30" font-weight="700" fill="#CC3A1C" text-anchor="middle">lag = 7 records</text>
+<text x="60" y="680" font-family="IBM Plex Mono" font-size="24" font-weight="400" fill="#5C5C5C" text-anchor="start">group: lab-lag-demo</text>
+</svg>

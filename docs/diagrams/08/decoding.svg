@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1230 520" width="1230" height="520">
+<rect x="0" y="0" width="1230" height="520" fill="#FFFFFF"/>
+<rect x="24" y="150" width="201" height="150" rx="8" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<text x="125" y="219" font-family="IBM Plex Sans" font-size="26" text-anchor="middle" fill="#111111">WAL</text>
+<text x="125" y="250" font-family="IBM Plex Sans" font-size="22" text-anchor="middle" fill="#5C5C5C">all commits</text>
+<polyline points="229,225 251,225" fill="none" stroke="#111111" stroke-width="3"/><polygon points="265,225 251,217 251,233" fill="#111111"/>
+<rect x="269" y="150" width="201" height="150" rx="8" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<text x="370" y="219" font-family="IBM Plex Sans" font-size="26" text-anchor="middle" fill="#111111">pgoutput</text>
+<text x="370" y="250" font-family="IBM Plex Sans" font-size="22" text-anchor="middle" fill="#5C5C5C">decodes rows</text>
+<polyline points="474,225 496,225" fill="none" stroke="#111111" stroke-width="3"/><polygon points="510,225 496,217 496,233" fill="#111111"/>
+<rect x="514" y="150" width="201" height="150" rx="8" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<text x="615" y="219" font-family="IBM Plex Sans" font-size="26" text-anchor="middle" fill="#111111">publication</text>
+<text x="615" y="250" font-family="IBM Plex Sans" font-size="22" text-anchor="middle" fill="#5C5C5C">which tables</text>
+<polyline points="720,225 742,225" fill="none" stroke="#111111" stroke-width="3"/><polygon points="756,225 742,217 742,233" fill="#111111"/>
+<rect x="760" y="150" width="201" height="150" rx="8" fill="#FFFFFF" stroke="#CC3A1C" stroke-width="3"/>
+<text x="860" y="202" font-family="IBM Plex Sans" font-size="26" text-anchor="middle" fill="#111111">replication</text>
+<text x="860" y="236" font-family="IBM Plex Sans" font-size="26" text-anchor="middle" fill="#111111">slot</text>
+<text x="860" y="267" font-family="IBM Plex Sans" font-size="22" text-anchor="middle" fill="#5C5C5C">read position</text>
+<polyline points="965,225 987,225" fill="none" stroke="#111111" stroke-width="3"/><polygon points="1001,225 987,217 987,233" fill="#111111"/>
+<rect x="1005" y="150" width="201" height="150" rx="8" fill="#111111" stroke="#111111" stroke-width="2"/>
+<text x="1105" y="219" font-family="IBM Plex Sans" font-size="26" text-anchor="middle" fill="#FFFFFF">Debezium</text>
+<text x="1105" y="250" font-family="IBM Plex Sans" font-size="22" text-anchor="middle" fill="#FFFFFF">the reader</text>
+<text x="495" y="428" font-family="IBM Plex Sans" font-size="24" text-anchor="middle" fill="#5C5C5C">Inside PostgreSQL</text>
+<line x1="24" y1="390" x2="961" y2="390" stroke="#767676" stroke-width="2" stroke-dasharray="8 6"/>
+</svg>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1090 800" width="1090" height="800">
+<rect x="0" y="0" width="1090" height="800" fill="#FFFFFF"/>
+<line x1="120" y1="680" x2="1040" y2="680" stroke="#111111" stroke-width="3"/>
+<line x1="120" y1="680" x2="120" y2="80" stroke="#111111" stroke-width="3"/>
+<text x="580" y="749" font-family="IBM Plex Sans" font-size="26" text-anchor="middle" fill="#111111">check strictness →</text>
+<rect x="560" y="100" width="200" height="580" rx="0" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<text x="660" y="138" font-family="IBM Plex Sans" font-size="24" text-anchor="middle" fill="#5C5C5C">balance</text>
+<path d="M 140 640 C 500 620, 760 500, 1020 140" fill="none" stroke="#CC3A1C" stroke-width="6"/>
+<path d="M 140 160 C 520 170, 760 280, 1020 620" fill="none" stroke="#111111" stroke-width="6"/>
+<text x="150" y="133" font-family="IBM Plex Sans" font-size="26" text-anchor="start" fill="#111111" font-weight="700">fraud recall</text>
+<text x="150" y="609" font-family="IBM Plex Sans" font-size="26" text-anchor="start" fill="#CC3A1C" font-weight="700">reject rate</text>
+</svg>

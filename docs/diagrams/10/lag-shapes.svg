@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1230 520" width="1230" height="520">
+<rect x="0" y="0" width="1230" height="520" fill="#FFFFFF"/>
+<text x="40" y="50" font-family="IBM Plex Sans" font-size="28" font-weight="700" fill="#111111" text-anchor="start">Consumer stopped</text>
+<text x="40" y="82" font-family="IBM Plex Sans" font-size="22" font-weight="400" fill="#5C5C5C" text-anchor="start">climbs without end</text>
+<line x1="40" y1="360" x2="370" y2="360" stroke="#767676" stroke-width="2" stroke-linecap="round"/>
+<line x1="40" y1="150" x2="40" y2="360" stroke="#767676" stroke-width="2" stroke-linecap="round"/>
+<text x="370" y="394" font-family="IBM Plex Sans" font-size="22" font-weight="400" fill="#5C5C5C" text-anchor="end">time</text>
+<text x="48" y="138" font-family="IBM Plex Sans" font-size="22" font-weight="400" fill="#5C5C5C" text-anchor="start">lag</text>
+<polyline points="55,350.0 115,312.5 175,275.0 235,237.5 295,200.0 355,162.5" fill="none" stroke="#CC3A1C" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="40" y="420" width="200" height="70" rx="8" fill="#CC3A1C" stroke="none"/>
+<text x="140.0" y="462" font-family="IBM Plex Sans" font-size="26" font-weight="700" fill="#FFFFFF" text-anchor="middle">Page</text>
+<text x="440" y="50" font-family="IBM Plex Sans" font-size="28" font-weight="700" fill="#111111" text-anchor="start">Consumer slow</text>
+<text x="440" y="82" font-family="IBM Plex Sans" font-size="22" font-weight="400" fill="#5C5C5C" text-anchor="start">drifts up slowly</text>
+<line x1="440" y1="360" x2="770" y2="360" stroke="#767676" stroke-width="2" stroke-linecap="round"/>
+<line x1="440" y1="150" x2="440" y2="360" stroke="#767676" stroke-width="2" stroke-linecap="round"/>
+<text x="770" y="394" font-family="IBM Plex Sans" font-size="22" font-weight="400" fill="#5C5C5C" text-anchor="end">time</text>
+<text x="448" y="138" font-family="IBM Plex Sans" font-size="22" font-weight="400" fill="#5C5C5C" text-anchor="start">lag</text>
+<polyline points="455,337.5 515,322.5 575,300.0 635,285.0 695,262.5 755,245.0" fill="none" stroke="#111111" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="440" y="420" width="200" height="70" rx="8" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+<text x="540.0" y="462" font-family="IBM Plex Sans" font-size="26" font-weight="700" fill="#111111" text-anchor="middle">Scale out</text>
+<text x="840" y="50" font-family="IBM Plex Sans" font-size="28" font-weight="700" fill="#111111" text-anchor="start">Producer burst</text>
+<text x="840" y="82" font-family="IBM Plex Sans" font-size="22" font-weight="400" fill="#5C5C5C" text-anchor="start">spike, then recovers</text>
+<line x1="840" y1="360" x2="1170" y2="360" stroke="#767676" stroke-width="2" stroke-linecap="round"/>
+<line x1="840" y1="150" x2="840" y2="360" stroke="#767676" stroke-width="2" stroke-linecap="round"/>
+<text x="1170" y="394" font-family="IBM Plex Sans" font-size="22" font-weight="400" fill="#5C5C5C" text-anchor="end">time</text>
+<text x="848" y="138" font-family="IBM Plex Sans" font-size="22" font-weight="400" fill="#5C5C5C" text-anchor="start">lag</text>
+<polyline points="855,340.0 915,337.5 945,175.0 995,275.0 1055,332.5 1155,340.0" fill="none" stroke="#111111" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="840" y="420" width="200" height="70" rx="8" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+<text x="940.0" y="462" font-family="IBM Plex Sans" font-size="26" font-weight="700" fill="#111111" text-anchor="middle">Wait</text>
+</svg>

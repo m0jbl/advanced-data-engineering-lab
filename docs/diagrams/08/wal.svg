@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1230 520" width="1230" height="520">
+<rect x="0" y="0" width="1230" height="520" fill="#FFFFFF"/>
+<text x="24" y="58" font-family="IBM Plex Sans" font-size="28" text-anchor="start" fill="#111111" font-weight="700">Write-ahead log</text>
+<rect x="24" y="80" width="234" height="110" rx="8" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<text x="44" y="119" font-family="IBM Plex Sans" font-size="20" text-anchor="start" fill="#5C5C5C">LSN 1</text>
+<text x="141" y="161" font-family="IBM Plex Sans" font-size="26" text-anchor="middle" fill="#111111">INSERT 7</text>
+<rect x="274" y="80" width="234" height="110" rx="8" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<text x="294" y="119" font-family="IBM Plex Sans" font-size="20" text-anchor="start" fill="#5C5C5C">LSN 2</text>
+<text x="391" y="161" font-family="IBM Plex Sans" font-size="26" text-anchor="middle" fill="#111111">INSERT 42</text>
+<rect x="524" y="80" width="234" height="110" rx="8" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<text x="544" y="119" font-family="IBM Plex Sans" font-size="20" text-anchor="start" fill="#5C5C5C">LSN 3</text>
+<text x="641" y="161" font-family="IBM Plex Sans" font-size="26" text-anchor="middle" fill="#111111">UPDATE 42</text>
+<rect x="774" y="80" width="234" height="110" rx="8" fill="#FFFFFF" stroke="#CC3A1C" stroke-width="3"/>
+<text x="794" y="119" font-family="IBM Plex Sans" font-size="20" text-anchor="start" fill="#5C5C5C">LSN 4</text>
+<text x="891" y="161" font-family="IBM Plex Sans" font-size="26" text-anchor="middle" fill="#111111">DELETE 42</text>
+<polyline points="1030,135 1186,135" fill="none" stroke="#111111" stroke-width="3"/><polygon points="1200,135 1186,127 1186,143" fill="#111111"/>
+<text x="1115" y="116" font-family="IBM Plex Sans" font-size="22" text-anchor="middle" fill="#5C5C5C">append</text>
+<polyline points="520,200 520,286" fill="none" stroke="#111111" stroke-width="3"/><polygon points="520,300 528,286 512,286" fill="#111111"/>
+<text x="540" y="258" font-family="IBM Plex Sans" font-size="24" text-anchor="start" fill="#5C5C5C">replay in order</text>
+<rect x="320" y="310" width="400" height="180" rx="8" fill="#FFFFFF" stroke="#767676" stroke-width="2"/>
+<text x="340" y="354" font-family="IBM Plex Mono" font-size="24" text-anchor="start" fill="#111111" font-weight="700">passenger_blocklist</text>
+<line x1="320" y1="366" x2="720" y2="366" stroke="#767676" stroke-width="2"/>
+<text x="340" y="412" font-family="IBM Plex Mono" font-size="24" text-anchor="start" fill="#111111">7   chargeback_history</text>
+<text x="340" y="460" font-family="IBM Plex Sans" font-size="22" text-anchor="start" fill="#CC3A1C">42 removed by LSN 4</text>
+</svg>

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1230 520" width="1230" height="520">
+<rect x="0" y="0" width="1230" height="520" fill="#FFFFFF"/>
+<rect x="150" y="236" width="930" height="48" rx="4" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<text x="705" y="328" font-family="IBM Plex Sans" font-size="24" text-anchor="middle" fill="#CC3A1C" font-weight="700">scorer blind for 16 hours</text>
+<line x1="60" y1="260" x2="1180" y2="260" stroke="#111111" stroke-width="4"/>
+<polyline points="1150,260 1186,260" fill="none" stroke="#111111" stroke-width="4"/><polygon points="1200,260 1186,252 1186,268" fill="#111111"/>
+<circle cx="150" cy="260" r="16" fill="#111111" stroke="#111111" stroke-width="2"/>
+<text x="150" y="200" font-family="IBM Plex Sans" font-size="30" text-anchor="middle" fill="#111111" font-weight="700">10:00</text>
+<text x="150" y="388" font-family="IBM Plex Sans" font-size="24" text-anchor="middle" fill="#111111">block saved</text>
+<text x="150" y="422" font-family="IBM Plex Sans" font-size="24" text-anchor="middle" fill="#5C5C5C">in Postgres</text>
+<circle cx="330" cy="260" r="16" fill="#CC3A1C" stroke="#CC3A1C" stroke-width="2"/>
+<text x="330" y="200" font-family="IBM Plex Sans" font-size="30" text-anchor="middle" fill="#CC3A1C" font-weight="700">10:07</text>
+<text x="330" y="388" font-family="IBM Plex Sans" font-size="24" text-anchor="middle" fill="#CC3A1C">payment scored</text>
+<text x="330" y="422" font-family="IBM Plex Sans" font-size="24" text-anchor="middle" fill="#5C5C5C">without block</text>
+<circle cx="1080" cy="260" r="16" fill="#111111" stroke="#111111" stroke-width="2"/>
+<text x="1080" y="200" font-family="IBM Plex Sans" font-size="30" text-anchor="middle" fill="#111111" font-weight="700">02:00</text>
+<text x="1080" y="388" font-family="IBM Plex Sans" font-size="24" text-anchor="middle" fill="#111111">export lands</text>
+<text x="1080" y="422" font-family="IBM Plex Sans" font-size="24" text-anchor="middle" fill="#5C5C5C">in lakehouse</text>
+</svg>

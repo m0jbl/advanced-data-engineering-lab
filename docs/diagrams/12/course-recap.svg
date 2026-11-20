@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1230 520" width="1230" height="520">
+<rect x="0" y="0" width="1230" height="520" fill="#FFFFFF"/>
+<rect x="24" y="50" width="260" height="125" rx="8" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+<text x="154.0" y="105" font-family="IBM Plex Sans" font-size="26" font-weight="700" fill="#111111" text-anchor="middle">Kafka</text>
+<text x="154.0" y="137" font-family="IBM Plex Sans" font-size="22" font-weight="400" fill="#5C5C5C" text-anchor="middle">ingest</text>
+<rect x="24" y="50" width="56" height="36" rx="6" fill="#111111" stroke="none"/>
+<text x="52" y="76" font-family="IBM Plex Sans" font-size="20" font-weight="700" fill="#FFFFFF" text-anchor="middle">02</text>
+<rect x="324" y="50" width="260" height="125" rx="8" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+<text x="454.0" y="105" font-family="IBM Plex Sans" font-size="26" font-weight="700" fill="#111111" text-anchor="middle">Contract</text>
+<text x="454.0" y="137" font-family="IBM Plex Sans" font-size="22" font-weight="400" fill="#5C5C5C" text-anchor="middle">schema</text>
+<rect x="324" y="50" width="56" height="36" rx="6" fill="#111111" stroke="none"/>
+<text x="352" y="76" font-family="IBM Plex Sans" font-size="20" font-weight="700" fill="#FFFFFF" text-anchor="middle">03</text>
+<line x1="284" y1="112" x2="310.0" y2="112.0" stroke="#111111" stroke-width="3" stroke-linecap="round"/>
+<polygon points="324,112 310.0,119.7 310.0,104.3" fill="#111111"/>
+<rect x="624" y="50" width="260" height="125" rx="8" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+<text x="754.0" y="105" font-family="IBM Plex Sans" font-size="26" font-weight="700" fill="#111111" text-anchor="middle">Streaming</text>
+<text x="754.0" y="137" font-family="IBM Plex Sans" font-size="22" font-weight="400" fill="#5C5C5C" text-anchor="middle">live scores</text>
+<rect x="624" y="50" width="56" height="36" rx="6" fill="#111111" stroke="none"/>
+<text x="652" y="76" font-family="IBM Plex Sans" font-size="20" font-weight="700" fill="#FFFFFF" text-anchor="middle">05</text>
+<line x1="584" y1="112" x2="610.0" y2="112.0" stroke="#111111" stroke-width="3" stroke-linecap="round"/>
+<polygon points="624,112 610.0,119.7 610.0,104.3" fill="#111111"/>
+<rect x="924" y="50" width="260" height="125" rx="8" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+<text x="1054.0" y="105" font-family="IBM Plex Sans" font-size="26" font-weight="700" fill="#111111" text-anchor="middle">CDC</text>
+<text x="1054.0" y="137" font-family="IBM Plex Sans" font-size="22" font-weight="400" fill="#5C5C5C" text-anchor="middle">blocklist</text>
+<rect x="924" y="50" width="56" height="36" rx="6" fill="#111111" stroke="none"/>
+<text x="952" y="76" font-family="IBM Plex Sans" font-size="20" font-weight="700" fill="#FFFFFF" text-anchor="middle">08</text>
+<line x1="884" y1="112" x2="910.0" y2="112.0" stroke="#111111" stroke-width="3" stroke-linecap="round"/>
+<polygon points="924,112 910.0,119.7 910.0,104.3" fill="#111111"/>
+<rect x="24" y="225" width="260" height="125" rx="8" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+<text x="154.0" y="280" font-family="IBM Plex Sans" font-size="26" font-weight="700" fill="#111111" text-anchor="middle">Spark batch</text>
+<text x="154.0" y="312" font-family="IBM Plex Sans" font-size="22" font-weight="400" fill="#5C5C5C" text-anchor="middle">silver</text>
+<rect x="24" y="225" width="56" height="36" rx="6" fill="#111111" stroke="none"/>
+<text x="52" y="251" font-family="IBM Plex Sans" font-size="20" font-weight="700" fill="#FFFFFF" text-anchor="middle">04</text>
+<rect x="324" y="225" width="260" height="125" rx="8" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+<text x="454.0" y="280" font-family="IBM Plex Sans" font-size="26" font-weight="700" fill="#111111" text-anchor="middle">Delta</text>
+<text x="454.0" y="312" font-family="IBM Plex Sans" font-size="22" font-weight="400" fill="#5C5C5C" text-anchor="middle">lakehouse</text>
+<rect x="324" y="225" width="56" height="36" rx="6" fill="#111111" stroke="none"/>
+<text x="352" y="251" font-family="IBM Plex Sans" font-size="20" font-weight="700" fill="#FFFFFF" text-anchor="middle">06</text>
+<line x1="284" y1="287" x2="310.0" y2="287.0" stroke="#111111" stroke-width="3" stroke-linecap="round"/>
+<polygon points="324,287 310.0,294.7 310.0,279.3" fill="#111111"/>
+<rect x="624" y="225" width="260" height="125" rx="8" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+<text x="754.0" y="280" font-family="IBM Plex Sans" font-size="26" font-weight="700" fill="#111111" text-anchor="middle">Quality</text>
+<text x="754.0" y="312" font-family="IBM Plex Sans" font-size="22" font-weight="400" fill="#5C5C5C" text-anchor="middle">gates</text>
+<rect x="624" y="225" width="56" height="36" rx="6" fill="#111111" stroke="none"/>
+<text x="652" y="251" font-family="IBM Plex Sans" font-size="20" font-weight="700" fill="#FFFFFF" text-anchor="middle">07</text>
+<line x1="584" y1="287" x2="610.0" y2="287.0" stroke="#111111" stroke-width="3" stroke-linecap="round"/>
+<polygon points="624,287 610.0,294.7 610.0,279.3" fill="#111111"/>
+<rect x="924" y="225" width="260" height="125" rx="8" fill="#CC3A1C" stroke="none"/>
+<text x="1054.0" y="280" font-family="IBM Plex Sans" font-size="26" font-weight="700" fill="#FFFFFF" text-anchor="middle">Governance</text>
+<text x="1054.0" y="312" font-family="IBM Plex Sans" font-size="22" font-weight="400" fill="#FFFFFF" text-anchor="middle">masking</text>
+<rect x="924" y="225" width="56" height="36" rx="6" fill="#111111" stroke="none"/>
+<text x="952" y="251" font-family="IBM Plex Sans" font-size="20" font-weight="700" fill="#FFFFFF" text-anchor="middle">12</text>
+<line x1="884" y1="287" x2="910.0" y2="287.0" stroke="#111111" stroke-width="3" stroke-linecap="round"/>
+<polygon points="924,287 910.0,294.7 910.0,279.3" fill="#111111"/>
+<text x="24" y="38" font-family="IBM Plex Sans" font-size="20" font-weight="400" fill="#5C5C5C" text-anchor="start">live path</text>
+<text x="24" y="213" font-family="IBM Plex Sans" font-size="20" font-weight="400" fill="#5C5C5C" text-anchor="start">batch path</text>
+<rect x="24" y="390" width="1182" height="106" rx="8" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<rect x="60" y="430" width="56" height="36" rx="6" fill="#111111" stroke="none"/>
+<text x="88" y="456" font-family="IBM Plex Sans" font-size="20" font-weight="700" fill="#FFFFFF" text-anchor="middle">01</text>
+<text x="132" y="458" font-family="IBM Plex Sans" font-size="26" font-weight="700" fill="#111111" text-anchor="start">Principles</text>
+<rect x="350" y="430" width="56" height="36" rx="6" fill="#111111" stroke="none"/>
+<text x="378" y="456" font-family="IBM Plex Sans" font-size="20" font-weight="700" fill="#FFFFFF" text-anchor="middle">09</text>
+<text x="422" y="458" font-family="IBM Plex Sans" font-size="26" font-weight="700" fill="#111111" text-anchor="start">CI/CD</text>
+<rect x="640" y="430" width="56" height="36" rx="6" fill="#111111" stroke="none"/>
+<text x="668" y="456" font-family="IBM Plex Sans" font-size="20" font-weight="700" fill="#FFFFFF" text-anchor="middle">10</text>
+<text x="712" y="458" font-family="IBM Plex Sans" font-size="26" font-weight="700" fill="#111111" text-anchor="start">Observability</text>
+<rect x="930" y="430" width="56" height="36" rx="6" fill="#111111" stroke="none"/>
+<text x="958" y="456" font-family="IBM Plex Sans" font-size="20" font-weight="700" fill="#FFFFFF" text-anchor="middle">11</text>
+<text x="1002" y="458" font-family="IBM Plex Sans" font-size="26" font-weight="700" fill="#111111" text-anchor="start">Orchestration</text>
+<text x="40" y="418" font-family="IBM Plex Sans" font-size="20" font-weight="400" fill="#5C5C5C" text-anchor="start">operate every step</text>
+</svg>

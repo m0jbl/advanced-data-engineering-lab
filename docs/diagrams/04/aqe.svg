@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1090 800" width="1090" height="800">
+<style>
+.h{font-family:IBM Plex Sans Light;font-size:30px;fill:#111111}
+.s{font-family:IBM Plex Sans;font-size:22px;fill:#5C5C5C}
+.t{font-family:IBM Plex Sans;font-size:24px;fill:#111111}
+.c{text-anchor:middle}
+.r{fill:#CC3A1C}
+.bar{fill:#F5F5F5;stroke:#767676;stroke-width:2}
+.skew{fill:#CC3A1C}
+.split{fill:#FFFFFF;stroke:#CC3A1C;stroke-width:3}
+.merged{fill:#111111}
+.base{stroke:#767676;stroke-width:2}
+</style>
+<text x="100" y="60" class="h">Before AQE</text>
+<line class="base" x1="80" y1="330" x2="1010" y2="330"/>
+<rect class="bar" x="100" y="300" width="80" height="30"/>
+<rect class="bar" x="204" y="306" width="80" height="24"/>
+<rect class="bar" x="308" y="294" width="80" height="36"/>
+<rect class="bar" x="412" y="302" width="80" height="28"/>
+<rect class="bar" x="516" y="298" width="80" height="32"/>
+<rect class="skew" x="620" y="110" width="80" height="220"/>
+<rect class="bar" x="724" y="304" width="80" height="26"/>
+<rect class="bar" x="828" y="300" width="80" height="30"/>
+<text x="720" y="96" class="t r">skewed</text>
+<text x="100" y="370" class="s">tiny partitions</text>
+<text x="100" y="450" class="h">After AQE</text>
+<line class="base" x1="80" y1="720" x2="1010" y2="720"/>
+<rect class="merged" x="100" y="602" width="120" height="118"/>
+<rect class="merged" x="244" y="632" width="120" height="88"/>
+<rect class="split" x="420" y="647" width="120" height="73"/>
+<rect class="split" x="564" y="647" width="120" height="73"/>
+<rect class="split" x="708" y="646" width="120" height="74"/>
+<text x="232" y="760" class="s c">merged</text>
+<text x="624" y="760" class="s c r">skew split</text>
+</svg>

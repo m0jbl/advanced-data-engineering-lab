@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1090 800" width="1090" height="800">
+<rect x="0" y="0" width="1090" height="800" fill="#FFFFFF"/>
+<rect x="195" y="24" width="700" height="100" rx="8" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<text x="545" y="84" font-family="IBM Plex Sans" font-size="28" text-anchor="middle" fill="#111111">event 81 delivered</text>
+<polyline points="545,128 545,164" fill="none" stroke="#111111" stroke-width="3"/><polygon points="545,178 553,164 537,164" fill="#111111"/>
+<rect x="195" y="182" width="700" height="100" rx="8" fill="#FFFFFF" stroke="#767676" stroke-width="2"/>
+<text x="545" y="242" font-family="IBM Plex Sans" font-size="28" text-anchor="middle" fill="#5C5C5C">consumer crash, replay</text>
+<polyline points="545,286 545,322" fill="none" stroke="#111111" stroke-width="3"/><polygon points="545,336 553,322 537,322" fill="#111111"/>
+<rect x="195" y="340" width="330" height="100" rx="8" fill="#FFFFFF" stroke="#CC3A1C" stroke-width="3"/>
+<text x="360" y="400" font-family="IBM Plex Sans" font-size="28" text-anchor="middle" fill="#111111">row 81</text>
+<rect x="565" y="340" width="330" height="100" rx="8" fill="#FFFFFF" stroke="#CC3A1C" stroke-width="3"/>
+<text x="730" y="400" font-family="IBM Plex Sans" font-size="28" text-anchor="middle" fill="#111111">row 81</text>
+<text x="545" y="478" font-family="IBM Plex Sans" font-size="24" text-anchor="middle" fill="#5C5C5C">both pass every row check</text>
+<polyline points="545,496 545,532" fill="none" stroke="#111111" stroke-width="3"/><polygon points="545,546 553,532 537,532" fill="#111111"/>
+<rect x="195" y="550" width="700" height="100" rx="8" fill="#111111" stroke="#111111" stroke-width="2"/>
+<text x="545" y="609" font-family="IBM Plex Mono" font-size="26" text-anchor="middle" fill="#FFFFFF">dropDuplicates(transaction_id)</text>
+<polyline points="545,654 545,676" fill="none" stroke="#111111" stroke-width="3"/><polygon points="545,690 553,676 537,676" fill="#111111"/>
+<rect x="370" y="694" width="350" height="84" rx="8" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<text x="545" y="746" font-family="IBM Plex Sans" font-size="28" text-anchor="middle" fill="#111111">one row 81</text>
+</svg>

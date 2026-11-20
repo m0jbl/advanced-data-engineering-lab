@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1230 520" width="1230" height="520">
+<style>
+.t{font-family:IBM Plex Sans;font-size:26px;fill:#111111}
+.m{font-family:IBM Plex Mono;font-size:22px;fill:#5C5C5C}
+.hd{font-family:IBM Plex Sans Light;font-size:30px;fill:#FFFFFF}
+.c{text-anchor:middle}
+.r{fill:#CC3A1C}
+.card{fill:#F5F5F5;stroke:#767676;stroke-width:2}
+.tab{fill:#111111}
+.dot{fill:#CC3A1C}
+</style>
+<text x="24" y="48" class="m">http://localhost:4040</text>
+<rect class="card" x="24" y="80" width="374" height="400" rx="14"/>
+<rect class="tab" x="24" y="80" width="374" height="72" rx="14"/>
+<text x="211" y="128" class="hd c">Jobs</text>
+<circle class="dot" cx="56" cy="212" r="8"/><text x="80" y="221" class="t">One row per action</text>
+<circle class="dot" cx="56" cy="282" r="8"/><text x="80" y="291" class="t">Duration of each job</text>
+<rect class="card" x="428" y="80" width="374" height="400" rx="14"/>
+<rect class="tab" x="428" y="80" width="374" height="72" rx="14"/>
+<text x="615" y="128" class="hd c">Stages</text>
+<circle class="dot" cx="460" cy="212" r="8"/><text x="484" y="221" class="t">Tasks per stage</text>
+<circle class="dot" cx="460" cy="282" r="8"/><text x="484" y="291" class="t">Shuffle read and write</text>
+<circle class="dot" cx="460" cy="352" r="8"/><text x="484" y="361" class="t">Spill to disk</text>
+<circle class="dot" cx="460" cy="422" r="8"/><text x="484" y="431" class="t">Slowest versus median</text>
+<rect class="card" x="832" y="80" width="374" height="400" rx="14"/>
+<rect class="tab" x="832" y="80" width="374" height="72" rx="14"/>
+<text x="1019" y="128" class="hd c">SQL</text>
+<circle class="dot" cx="864" cy="212" r="8"/><text x="888" y="221" class="t">Physical plan</text>
+<circle class="dot" cx="864" cy="282" r="8"/><text x="888" y="291" class="t">Join strategy</text>
+<circle class="dot" cx="864" cy="352" r="8"/><text x="888" y="361" class="t">Rows per operator</text>
+</svg>

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1230 520" width="1230" height="520">
+<rect x="0" y="0" width="1230" height="520" fill="#FFFFFF"/>
+<rect x="24" y="24" width="378" height="96" rx="8" fill="#111111" stroke="#111111" stroke-width="2"/>
+<text x="213" y="82" font-family="IBM Plex Sans" font-size="28" text-anchor="middle" fill="#FFFFFF" font-weight="700">Fail the job</text>
+<text x="213" y="188" font-family="IBM Plex Sans" font-size="22" text-anchor="middle" fill="#5C5C5C">when</text>
+<rect x="24" y="200" width="378" height="96" rx="8" fill="#FFFFFF" stroke="#767676" stroke-width="2"/>
+<text x="213" y="256" font-family="IBM Plex Sans" font-size="24" text-anchor="middle" fill="#111111">schema broken</text>
+<polyline points="213,300 213,356" fill="none" stroke="#111111" stroke-width="3"/><polygon points="213,370 221,356 205,356" fill="#111111"/>
+<rect x="24" y="376" width="378" height="96" rx="8" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<text x="213" y="432" font-family="IBM Plex Sans" font-size="24" text-anchor="middle" fill="#111111">nothing published</text>
+<rect x="426" y="24" width="378" height="96" rx="8" fill="#FFFFFF" stroke="#CC3A1C" stroke-width="3"/>
+<text x="615" y="82" font-family="IBM Plex Sans" font-size="28" text-anchor="middle" fill="#111111" font-weight="700">Quarantine the row</text>
+<text x="615" y="188" font-family="IBM Plex Sans" font-size="22" text-anchor="middle" fill="#5C5C5C">when</text>
+<rect x="426" y="200" width="378" height="96" rx="8" fill="#FFFFFF" stroke="#767676" stroke-width="2"/>
+<text x="615" y="256" font-family="IBM Plex Sans" font-size="24" text-anchor="middle" fill="#111111">null key, bad airport</text>
+<polyline points="615,300 615,356" fill="none" stroke="#111111" stroke-width="3"/><polygon points="615,370 623,356 607,356" fill="#111111"/>
+<rect x="426" y="376" width="378" height="96" rx="8" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<text x="615" y="432" font-family="IBM Plex Sans" font-size="24" text-anchor="middle" fill="#111111">row set aside</text>
+<rect x="828" y="24" width="378" height="96" rx="8" fill="#FFFFFF" stroke="#767676" stroke-width="2"/>
+<text x="1017" y="82" font-family="IBM Plex Sans" font-size="28" text-anchor="middle" fill="#5C5C5C" font-weight="700">Warn and publish</text>
+<text x="1017" y="188" font-family="IBM Plex Sans" font-size="22" text-anchor="middle" fill="#5C5C5C">when</text>
+<rect x="828" y="200" width="378" height="96" rx="8" fill="#FFFFFF" stroke="#767676" stroke-width="2"/>
+<text x="1017" y="256" font-family="IBM Plex Sans" font-size="24" text-anchor="middle" fill="#111111">amount off profile</text>
+<polyline points="1017,300 1017,356" fill="none" stroke="#111111" stroke-width="3"/><polygon points="1017,370 1025,356 1009,356" fill="#111111"/>
+<rect x="828" y="376" width="378" height="96" rx="8" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<text x="1017" y="432" font-family="IBM Plex Sans" font-size="24" text-anchor="middle" fill="#111111">published, flagged</text>
+</svg>

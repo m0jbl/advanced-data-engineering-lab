@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1090 800" width="1090" height="800">
+<rect x="0" y="0" width="1090" height="800" fill="#FFFFFF"/>
+<text x="60" y="140" font-family="IBM Plex Mono" font-size="26" font-weight="400" fill="#111111" text-anchor="start">day</text>
+<rect x="60" y="160" width="270.8959961564606" height="64" rx="2" fill="#767676" stroke="none"/>
+<text x="346.8959961564606" y="204" font-family="IBM Plex Sans" font-size="26" font-weight="700" fill="#111111" text-anchor="start">60</text>
+<text x="60" y="290" font-family="IBM Plex Mono" font-size="26" font-weight="400" fill="#111111" text-anchor="start">day × merchant_category</text>
+<rect x="60" y="310" width="399.644141371971" height="64" rx="2" fill="#767676" stroke="none"/>
+<text x="475.644141371971" y="354" font-family="IBM Plex Sans" font-size="26" font-weight="700" fill="#111111" text-anchor="start">420</text>
+<text x="60" y="440" font-family="IBM Plex Mono" font-size="26" font-weight="400" fill="#111111" text-anchor="start">passenger_id</text>
+<rect x="60" y="460" width="502.901993756052" height="64" rx="2" fill="#CC3A1C" stroke="none"/>
+<text x="578.901993756052" y="504" font-family="IBM Plex Sans" font-size="26" font-weight="700" fill="#CC3A1C" text-anchor="start">2,000</text>
+<text x="60" y="590" font-family="IBM Plex Mono" font-size="26" font-weight="400" fill="#111111" text-anchor="start">transaction_id</text>
+<rect x="60" y="610" width="740.0" height="64" rx="2" fill="#CC3A1C" stroke="none"/>
+<text x="816.0" y="654" font-family="IBM Plex Sans" font-size="26" font-weight="700" fill="#CC3A1C" text-anchor="start">72,000</text>
+<text x="60" y="740" font-family="IBM Plex Sans" font-size="22" font-weight="400" fill="#5C5C5C" text-anchor="start">Series per label, lab sizes, log scale</text>
+</svg>

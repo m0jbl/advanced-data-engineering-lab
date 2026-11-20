@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1230 520" width="1230" height="520">
+<rect x="0" y="0" width="1230" height="520" fill="#FFFFFF"/>
+<rect x="24" y="212" width="200" height="96" rx="8" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<text x="124" y="269" font-family="IBM Plex Sans" font-size="26" text-anchor="middle" fill="#111111">bronze</text>
+<polyline points="228,260 286,260" fill="none" stroke="#111111" stroke-width="3"/><polygon points="300,260 286,252 286,268" fill="#111111"/>
+<rect x="304" y="196" width="260" height="128" rx="8" fill="#FFFFFF" stroke="#CC3A1C" stroke-width="3"/>
+<text x="434" y="252" font-family="IBM Plex Sans" font-size="26" text-anchor="middle" fill="#111111">silver</text>
+<text x="434" y="286" font-family="IBM Plex Sans" font-size="26" text-anchor="middle" fill="#111111">payments</text>
+<rect x="846" y="40" width="360" height="92" rx="8" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<text x="1026" y="95" font-family="IBM Plex Sans" font-size="26" text-anchor="middle" fill="#111111">fraud scorer</text>
+<polyline points="568,260 700,260 700,86 826,86" fill="none" stroke="#111111" stroke-width="3"/><polygon points="840,86 826,78 826,94" fill="#111111"/>
+<rect x="846" y="156" width="360" height="92" rx="8" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<text x="1026" y="211" font-family="IBM Plex Sans" font-size="26" text-anchor="middle" fill="#111111">passenger features</text>
+<polyline points="568,260 700,260 700,202 826,202" fill="none" stroke="#111111" stroke-width="3"/><polygon points="840,202 826,194 826,210" fill="#111111"/>
+<rect x="846" y="272" width="360" height="92" rx="8" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<text x="1026" y="327" font-family="IBM Plex Sans" font-size="26" text-anchor="middle" fill="#111111">finance totals</text>
+<polyline points="568,260 700,260 700,318 826,318" fill="none" stroke="#111111" stroke-width="3"/><polygon points="840,318 826,310 826,326" fill="#111111"/>
+<rect x="846" y="388" width="360" height="92" rx="8" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<text x="1026" y="443" font-family="IBM Plex Sans" font-size="26" text-anchor="middle" fill="#111111">fraud ops queue</text>
+<polyline points="568,260 700,260 700,434 826,434" fill="none" stroke="#111111" stroke-width="3"/><polygon points="840,434 826,426 826,442" fill="#111111"/>
+</svg>

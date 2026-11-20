@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1230 520" width="1230" height="520">
+<style>
+.t{font-family:IBM Plex Sans;font-size:26px;fill:#111111}
+.s{font-family:IBM Plex Sans;font-size:22px;fill:#5C5C5C}
+.c{text-anchor:middle}
+.w{fill:#FFFFFF}
+.r{fill:#CC3A1C}
+.box{fill:#F5F5F5;stroke:#767676;stroke-width:2}
+.dark{fill:#111111}
+.hi{fill:#FFFFFF;stroke:#CC3A1C;stroke-width:4}
+.ln{stroke:#111111;stroke-width:3;fill:none}
+.lr{stroke:#CC3A1C;stroke-width:3;fill:none}
+.ar{fill:#111111}
+.arr{fill:#CC3A1C}
+</style>
+<rect class="box" x="24" y="200" width="200" height="120" rx="12"/>
+<text x="124" y="252" class="t c">Bronze</text>
+<text x="124" y="286" class="s c">raw CSV</text>
+<line class="ln" x1="224" y1="260" x2="270" y2="260"/><polygon class="ar" points="268,251 284,260 268,269"/>
+<rect class="dark" x="284" y="200" width="220" height="120" rx="12"/>
+<text x="394" y="252" class="t c w">Validate</text>
+<text x="394" y="286" class="s c w">six checks</text>
+<path class="ln" d="M504 260 H544 V130 H570"/><polygon class="ar" points="568,121 584,130 568,139"/>
+<path class="lr" d="M544 260 V390 H570"/><polygon class="arr" points="568,381 584,390 568,399"/>
+<rect class="box" x="584" y="80" width="220" height="100" rx="12"/>
+<text x="694" y="140" class="t c">Accepted</text>
+<rect class="hi" x="584" y="340" width="220" height="100" rx="12"/>
+<text x="694" y="400" class="t c r">Rejected</text>
+<line class="ln" x1="804" y1="130" x2="870" y2="130"/><polygon class="ar" points="868,121 884,130 868,139"/>
+<line class="lr" x1="804" y1="390" x2="870" y2="390"/><polygon class="arr" points="868,381 884,390 868,399"/>
+<rect class="dark" x="884" y="80" width="322" height="100" rx="12"/>
+<text x="1045" y="124" class="t c w">Silver Delta</text>
+<text x="1045" y="158" class="s c w">by event_date</text>
+<rect class="box" x="884" y="340" width="322" height="100" rx="12"/>
+<text x="1045" y="384" class="t c">Quarantine</text>
+<text x="1045" y="418" class="s c">with reject_reason</text>
+</svg>

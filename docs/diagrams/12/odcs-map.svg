@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1090 800" width="1090" height="800">
+<rect x="0" y="0" width="1090" height="800" fill="#FFFFFF"/>
+<text x="60" y="80" font-family="IBM Plex Sans" font-size="24" font-weight="700" fill="#111111" text-anchor="start">Lab contract</text>
+<text x="640" y="80" font-family="IBM Plex Sans" font-size="24" font-weight="700" fill="#111111" text-anchor="start">ODCS v3.2.0</text>
+<rect x="60" y="110" width="420" height="96" rx="8" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+<text x="270.0" y="164" font-family="IBM Plex Sans" font-size="22" font-weight="700" fill="#111111" text-anchor="middle">dataset, owner</text>
+<rect x="640" y="110" width="390" height="96" rx="8" fill="#111111" stroke="none"/>
+<text x="835.0" y="164" font-family="IBM Plex Sans" font-size="24" font-weight="700" fill="#FFFFFF" text-anchor="middle">Fundamentals, Team</text>
+<line x1="480" y1="158" x2="626.0" y2="158.0" stroke="#111111" stroke-width="3" stroke-linecap="round"/>
+<polygon points="640,158 626.0,165.7 626.0,150.3" fill="#111111"/>
+<rect x="60" y="240" width="420" height="96" rx="8" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+<text x="270.0" y="294" font-family="IBM Plex Sans" font-size="22" font-weight="700" fill="#111111" text-anchor="middle">schema_ref, classification</text>
+<rect x="640" y="240" width="390" height="96" rx="8" fill="#111111" stroke="none"/>
+<text x="835.0" y="294" font-family="IBM Plex Sans" font-size="24" font-weight="700" fill="#FFFFFF" text-anchor="middle">Schema</text>
+<line x1="480" y1="288" x2="626.0" y2="288.0" stroke="#111111" stroke-width="3" stroke-linecap="round"/>
+<polygon points="640,288 626.0,295.7 626.0,280.3" fill="#111111"/>
+<rect x="60" y="370" width="420" height="96" rx="8" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+<text x="270.0" y="424" font-family="IBM Plex Sans" font-size="22" font-weight="700" fill="#111111" text-anchor="middle">quality</text>
+<rect x="640" y="370" width="390" height="96" rx="8" fill="#111111" stroke="none"/>
+<text x="835.0" y="424" font-family="IBM Plex Sans" font-size="24" font-weight="700" fill="#FFFFFF" text-anchor="middle">Data quality</text>
+<line x1="480" y1="418" x2="626.0" y2="418.0" stroke="#111111" stroke-width="3" stroke-linecap="round"/>
+<polygon points="640,418 626.0,425.7 626.0,410.3" fill="#111111"/>
+<rect x="60" y="500" width="420" height="96" rx="8" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+<text x="270.0" y="554" font-family="IBM Plex Sans" font-size="22" font-weight="700" fill="#111111" text-anchor="middle">consumers.sla</text>
+<rect x="640" y="500" width="390" height="96" rx="8" fill="#111111" stroke="none"/>
+<text x="835.0" y="554" font-family="IBM Plex Sans" font-size="24" font-weight="700" fill="#FFFFFF" text-anchor="middle">SLA</text>
+<line x1="480" y1="548" x2="626.0" y2="548.0" stroke="#111111" stroke-width="3" stroke-linecap="round"/>
+<polygon points="640,548 626.0,555.7 626.0,540.3" fill="#111111"/>
+<rect x="60" y="630" width="420" height="96" rx="8" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+<text x="270.0" y="684" font-family="IBM Plex Sans" font-size="22" font-weight="700" fill="#111111" text-anchor="middle">retention</text>
+<rect x="640" y="630" width="390" height="96" rx="8" fill="#111111" stroke="none"/>
+<text x="835.0" y="684" font-family="IBM Plex Sans" font-size="24" font-weight="700" fill="#FFFFFF" text-anchor="middle">SLA: retention</text>
+<line x1="480" y1="678" x2="626.0" y2="678.0" stroke="#111111" stroke-width="3" stroke-linecap="round"/>
+<polygon points="640,678 626.0,685.7 626.0,670.3" fill="#111111"/>
+<text x="60" y="770" font-family="IBM Plex Sans" font-size="22" font-weight="400" fill="#5C5C5C" text-anchor="start">Same content, standard section names</text>
+</svg>

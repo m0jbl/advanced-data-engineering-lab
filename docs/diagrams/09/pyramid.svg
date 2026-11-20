@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1230 520" width="1230" height="520">
+<rect x="0" y="0" width="1230" height="520" fill="#FFFFFF"/>
+<polygon points="350,48 450,48 515,152 285,152" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<text x="400" y="109" font-family="IBM Plex Sans" font-size="26" text-anchor="middle" fill="#111111" font-weight="700">integration</text>
+<line x1="531" y1="100" x2="760" y2="100" stroke="#767676" stroke-width="2" stroke-dasharray="8 6"/>
+<text x="780" y="109" font-family="IBM Plex Sans" font-size="26" text-anchor="start" fill="#111111" font-weight="700">minutes</text>
+<text x="980" y="108" font-family="IBM Plex Sans" font-size="24" text-anchor="start" fill="#5C5C5C">nightly</text>
+<polygon points="285,160 515,160 580,264 220,264" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<text x="400" y="221" font-family="IBM Plex Sans" font-size="26" text-anchor="middle" fill="#111111" font-weight="700">Spark</text>
+<line x1="596" y1="212" x2="760" y2="212" stroke="#767676" stroke-width="2" stroke-dasharray="8 6"/>
+<text x="780" y="221" font-family="IBM Plex Sans" font-size="26" text-anchor="start" fill="#111111" font-weight="700">seconds</text>
+<text x="980" y="220" font-family="IBM Plex Sans" font-size="24" text-anchor="start" fill="#5C5C5C">every PR</text>
+<polygon points="220,272 580,272 645,376 155,376" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<text x="400" y="333" font-family="IBM Plex Sans" font-size="26" text-anchor="middle" fill="#111111" font-weight="700">contract</text>
+<line x1="661" y1="324" x2="760" y2="324" stroke="#767676" stroke-width="2" stroke-dasharray="8 6"/>
+<text x="780" y="333" font-family="IBM Plex Sans" font-size="26" text-anchor="start" fill="#111111" font-weight="700">&lt; 1 s</text>
+<text x="980" y="332" font-family="IBM Plex Sans" font-size="24" text-anchor="start" fill="#5C5C5C">every PR</text>
+<polygon points="155,384 645,384 710,488 90,488" fill="#FFFFFF" stroke="#CC3A1C" stroke-width="3"/>
+<text x="400" y="445" font-family="IBM Plex Sans" font-size="26" text-anchor="middle" fill="#111111" font-weight="700">unit</text>
+<line x1="726" y1="436" x2="760" y2="436" stroke="#767676" stroke-width="2" stroke-dasharray="8 6"/>
+<text x="780" y="445" font-family="IBM Plex Sans" font-size="26" text-anchor="start" fill="#111111" font-weight="700">&lt; 1 s</text>
+<text x="980" y="444" font-family="IBM Plex Sans" font-size="24" text-anchor="start" fill="#5C5C5C">every PR</text>
+<text x="780" y="38" font-family="IBM Plex Sans" font-size="22" text-anchor="start" fill="#5C5C5C">run time</text>
+<text x="980" y="38" font-family="IBM Plex Sans" font-size="22" text-anchor="start" fill="#5C5C5C">when</text>
+</svg>

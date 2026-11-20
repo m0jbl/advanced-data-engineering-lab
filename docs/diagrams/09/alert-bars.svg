@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1230 520" width="1230" height="520">
+<rect x="0" y="0" width="1230" height="520" fill="#FFFFFF"/>
+<line x1="200" y1="400" x2="1030" y2="400" stroke="#111111" stroke-width="3"/>
+<rect x="300" y="270" width="220" height="130" rx="4" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<rect x="710" y="80" width="220" height="320" rx="4" fill="#CC3A1C" stroke="#CC3A1C" stroke-width="2"/>
+<text x="410" y="446" font-family="IBM Plex Mono" font-size="28" text-anchor="middle" fill="#111111" font-weight="700">ratio ≥ 4</text>
+<text x="820" y="446" font-family="IBM Plex Mono" font-size="28" text-anchor="middle" fill="#CC3A1C" font-weight="700">ratio ≥ 2</text>
+<text x="410" y="248" font-family="IBM Plex Sans" font-size="24" text-anchor="middle" fill="#5C5C5C">? alerts/day</text>
+<text x="820" y="58" font-family="IBM Plex Sans" font-size="24" text-anchor="middle" fill="#CC3A1C">? alerts/day</text>
+<text x="615" y="498" font-family="IBM Plex Sans" font-size="22" text-anchor="middle" fill="#5C5C5C">run tune.py for the real counts</text>
+</svg>

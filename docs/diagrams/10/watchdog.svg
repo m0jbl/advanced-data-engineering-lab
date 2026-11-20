@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1090 800" width="1090" height="800">
+<rect x="0" y="0" width="1090" height="800" fill="#FFFFFF"/>
+<rect x="60" y="140" width="360" height="160" rx="8" fill="#111111" stroke="none"/>
+<text x="240.0" y="214" font-family="IBM Plex Sans" font-size="30" font-weight="700" fill="#FFFFFF" text-anchor="middle">Prometheus</text>
+<text x="240.0" y="248" font-family="IBM Plex Sans" font-size="20" font-weight="400" fill="#FFFFFF" text-anchor="middle">rule: Watchdog, always firing</text>
+<line x1="420" y1="220" x2="586.0" y2="220.0" stroke="#111111" stroke-width="3" stroke-linecap="round"/>
+<polygon points="600,220 586.0,227.7 586.0,212.3" fill="#111111"/>
+<text x="510" y="200" font-family="IBM Plex Sans" font-size="22" font-weight="400" fill="#5C5C5C" text-anchor="middle">every minute</text>
+<rect x="600" y="140" width="430" height="160" rx="8" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+<text x="815.0" y="213" font-family="IBM Plex Sans" font-size="30" font-weight="700" fill="#111111" text-anchor="middle">External check</text>
+<text x="815.0" y="248" font-family="IBM Plex Sans" font-size="22" font-weight="400" fill="#5C5C5C" text-anchor="middle">outside the lab stack</text>
+<line x1="815" y1="300" x2="815.0" y2="406.0" stroke="#CC3A1C" stroke-width="3" stroke-linecap="round"/>
+<polygon points="815,420 807.3,406.0 822.7,406.0" fill="#CC3A1C"/>
+<rect x="600" y="420" width="430" height="140" rx="8" fill="#CC3A1C" stroke="none"/>
+<text x="815.0" y="498" font-family="IBM Plex Sans" font-size="30" font-weight="700" fill="#FFFFFF" text-anchor="middle">No heartbeat: page</text>
+<rect x="60" y="420" width="360" height="140" rx="8" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+<text x="240.0" y="483" font-family="IBM Plex Sans" font-size="30" font-weight="700" fill="#111111" text-anchor="middle">up == 0</text>
+<text x="240.0" y="518" font-family="IBM Plex Sans" font-size="22" font-weight="400" fill="#5C5C5C" text-anchor="middle">per scrape target</text>
+<text x="60" y="680" font-family="IBM Plex Sans" font-size="26" font-weight="400" fill="#111111" text-anchor="start">A silent monitor looks like a calm night.</text>
+</svg>

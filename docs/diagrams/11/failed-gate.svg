@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1230 520" width="1230" height="520">
+<rect x="0" y="0" width="1230" height="520" fill="#FFFFFF"/>
+<rect x="24" y="160" width="150" height="100" rx="8" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+<text x="99.0" y="216" font-family="IBM Plex Sans" font-size="24" font-weight="700" fill="#111111" text-anchor="middle">generate</text>
+<rect x="200" y="160" width="150" height="100" rx="8" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+<text x="275.0" y="216" font-family="IBM Plex Sans" font-size="24" font-weight="700" fill="#111111" text-anchor="middle">bronze</text>
+<line x1="174" y1="210" x2="186.0" y2="210.0" stroke="#111111" stroke-width="3" stroke-linecap="round"/>
+<polygon points="200,210 186.0,217.7 186.0,202.3" fill="#111111"/>
+<rect x="376" y="160" width="150" height="100" rx="8" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+<text x="451.0" y="216" font-family="IBM Plex Sans" font-size="24" font-weight="700" fill="#111111" text-anchor="middle">silver</text>
+<line x1="350" y1="210" x2="362.0" y2="210.0" stroke="#111111" stroke-width="3" stroke-linecap="round"/>
+<polygon points="376,210 362.0,217.7 362.0,202.3" fill="#111111"/>
+<rect x="552" y="160" width="150" height="100" rx="8" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+<text x="627.0" y="216" font-family="IBM Plex Sans" font-size="24" font-weight="700" fill="#111111" text-anchor="middle">features</text>
+<line x1="526" y1="210" x2="538.0" y2="210.0" stroke="#111111" stroke-width="3" stroke-linecap="round"/>
+<polygon points="552,210 538.0,217.7 538.0,202.3" fill="#111111"/>
+<rect x="728" y="160" width="150" height="100" rx="8" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+<text x="803.0" y="216" font-family="IBM Plex Sans" font-size="24" font-weight="700" fill="#111111" text-anchor="middle">score</text>
+<line x1="702" y1="210" x2="714.0" y2="210.0" stroke="#111111" stroke-width="3" stroke-linecap="round"/>
+<polygon points="728,210 714.0,217.7 714.0,202.3" fill="#111111"/>
+<rect x="904" y="160" width="130" height="100" rx="8" fill="#CC3A1C" stroke="none"/>
+<text x="969.0" y="216" font-family="IBM Plex Sans" font-size="24" font-weight="700" fill="#FFFFFF" text-anchor="middle">gate</text>
+<line x1="878" y1="210" x2="890.0" y2="210.0" stroke="#111111" stroke-width="3" stroke-linecap="round"/>
+<polygon points="904,210 890.0,217.7 890.0,202.3" fill="#111111"/>
+<rect x="1060" y="160" width="146" height="100" rx="8" fill="#FFFFFF" stroke="#767676" stroke-width="2" stroke-dasharray="8 6"/>
+<text x="1133.0" y="216" font-family="IBM Plex Sans" font-size="24" font-weight="700" fill="#767676" text-anchor="middle">publish</text>
+<line x1="1034" y1="210" x2="1046.0" y2="210.0" stroke="#767676" stroke-width="3" stroke-linecap="round"/>
+<polygon points="1060,210 1046.0,217.7 1046.0,202.3" fill="#767676"/>
+<line x1="24" y1="290" x2="850" y2="290" stroke="#767676" stroke-width="2" stroke-linecap="round"/>
+<text x="437" y="326" font-family="IBM Plex Sans" font-size="22" font-weight="400" fill="#5C5C5C" text-anchor="middle">Completed</text>
+<text x="969" y="326" font-family="IBM Plex Sans" font-size="22" font-weight="700" fill="#CC3A1C" text-anchor="middle">Failed</text>
+<text x="1133" y="326" font-family="IBM Plex Sans" font-size="22" font-weight="400" fill="#5C5C5C" text-anchor="middle">never starts</text>
+<text x="24" y="420" font-family="IBM Plex Sans" font-size="30" font-weight="700" fill="#CC3A1C" text-anchor="start">Run state: Failed</text>
+<text x="24" y="464" font-family="IBM Plex Sans" font-size="24" font-weight="400" fill="#5C5C5C" text-anchor="start">Automation notifies on-call; gold stays as it was.</text>
+</svg>

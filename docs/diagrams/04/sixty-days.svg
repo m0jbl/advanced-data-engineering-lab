@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1090 800" width="1090" height="800">
+<style>
+.t{font-family:IBM Plex Sans;font-size:24px;fill:#111111}
+.h{font-family:IBM Plex Sans Light;font-size:30px;fill:#111111}
+.c{text-anchor:middle}
+.r{fill:#CC3A1C}
+.box{fill:#F5F5F5;stroke:#767676;stroke-width:2}
+.gone{fill:#FFFFFF;stroke:#767676;stroke-width:2;stroke-dasharray:6 6}
+.bad{fill:#CC3A1C}
+.new{fill:#111111}
+</style>
+<defs>
+<g id="full"><rect class="box" x="149" width="72" height="36"/><rect class="box" x="229" width="72" height="36"/><rect class="box" x="309" width="72" height="36"/><rect class="box" x="389" width="72" height="36"/><rect class="box" x="469" width="72" height="36"/><rect class="box" x="549" width="72" height="36"/><rect class="box" x="629" width="72" height="36"/><rect class="box" x="709" width="72" height="36"/><rect class="box" x="789" width="72" height="36"/><rect class="box" x="869" width="72" height="36"/></g>
+<g id="empty"><rect class="gone" x="149" width="72" height="36"/><rect class="gone" x="229" width="72" height="36"/><rect class="gone" x="309" width="72" height="36"/><rect class="gone" x="389" width="72" height="36"/><rect class="gone" x="469" width="72" height="36"/><rect class="gone" x="549" width="72" height="36"/><rect class="gone" x="629" width="72" height="36"/><rect class="gone" x="709" width="72" height="36"/><rect class="gone" x="789" width="72" height="36"/><rect class="gone" x="869" width="72" height="36"/></g>
+</defs>
+<text x="149" y="56" class="h">Before: 60 days</text>
+<use xlink:href="#full" href="#full" y="76"/>
+<use xlink:href="#full" href="#full" y="120"/>
+<use xlink:href="#full" href="#full" y="164"/>
+<use xlink:href="#full" href="#full" y="208"/>
+<use xlink:href="#full" href="#full" y="252"/>
+<use xlink:href="#full" href="#full" y="296"/>
+<rect class="bad" x="709" y="120" width="72" height="36"/>
+<text x="745" y="146" class="t c" style="fill:#FFFFFF">18</text>
+<text x="149" y="400" class="h">After plain overwrite</text>
+<use xlink:href="#empty" href="#empty" y="420"/>
+<use xlink:href="#empty" href="#empty" y="464"/>
+<use xlink:href="#empty" href="#empty" y="508"/>
+<use xlink:href="#empty" href="#empty" y="552"/>
+<use xlink:href="#empty" href="#empty" y="596"/>
+<use xlink:href="#empty" href="#empty" y="640"/>
+<rect class="new" x="709" y="464" width="72" height="36"/>
+<text x="745" y="490" class="t c" style="fill:#FFFFFF">18</text>
+<text x="545" y="748" class="h c r">59 days erased</text>
+</svg>

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1230 520" width="1230" height="520">
+<rect x="0" y="0" width="1230" height="520" fill="#FFFFFF"/>
+<rect x="24" y="60" width="282" height="400" rx="8" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<rect x="24" y="60" width="282" height="12" rx="0" fill="#CC3A1C" stroke="none"/>
+<text x="48" y="150" font-family="IBM Plex Sans" font-size="40" font-weight="700" fill="#111111" text-anchor="start">Lag</text>
+<text x="48" y="230" font-family="IBM Plex Sans" font-size="28" font-weight="400" fill="#111111" text-anchor="start">Are decisions</text>
+<text x="48" y="266" font-family="IBM Plex Sans" font-size="28" font-weight="400" fill="#111111" text-anchor="start">late?</text>
+<text x="48" y="420" font-family="IBM Plex Mono" font-size="22" font-weight="400" fill="#5C5C5C" text-anchor="start">consumergroup_lag</text>
+<rect x="324" y="60" width="282" height="400" rx="8" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<rect x="324" y="60" width="282" height="12" rx="0" fill="#111111" stroke="none"/>
+<text x="348" y="150" font-family="IBM Plex Sans" font-size="40" font-weight="700" fill="#111111" text-anchor="start">Alert rate</text>
+<text x="348" y="230" font-family="IBM Plex Sans" font-size="28" font-weight="400" fill="#111111" text-anchor="start">Did behaviour</text>
+<text x="348" y="266" font-family="IBM Plex Sans" font-size="28" font-weight="400" fill="#111111" text-anchor="start">change?</text>
+<text x="348" y="420" font-family="IBM Plex Mono" font-size="22" font-weight="400" fill="#5C5C5C" text-anchor="start">alerts / payments</text>
+<rect x="624" y="60" width="282" height="400" rx="8" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<rect x="624" y="60" width="282" height="12" rx="0" fill="#111111" stroke="none"/>
+<text x="648" y="150" font-family="IBM Plex Sans" font-size="40" font-weight="700" fill="#111111" text-anchor="start">Volume</text>
+<text x="648" y="230" font-family="IBM Plex Sans" font-size="28" font-weight="400" fill="#111111" text-anchor="start">Did we score</text>
+<text x="648" y="266" font-family="IBM Plex Sans" font-size="28" font-weight="400" fill="#111111" text-anchor="start">everything?</text>
+<text x="648" y="420" font-family="IBM Plex Mono" font-size="22" font-weight="400" fill="#5C5C5C" text-anchor="start">rows in vs out</text>
+<rect x="924" y="60" width="282" height="400" rx="8" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<rect x="924" y="60" width="282" height="12" rx="0" fill="#111111" stroke="none"/>
+<text x="948" y="150" font-family="IBM Plex Sans" font-size="40" font-weight="700" fill="#111111" text-anchor="start">Absence</text>
+<text x="948" y="230" font-family="IBM Plex Sans" font-size="28" font-weight="400" fill="#111111" text-anchor="start">Is anything</text>
+<text x="948" y="266" font-family="IBM Plex Sans" font-size="28" font-weight="400" fill="#111111" text-anchor="start">produced?</text>
+<text x="948" y="420" font-family="IBM Plex Mono" font-size="22" font-weight="400" fill="#5C5C5C" text-anchor="start">in &gt; 0, out = 0</text>
+</svg>

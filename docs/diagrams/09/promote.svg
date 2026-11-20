@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1230 520" width="1230" height="520">
+<rect x="0" y="0" width="1230" height="520" fill="#FFFFFF"/>
+<rect x="24" y="140" width="198" height="120" rx="8" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<text x="123" y="209" font-family="IBM Plex Sans" font-size="26" text-anchor="middle" fill="#111111">build once</text>
+<polyline points="226,200 252,200" fill="none" stroke="#111111" stroke-width="3"/><polygon points="266,200 252,192 252,208" fill="#111111"/>
+<rect x="270" y="140" width="198" height="120" rx="8" fill="#111111" stroke="#111111" stroke-width="2"/>
+<text x="369" y="194" font-family="IBM Plex Sans" font-size="26" text-anchor="middle" fill="#FFFFFF">artifact</text>
+<text x="369" y="225" font-family="IBM Plex Sans" font-size="22" text-anchor="middle" fill="#FFFFFF">wheel or image</text>
+<polyline points="472,200 498,200" fill="none" stroke="#111111" stroke-width="3"/><polygon points="512,200 498,192 498,208" fill="#111111"/>
+<rect x="516" y="140" width="198" height="120" rx="8" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<text x="615" y="209" font-family="IBM Plex Sans" font-size="26" text-anchor="middle" fill="#111111">test env</text>
+<polyline points="718,200 744,200" fill="none" stroke="#111111" stroke-width="3"/><polygon points="758,200 744,192 744,208" fill="#111111"/>
+<rect x="762" y="140" width="198" height="120" rx="8" fill="#FFFFFF" stroke="#CC3A1C" stroke-width="3"/>
+<text x="861" y="209" font-family="IBM Plex Sans" font-size="26" text-anchor="middle" fill="#111111">approval</text>
+<polyline points="964,200 990,200" fill="none" stroke="#111111" stroke-width="3"/><polygon points="1004,200 990,192 990,208" fill="#111111"/>
+<rect x="1008" y="140" width="198" height="120" rx="8" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<text x="1107" y="209" font-family="IBM Plex Sans" font-size="26" text-anchor="middle" fill="#111111">prod</text>
+<rect x="516" y="330" width="198" height="80" rx="8" fill="#FFFFFF" stroke="#767676" stroke-width="2" stroke-dasharray="10 6"/>
+<text x="615" y="378" font-family="IBM Plex Sans" font-size="22" text-anchor="middle" fill="#5C5C5C">env config</text>
+<polyline points="615,326 615,278" fill="none" stroke="#767676" stroke-width="2"/><polygon points="615,264 607,278 623,278" fill="#767676"/>
+<rect x="1008" y="330" width="198" height="80" rx="8" fill="#FFFFFF" stroke="#767676" stroke-width="2" stroke-dasharray="10 6"/>
+<text x="1107" y="378" font-family="IBM Plex Sans" font-size="22" text-anchor="middle" fill="#5C5C5C">env config</text>
+<polyline points="1107,326 1107,278" fill="none" stroke="#767676" stroke-width="2"/><polygon points="1107,264 1099,278 1115,278" fill="#767676"/>
+<text x="615" y="478" font-family="IBM Plex Sans" font-size="24" text-anchor="middle" fill="#5C5C5C">same artifact everywhere; only config changes</text>
+</svg>

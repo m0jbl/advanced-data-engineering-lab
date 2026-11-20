@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1090 800" width="1090" height="800">
+<rect x="0" y="0" width="1090" height="800" fill="#FFFFFF"/>
+<rect x="245" y="24" width="600" height="120" rx="8" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<text x="545" y="76" font-family="IBM Plex Sans" font-size="30" text-anchor="middle" fill="#111111">reject rate</text>
+<text x="545" y="114" font-family="IBM Plex Sans" font-size="30" text-anchor="middle" fill="#111111">rejected ÷ bronze</text>
+<polyline points="545,148 545,204" fill="none" stroke="#111111" stroke-width="3"/><polygon points="545,218 553,204 537,204" fill="#111111"/>
+<path d="M 545 222 L 805 352 L 545 482 L 285 352 Z" fill="#111111" stroke="#111111" stroke-width="2"/>
+<text x="545" y="345" font-family="IBM Plex Sans" font-size="28" text-anchor="middle" fill="#FFFFFF" font-weight="700">above</text>
+<text x="545" y="385" font-family="IBM Plex Sans" font-size="28" text-anchor="middle" fill="#FFFFFF" font-weight="700">threshold?</text>
+<polyline points="285,352 160,352 160,546" fill="none" stroke="#111111" stroke-width="3"/><polygon points="160,560 168,546 152,546" fill="#111111"/>
+<polyline points="805,352 930,352 930,546" fill="none" stroke="#CC3A1C" stroke-width="3"/><polygon points="930,560 938,546 922,546" fill="#CC3A1C"/>
+<text x="222" y="338" font-family="IBM Plex Sans" font-size="24" text-anchor="middle" fill="#5C5C5C">no</text>
+<text x="868" y="338" font-family="IBM Plex Sans" font-size="24" text-anchor="middle" fill="#CC3A1C" font-weight="700">yes</text>
+<rect x="24" y="566" width="300" height="130" rx="8" fill="#F5F5F5" stroke="#767676" stroke-width="2"/>
+<text x="174" y="622" font-family="IBM Plex Sans" font-size="30" text-anchor="middle" fill="#111111">publish</text>
+<text x="174" y="660" font-family="IBM Plex Sans" font-size="30" text-anchor="middle" fill="#111111">silver</text>
+<rect x="766" y="566" width="300" height="130" rx="8" fill="#CC3A1C" stroke="#CC3A1C" stroke-width="2"/>
+<text x="916" y="622" font-family="IBM Plex Sans" font-size="30" text-anchor="middle" fill="#FFFFFF">stop and</text>
+<text x="916" y="660" font-family="IBM Plex Sans" font-size="30" text-anchor="middle" fill="#FFFFFF">alert owner</text>
+<text x="916" y="748" font-family="IBM Plex Sans" font-size="24" text-anchor="middle" fill="#CC3A1C">no auto-retry</text>
+</svg>

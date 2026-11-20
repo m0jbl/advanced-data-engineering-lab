@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1090 800" width="1090" height="800">
+<rect x="0" y="0" width="1090" height="800" fill="#FFFFFF"/>
+<text x="60" y="120" font-family="IBM Plex Sans" font-size="26" font-weight="700" fill="#5C5C5C" text-anchor="start">Minutes to departure</text>
+<line x1="80" y1="400" x2="1000" y2="400" stroke="#111111" stroke-width="3" stroke-linecap="round"/>
+<line x1="110" y1="388" x2="110" y2="412" stroke="#111111" stroke-width="3" stroke-linecap="round"/>
+<text x="110" y="446" font-family="IBM Plex Sans" font-size="24" font-weight="400" fill="#5C5C5C" text-anchor="middle">30</text>
+<line x1="195" y1="388" x2="195" y2="412" stroke="#111111" stroke-width="3" stroke-linecap="round"/>
+<text x="209" y="446" font-family="IBM Plex Sans" font-size="24" font-weight="400" fill="#5C5C5C" text-anchor="start">25</text>
+<line x1="620" y1="388" x2="620" y2="412" stroke="#111111" stroke-width="3" stroke-linecap="round"/>
+<text x="620" y="446" font-family="IBM Plex Sans" font-size="24" font-weight="400" fill="#5C5C5C" text-anchor="middle">0</text>
+<line x1="875" y1="388" x2="875" y2="412" stroke="#111111" stroke-width="3" stroke-linecap="round"/>
+<text x="875" y="446" font-family="IBM Plex Sans" font-size="24" font-weight="400" fill="#5C5C5C" text-anchor="middle">+15</text>
+<rect x="110" y="300" width="510" height="60" rx="8" fill="#CC3A1C" stroke="none" opacity="0.15"/>
+<text x="365.0" y="340" font-family="IBM Plex Sans" font-size="24" font-weight="700" fill="#CC3A1C" text-anchor="middle">LAST_MINUTE: +15 points</text>
+<circle cx="195" cy="400" r="14" fill="#111111"/>
+<line x1="195" y1="414" x2="195" y2="500" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-dasharray="6 6"/>
+<rect x="60" y="500" width="300" height="110" rx="8" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+<text x="210.0" y="547" font-family="IBM Plex Sans" font-size="26" font-weight="700" fill="#111111" text-anchor="middle">Payment</text>
+<text x="210.0" y="579" font-family="IBM Plex Mono" font-size="22" font-weight="400" fill="#5C5C5C" text-anchor="middle">currency_exchange</text>
+<circle cx="620" cy="400" r="14" fill="#111111"/>
+<rect x="510" y="170" width="220" height="100" rx="8" fill="#111111" stroke="none"/>
+<text x="620.0" y="227" font-family="IBM Plex Sans" font-size="26" font-weight="700" fill="#FFFFFF" text-anchor="middle">Gate closes</text>
+<circle cx="875" cy="400" r="14" fill="#CC3A1C"/>
+<line x1="875" y1="414" x2="875" y2="500" stroke="#CC3A1C" stroke-width="2" stroke-linecap="round" stroke-dasharray="6 6"/>
+<rect x="725" y="500" width="280" height="110" rx="8" fill="#CC3A1C" stroke="none"/>
+<text x="865.0" y="547" font-family="IBM Plex Sans" font-size="26" font-weight="700" fill="#FFFFFF" text-anchor="middle">Alert arrives</text>
+<text x="865.0" y="579" font-family="IBM Plex Sans" font-size="22" font-weight="400" fill="#FFFFFF" text-anchor="middle">40 min late</text>
+<text x="60" y="700" font-family="IBM Plex Sans" font-size="28" font-weight="700" fill="#111111" text-anchor="start">The passenger is already airborne.</text>
+</svg>

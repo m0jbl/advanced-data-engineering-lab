@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1090 800" width="1090" height="800">
+<style>
+.t{font-family:IBM Plex Sans;font-size:26px;fill:#111111}
+.s{font-family:IBM Plex Sans;font-size:22px;fill:#5C5C5C}
+.m{font-family:IBM Plex Mono;font-size:22px;fill:#111111}
+.c{text-anchor:middle}
+.w{fill:#FFFFFF}
+.r{fill:#CC3A1C}
+.box{fill:#F5F5F5;stroke:#767676;stroke-width:2}
+.st{fill:#FFFFFF;stroke:#111111;stroke-width:3}
+.alert{fill:#CC3A1C}
+.ln{stroke:#111111;stroke-width:3;fill:none}
+.lr{stroke:#CC3A1C;stroke-width:3;fill:none}
+.dash{stroke:#767676;stroke-width:3;stroke-dasharray:8 6;fill:none}
+.ar{fill:#111111}
+.arr{fill:#CC3A1C}
+.arg{fill:#767676}
+</style>
+<rect class="box" x="345" y="40" width="400" height="100" rx="50"/><text x="545" y="99" class="t c">idle</text>
+<line class="ln" x1="545" y1="140" x2="545" y2="234"/><polygon class="ar" points="536,232 545,248 554,232"/>
+<text x="565" y="204" class="s">small CNP payment</text>
+<rect class="st" x="345" y="250" width="400" height="120" rx="60"/><text x="545" y="302" class="t c">counting</text><text x="545" y="340" class="m c">state: n</text>
+<path class="ln" d="M745 290 H860 V340 H761"/><polygon class="ar" points="763,331 747,340 763,349"/>
+<text x="880" y="324" class="m">n + 1</text>
+<line class="lr" x1="545" y1="370" x2="545" y2="484"/><polygon class="arr" points="536,482 545,498 554,482"/>
+<text x="565" y="444" class="s r">large payment, n ≥ 3</text>
+<rect class="alert" x="345" y="500" width="400" height="100" rx="50"/><text x="545" y="559" class="t c w">alert</text>
+<path class="dash" d="M345 330 H200 V90 H329"/><polygon class="arg" points="327,81 343,90 327,99"/>
+<text x="40" y="196" class="s">timer:</text><text x="40" y="226" class="s">10 min quiet</text><text x="40" y="256" class="s">clears state</text>
+<text x="545" y="700" class="m c">key: passenger_id</text>
+</svg>

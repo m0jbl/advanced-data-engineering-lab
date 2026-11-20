@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1230 520" width="1230" height="520">
+<style>
+.t{font-family:IBM Plex Sans;font-size:24px;fill:#111111}
+.h{font-family:IBM Plex Sans Light;font-size:30px;fill:#111111}
+.s{font-family:IBM Plex Sans;font-size:22px;fill:#5C5C5C}
+.c{text-anchor:middle}
+.r{fill:#CC3A1C}
+.stage{fill:#F5F5F5;stroke:#767676;stroke-width:2}
+.box{fill:#FFFFFF;stroke:#111111;stroke-width:2}
+.ln{stroke:#111111;stroke-width:3;fill:none}
+.lr{stroke:#CC3A1C;stroke-width:3;fill:none}
+.cut{stroke:#CC3A1C;stroke-width:4;stroke-dasharray:12 10}
+.ar{fill:#111111}
+.arr{fill:#CC3A1C}
+</style>
+<rect class="stage" x="24" y="80" width="540" height="340" rx="14"/>
+<text x="48" y="128" class="h">Stage 1</text>
+<rect class="box" x="48" y="200" width="150" height="100" rx="10"/><text x="123" y="258" class="t c">read</text>
+<line class="ln" x1="198" y1="250" x2="204" y2="250"/><polygon class="ar" points="202,241 216,250 202,259"/>
+<rect class="box" x="216" y="200" width="150" height="100" rx="10"/><text x="291" y="258" class="t c">filter</text>
+<line class="ln" x1="366" y1="250" x2="372" y2="250"/><polygon class="ar" points="370,241 384,250 370,259"/>
+<rect class="box" x="384" y="200" width="150" height="100" rx="10"/><text x="459" y="244" class="t c">partial</text><text x="459" y="274" class="t c">count</text>
+<text x="294" y="380" class="s c">no data moves</text>
+<line class="cut" x1="615" y1="60" x2="615" y2="440"/>
+<text x="615" y="480" class="t c r">shuffle</text>
+<line class="lr" x1="534" y1="215" x2="680" y2="285"/>
+<line class="lr" x1="534" y1="250" x2="680" y2="250"/>
+<line class="lr" x1="534" y1="285" x2="680" y2="215"/>
+<rect class="stage" x="666" y="80" width="540" height="340" rx="14"/>
+<text x="690" y="128" class="h">Stage 2</text>
+<rect class="box" x="690" y="200" width="150" height="100" rx="10"/><text x="765" y="244" class="t c">group by</text><text x="765" y="274" class="t c">airport</text>
+<line class="ln" x1="840" y1="250" x2="846" y2="250"/><polygon class="ar" points="844,241 858,250 844,259"/>
+<rect class="box" x="858" y="200" width="150" height="100" rx="10"/><text x="933" y="244" class="t c">sum</text><text x="933" y="274" class="t c">counts</text>
+<line class="ln" x1="1008" y1="250" x2="1014" y2="250"/><polygon class="ar" points="1012,241 1026,250 1012,259"/>
+<rect class="box" x="1026" y="200" width="150" height="100" rx="10"/><text x="1101" y="258" class="t c">write</text>
+<text x="936" y="380" class="s c">4 shuffle partitions</text>
+</svg>

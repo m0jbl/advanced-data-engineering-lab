@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1230 520" width="1230" height="520">
+<rect x="0" y="0" width="1230" height="520" fill="#FFFFFF"/>
+<rect x="24" y="80" width="370" height="300" rx="8" fill="#FFFFFF" stroke="#767676" stroke-width="2"/>
+<text x="209" y="152" font-family="IBM Plex Sans" font-size="34" text-anchor="middle" fill="#111111" font-weight="700">Dev</text>
+<text x="209" y="239" font-family="IBM Plex Mono" font-size="26" text-anchor="middle" fill="#111111">rules v14</text>
+<text x="209" y="299" font-family="IBM Plex Mono" font-size="26" text-anchor="middle" fill="#111111">threshold 50</text>
+<polyline points="400,230 422,230" fill="none" stroke="#767676" stroke-width="3" stroke-dasharray="8 6"/><polygon points="436,230 422,222 422,238" fill="#767676"/>
+<rect x="442" y="80" width="370" height="300" rx="8" fill="#FFFFFF" stroke="#767676" stroke-width="2"/>
+<text x="627" y="152" font-family="IBM Plex Sans" font-size="34" text-anchor="middle" fill="#111111" font-weight="700">Test</text>
+<text x="627" y="239" font-family="IBM Plex Mono" font-size="26" text-anchor="middle" fill="#111111">rules v12</text>
+<text x="627" y="299" font-family="IBM Plex Mono" font-size="26" text-anchor="middle" fill="#111111">threshold 45</text>
+<polyline points="818,230 840,230" fill="none" stroke="#767676" stroke-width="3" stroke-dasharray="8 6"/><polygon points="854,230 840,222 840,238" fill="#767676"/>
+<rect x="860" y="80" width="370" height="300" rx="8" fill="#FFFFFF" stroke="#CC3A1C" stroke-width="3"/>
+<text x="1045" y="152" font-family="IBM Plex Sans" font-size="34" text-anchor="middle" fill="#111111" font-weight="700">Prod</text>
+<text x="1045" y="239" font-family="IBM Plex Mono" font-size="26" text-anchor="middle" fill="#111111">rules v11</text>
+<text x="1045" y="299" font-family="IBM Plex Mono" font-size="26" text-anchor="middle" fill="#111111">threshold 60</text>
+<text x="615" y="459" font-family="IBM Plex Sans" font-size="26" text-anchor="middle" fill="#CC3A1C" font-weight="700">files copied by hand: three versions</text>
+</svg>

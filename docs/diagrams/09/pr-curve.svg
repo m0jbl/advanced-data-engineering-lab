@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1230 520" width="1230" height="520">
+<rect x="0" y="0" width="1230" height="520" fill="#FFFFFF"/>
+<line x1="120" y1="420" x2="1150" y2="420" stroke="#111111" stroke-width="3"/>
+<line x1="120" y1="420" x2="120" y2="40" stroke="#111111" stroke-width="3"/>
+<line x1="200" y1="420" x2="200" y2="432" stroke="#111111" stroke-width="3"/>
+<text x="200" y="468" font-family="IBM Plex Sans" font-size="24" text-anchor="middle" fill="#111111">30</text>
+<line x1="420" y1="420" x2="420" y2="432" stroke="#111111" stroke-width="3"/>
+<text x="420" y="468" font-family="IBM Plex Sans" font-size="24" text-anchor="middle" fill="#111111">40</text>
+<line x1="640" y1="420" x2="640" y2="432" stroke="#111111" stroke-width="3"/>
+<text x="640" y="468" font-family="IBM Plex Sans" font-size="24" text-anchor="middle" fill="#111111">50</text>
+<line x1="860" y1="420" x2="860" y2="432" stroke="#111111" stroke-width="3"/>
+<text x="860" y="468" font-family="IBM Plex Sans" font-size="24" text-anchor="middle" fill="#111111">60</text>
+<line x1="1080" y1="420" x2="1080" y2="432" stroke="#111111" stroke-width="3"/>
+<text x="1080" y="468" font-family="IBM Plex Sans" font-size="24" text-anchor="middle" fill="#111111">70</text>
+<text x="1150" y="508" font-family="IBM Plex Sans" font-size="24" text-anchor="end" fill="#5C5C5C">alert threshold</text>
+<path d="M 160 360 C 500 330, 800 140, 1110 90" fill="none" stroke="#CC3A1C" stroke-width="6"/>
+<path d="M 160 90 C 500 110, 800 260, 1110 370" fill="none" stroke="#111111" stroke-width="6"/>
+<text x="160" y="333" font-family="IBM Plex Sans" font-size="26" text-anchor="start" fill="#CC3A1C" font-weight="700">precision</text>
+<text x="160" y="79" font-family="IBM Plex Sans" font-size="26" text-anchor="start" fill="#111111" font-weight="700">recall</text>
+<line x1="640" y1="40" x2="640" y2="420" stroke="#767676" stroke-width="2" stroke-dasharray="8 6"/>
+<text x="650" y="68" font-family="IBM Plex Sans" font-size="22" text-anchor="start" fill="#5C5C5C">today: 50</text>
+<text x="120" y="508" font-family="IBM Plex Sans" font-size="22" text-anchor="start" fill="#5C5C5C">shape only</text>
+</svg>
