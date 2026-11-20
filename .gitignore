@@ -10,3 +10,5 @@ pptx-*/
 pptx/
 *.pptx
 *.pdf
+# Delivery packages hold customer information and exports: local only
+packages/
