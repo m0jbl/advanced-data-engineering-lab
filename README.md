@@ -64,6 +64,10 @@ Spark jobs push metrics to the Pushgateway only when it is running; otherwise th
 
 ## Data flow
 
+<p align="center"><img src="docs/data-flow.svg" alt="Data flow. Batch: simulator, raw CSV files, bronze in MinIO, silver Delta by day, features as of each day, then score. CDC: Postgres blocklist, Debezium, Kafka, silver blocklist, then score. Scoring writes gold scores and is evaluated against ground truth. Live: producer, airport.transactions topic, Spark Streaming, then fraud alerts in Kafka and stream scores in Delta." width="100%"></p>
+
+<details><summary>Text version</summary>
+
 ```
 simulator ──► data/raw/*.csv ──► bronze (MinIO) ──► silver (Delta, by day) ──► features (as of each day)
                                                                                      │
@@ -72,6 +76,8 @@ Postgres blocklist ──► Debezium ──► Kafka ──► blocklist (silve
 producer ──► airport.transactions ──► Spark Streaming ──► airport.fraud-alerts (Kafka)
                                                        └──► gold/stream_scores (Delta)
 ```
+
+</details>
 
 ## Commands
 
