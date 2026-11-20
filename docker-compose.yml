@@ -1,4 +1,8 @@
 # Airport payments: Spark + Kafka lab (laptop, Docker Compose).
+# Core (no profile, `make up`): Kafka, Schema Registry, Kafka UI, MinIO, Spark. Labs 01-07, 09, 12.
+# Profiles (pulled and started only when a lab needs them, `make up LAB=NN`):
+#   cdc (Lab 08): Postgres, Kafka Connect/Debezium · monitoring (Lab 10): Prometheus, Pushgateway, kafka-exporter, Grafana
+#   orchestration (Lab 11): Prefect server
 # Host ports: Kafka 9094 · Kafka UI 8080 · Schema Registry 8081 · Spark master UI 8082 · Connect 8083
 #             MinIO 9000 (API) / 9001 (console) · Spark app UI 4040 · Spark master 7077
 #             Postgres 5432 · Prefect 4200 · Prometheus 9090 · Pushgateway 9091 · Grafana 3000 · Kafka exporter 9308
@@ -10,7 +14,7 @@ x-spark-env: &spark-env
 services:
   # ───────────── Kafka (KRaft, no ZooKeeper) ─────────────
   kafka:
-    image: apache/kafka:3.9.1
+    image: apache/kafka:4.4.0
     container_name: kafka
     restart: unless-stopped
     mem_limit: 1g
@@ -29,6 +33,7 @@ services:
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
       KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: "false"
+      KAFKA_LOG_DIRS: /var/lib/kafka/data   # on the kafka_data volume, so `make down` keeps topics and offsets
     volumes: [kafka_data:/var/lib/kafka/data]
     healthcheck:
       test: ["CMD-SHELL", "/opt/kafka/bin/kafka-broker-api-versions.sh --bootstrap-server localhost:9092 >/dev/null 2>&1"]
@@ -37,7 +42,7 @@ services:
       retries: 12
 
   kafka-init:                       # one-shot: topics (3 partitions = up to 3 parallel consumers)
-    image: apache/kafka:3.9.1
+    image: apache/kafka:4.4.0
     depends_on:
       kafka: {condition: service_healthy}
     entrypoint: ["/bin/bash", "-c"]
@@ -52,7 +57,7 @@ services:
     restart: "no"
 
   kafka-ui:
-    image: provectuslabs/kafka-ui:v0.7.2
+    image: kafbat/kafka-ui:v1.5.0       # maintained fork; provectuslabs/kafka-ui is unmaintained
     container_name: kafka-ui
     ports: ["8080:8080"]
     environment:
@@ -63,7 +68,7 @@ services:
       kafka: {condition: service_healthy}
 
   schema-registry:
-    image: confluentinc/cp-schema-registry:7.6.0
+    image: confluentinc/cp-schema-registry:8.4.1
     container_name: schema-registry
     restart: unless-stopped
     mem_limit: 512m
@@ -74,7 +79,8 @@ services:
       SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: PLAINTEXT://kafka:9092
       SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8081
     healthcheck:
-      test: ["CMD-SHELL", "curl -fsS http://localhost:8081/subjects >/dev/null"]
+      # cp-schema-registry 8.x ships without curl
+      test: ["CMD", "python3", "-c", "from urllib.request import urlopen; urlopen('http://localhost:8081/subjects', timeout=3)"]
       interval: 5s
       timeout: 3s
       retries: 24
@@ -84,6 +90,7 @@ services:
   # ───────────── CDC: Postgres + Debezium (Kafka Connect) ─────────────
   postgres:
     image: postgres:16-alpine
+    profiles: [cdc]
     container_name: postgres
     restart: unless-stopped
     mem_limit: 256m
@@ -100,12 +107,15 @@ services:
       retries: 10
 
   kafka-connect:
-    image: debezium/connect:2.5
+    image: quay.io/debezium/connect:3.7.1.Final
+    profiles: [cdc]
     container_name: kafka-connect
     restart: unless-stopped
     mem_limit: 1g
     ports: ["8083:8083"]
     environment:
+      HEAP_OPTS: "-Xms256m -Xmx640m"   # image default -Xmx2G exceeds mem_limit and gets killed at start-up
+      CONNECT_PLUGIN_DISCOVERY: service_load   # skip the slow reflective scan of every bundled connector
       BOOTSTRAP_SERVERS: kafka:9092
       GROUP_ID: "1"
       CONFIG_STORAGE_TOPIC: connect-configs
@@ -173,8 +183,8 @@ services:
 
   # ───────────── Spark (master + worker) ─────────────
   spark-master:
-    build: ./spark
-    image: airport-lab-spark:3.5.3
+    image: ghcr.io/majlisofai/advanced-data-engineering-spark:4.2.0   # jars baked in; see spark/Dockerfile
+    build: ./spark                  # fallback: `docker compose build` if the published image is unavailable
     container_name: spark-master
     restart: unless-stopped
     mem_limit: 1536m
@@ -195,14 +205,13 @@ services:
     volumes:
       - ./spark/jobs:/opt/spark-apps:ro
       - ./data:/opt/spark-data:ro
-      - spark_ivy:/home/spark/.ivy2
     depends_on:
       minio-init: {condition: service_completed_successfully}
-      kafka: {condition: service_healthy}
+      kafka-init: {condition: service_completed_successfully}   # topics exist; also lets `up --wait` accept the one-shot exit
 
   spark-worker:
+    image: ghcr.io/majlisofai/advanced-data-engineering-spark:4.2.0
     build: ./spark
-    image: airport-lab-spark:3.5.3
     container_name: spark-worker
     restart: unless-stopped
     mem_limit: 2g
@@ -232,7 +241,8 @@ services:
 
   # ───────────── Orchestration (Prefect) ─────────────
   prefect-server:
-    image: prefecthq/prefect:3-latest
+    image: prefecthq/prefect:3.9.4-python3.12
+    profiles: [orchestration]
     container_name: prefect-server
     restart: unless-stopped
     mem_limit: 512m
@@ -249,7 +259,8 @@ services:
 
   # ───────────── Monitoring ─────────────
   prometheus:
-    image: prom/prometheus:v2.55.1
+    image: prom/prometheus:v3.16.0
+    profiles: [monitoring]
     container_name: prometheus
     ports: ["9090:9090"]
     volumes:
@@ -258,12 +269,14 @@ services:
     command: ["--config.file=/etc/prometheus/prometheus.yml", "--storage.tsdb.retention.time=2d"]
 
   pushgateway:
-    image: prom/pushgateway:v1.9.0
+    image: prom/pushgateway:v1.11.5
+    profiles: [monitoring]
     container_name: pushgateway
     ports: ["9091:9091"]
 
   kafka-exporter:                   # consumer lag per group / topic / partition
-    image: danielqsj/kafka-exporter:v1.8.0
+    image: danielqsj/kafka-exporter:v1.11.0
+    profiles: [monitoring]
     container_name: kafka-exporter
     command: ["--kafka.server=kafka:9092"]
     ports: ["9308:9308"]
@@ -271,7 +284,8 @@ services:
       kafka: {condition: service_healthy}
 
   grafana:
-    image: grafana/grafana:11.3.0
+    image: grafana/grafana:13.3.1
+    profiles: [monitoring]
     container_name: grafana
     ports: ["3000:3000"]
     environment:
@@ -291,4 +305,3 @@ volumes:
   prefect_data:
   prometheus_data:
   grafana_data:
-  spark_ivy:

@@ -9,6 +9,7 @@ BRONZE_TRANSACTIONS = "s3a://bronze/transactions/"
 BRONZE_PASSENGERS = "s3a://bronze/passengers/"
 SILVER_TRANSACTIONS = "s3a://silver/transactions/"
 QUARANTINE_TRANSACTIONS = "s3a://quarantine/transactions/"
+QUARANTINE_STREAM = "s3a://quarantine/stream_transactions/"
 SILVER_BLOCKLIST = "s3a://silver/blocklist/"
 GOLD_FEATURES = "s3a://gold/passenger_features/"
 GOLD_SCORES = "s3a://gold/fraud_scores/"
@@ -68,13 +69,20 @@ def ship_rules(spark: SparkSession) -> None:
 
 
 def push_metrics(job: str, lines: list) -> None:
-    """Send metrics to the Pushgateway when PUSHGATEWAY_URL is set (Lab 10)."""
+    """Send metrics to the Pushgateway when PUSHGATEWAY_URL is set (Lab 10).
+
+    The Pushgateway runs only with the monitoring profile (`make up LAB=10`); when it is down, skip with a note.
+    """
     url = os.getenv("PUSHGATEWAY_URL")
     if not url:
         return
+    import urllib.error
     import urllib.request
     req = urllib.request.Request(f"{url}/metrics/job/{job}", data=("\n".join(lines) + "\n").encode(), method="PUT")
-    urllib.request.urlopen(req, timeout=5)
+    try:
+        urllib.request.urlopen(req, timeout=5)
+    except (urllib.error.URLError, OSError) as exc:
+        print(f"metrics not pushed ({exc}); start the monitoring profile with `make up LAB=10` to collect them")
 
 
 # CSV written by the batch generator (event_timestamp read as text, parsed with to_timestamp)

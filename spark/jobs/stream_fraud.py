@@ -8,8 +8,9 @@ from pyspark.sql import functions as F
 from pyspark.sql.types import (BooleanType, DoubleType, IntegerType, LongType, StringType, StructField,
                                StructType, TimestampType)
 
-from common import (ALERTS_TOPIC, GOLD_FEATURES, GOLD_STREAM_SCORES, KAFKA_INTERNAL, SILVER_BLOCKLIST,
-                    TRANSACTION_JSON_SCHEMA, TRANSACTIONS_TOPIC, read_delta, session, ship_rules, table_exists)
+from common import (ALERTS_TOPIC, GOLD_FEATURES, GOLD_STREAM_SCORES, KAFKA_INTERNAL, QUARANTINE_STREAM,
+                    SILVER_BLOCKLIST, TRANSACTION_JSON_SCHEMA, TRANSACTIONS_TOPIC, read_delta, session, ship_rules,
+                    table_exists)
 
 spark = session("stream_fraud")
 spark.sparkContext.setLogLevel("WARN")
@@ -21,9 +22,16 @@ raw = (spark.readStream.format("kafka")
        .option("startingOffsets", "latest")
        .option("maxOffsetsPerTrigger", "2000")
        .load())
-payments = (raw.select(F.from_json(F.col("value").cast("string"), TRANSACTION_JSON_SCHEMA).alias("p"))
-            .select("p.*")
-            .withColumn("event_timestamp", F.to_timestamp("event_timestamp")))
+# try_to_timestamp: under ANSI mode (Spark 4 default) to_timestamp fails the whole micro-batch on one bad value.
+# Bad rows are routed to quarantine with a reason, like the batch silver job.
+parsed = (raw.select(F.from_json(F.col("value").cast("string"), TRANSACTION_JSON_SCHEMA).alias("p"))
+          .select("p.*")
+          .withColumn("event_timestamp", F.try_to_timestamp("event_timestamp"))
+          .withColumn("reject_reason",
+                      F.when(F.col("transaction_id").isNull() | F.col("passenger_id").isNull(), F.lit("NULL_KEY"))
+                      .when(F.col("event_timestamp").isNull(), F.lit("BAD_TIMESTAMP"))))
+payments = parsed.filter(F.col("reject_reason").isNull()).drop("reject_reason")
+rejected = parsed.filter(F.col("reject_reason").isNotNull()).withColumn("quarantined_at", F.current_timestamp())
 
 # Static inputs: latest feature snapshot and blocklist
 latest_as_of = read_delta(spark, GOLD_FEATURES).agg(F.max("as_of")).collect()[0][0]
@@ -78,6 +86,11 @@ store_query = (scored.withColumn("event_date", F.to_date("event_timestamp"))
                .option("mergeSchema", "true")  # allow scored_at on tables created by earlier lab versions
                .option("checkpointLocation", "s3a://checkpoints/fraud_stream_scores/")
                .start())
+
+quarantine_query = (rejected.writeStream.format("delta").outputMode("append")
+                    .option("path", QUARANTINE_STREAM)
+                    .option("checkpointLocation", "s3a://checkpoints/fraud_stream_quarantine/")
+                    .start())
 
 print("streaming: scoring airport.transactions; alerts -> airport.fraud-alerts")
 spark.streams.awaitAnyTermination()

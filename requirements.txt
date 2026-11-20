@@ -5,4 +5,4 @@ confluent-kafka>=2.4
 prometheus-client>=0.20
 pytest>=8.0
 jsonschema>=4.21
-prefect>=3,<4
+prefect==3.9.4

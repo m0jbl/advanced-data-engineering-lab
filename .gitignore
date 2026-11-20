@@ -1,6 +1,8 @@
 .venv/
 data/raw/*.csv
 data/processed/
+data/reports/
+control/
 __pycache__/
 .pytest_cache/
 .DS_Store

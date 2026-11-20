@@ -3,10 +3,11 @@ SHELL := /bin/bash
 .DEFAULT_GOAL := help
 export PYTHONPATH := src
 PY := .venv/bin/python
-SPARK_PACKAGES := org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.3,org.apache.hadoop:hadoop-aws:3.3.4,io.delta:delta-spark_2.12:3.1.0
+PYTHON ?= python3
+# Kafka, S3A and Delta jars are baked into the Spark image (versions: spark/Dockerfile), so no --packages download.
 SPARK_CONF := --conf spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension --conf spark.sql.catalog.spark_catalog=org.apache.spark.sql.delta.catalog.DeltaCatalog --conf spark.driver.host=spark-master --conf spark.executor.memory=768m --conf spark.executor.cores=1 --conf spark.cores.max=1
 SPARK_SUBMIT := /opt/spark/bin/spark-submit --driver-memory 768m \
-                --master spark://spark-master:7077 $(SPARK_CONF) --packages $(SPARK_PACKAGES)
+                --master spark://spark-master:7077 $(SPARK_CONF)
 SPARK := docker compose exec -T spark-master $(SPARK_SUBMIT)
 MC := docker compose exec -T minio-client mc
 DATE ?=
@@ -17,33 +18,45 @@ help: ## Show the commands
 
 # ───────── Setup and infrastructure ─────────
 setup: ## Create the Python venv and install lab dependencies (host)
-	python3 -m venv .venv && .venv/bin/pip install -q -r requirements.txt
+	$(PYTHON) -c 'import sys; assert sys.version_info >= (3, 11), "Python 3.11+ required (Prefect 3.9); run make setup PYTHON=python3.11"'
+	$(PYTHON) -m venv .venv && .venv/bin/pip install -q -r requirements.txt
 	echo "venv ready: .venv"
 
-up: ## Start the whole stack and wait for health checks
-	docker compose up -d --build --wait
+# Core services start with no profile. Labs that need more add a Compose profile (downloaded on first use).
+LAB ?=
+PROFILES_08 := cdc
+PROFILES_10 := monitoring
+PROFILES_11 := orchestration
+PROFILES_8 := $(PROFILES_08)
+COMPOSE_LAB = docker compose $(foreach p,$(PROFILES_$(LAB)),--profile $(p))
+COMPOSE_ALL := docker compose --profile '*'
+
+SPARK_IMAGE := ghcr.io/majlisofai/advanced-data-engineering-spark:4.2.0
+
+up: ## Start the core stack, or core + what one lab needs (LAB=08 | 10 | 11), and wait for health checks
+	$(COMPOSE_LAB) up -d --wait
 	$(MAKE) --no-print-directory urls
 
-down: ## Stop the stack (keeps volumes)
-	docker compose down
+up-all: ## Start every service (all profiles; needs ~12 GB for Docker)
+	$(COMPOSE_ALL) up -d --wait
+	$(MAKE) --no-print-directory urls
 
-clean: ## Stop the stack and delete volumes and generated data
-	docker compose down -v
-	rm -rf data/raw/*.csv data/processed reports control/scenario
+pull: ## Pre-download the images for the core stack or one lab (LAB=NN); builds Spark only if its image can't be pulled
+	$(COMPOSE_LAB) pull --ignore-pull-failures
+	docker image inspect $(SPARK_IMAGE) >/dev/null 2>&1 || $(COMPOSE_LAB) build spark-master
 
-status: ## Show container status
-	docker compose ps
+down: ## Stop every running service, all profiles (keeps volumes)
+	$(COMPOSE_ALL) down
 
-urls: ## Print the lab URLs
-	echo "Kafka UI         http://localhost:8080"
-	echo "Spark master UI  http://localhost:8082   (application UI http://localhost:4040 during a job)"
-	echo "MinIO console    http://localhost:9001   (minioadmin / minioadmin)"
-	echo "Schema Registry  http://localhost:8081"
-	echo "Kafka Connect    http://localhost:8083"
-	echo "Prefect UI       http://localhost:4200"
-	echo "Prometheus       http://localhost:9090"
-	echo "Pushgateway      http://localhost:9091"
-	echo "Grafana          http://localhost:3000"
+clean: ## Stop everything and delete volumes and generated data
+	$(COMPOSE_ALL) down -v
+	rm -rf data/raw/*.csv data/processed data/reports control/scenario
+
+status: ## Show the running containers (all profiles)
+	$(COMPOSE_ALL) ps
+
+urls: ## Print the URLs of the services that are running
+	@scripts/services.sh urls
 
 # ───────── Step 1: data ─────────
 test: ## Run the unit tests (rules, simulator)
@@ -75,6 +88,10 @@ batch: generate bronze silver features score evaluate ## Run the whole batch pip
 
 smoke-delta: ## Verify Spark + MinIO + Delta runtime using isolated temporary tables
 	$(SPARK) /opt/spark-apps/smoke_delta.py
+
+smoke: ## Check the running services and the topics, then run smoke-delta
+	@scripts/services.sh smoke
+	$(MAKE) --no-print-directory smoke-delta
 
 spark-job: ## Run an extra job from spark/jobs (JOB=explore_silver.py)
 	@test -n "$(JOB)" && test "$(notdir $(JOB))" = "$(JOB)" && test -f "spark/jobs/$(JOB)" || { echo "Set JOB to a file in spark/jobs/"; exit 1; }

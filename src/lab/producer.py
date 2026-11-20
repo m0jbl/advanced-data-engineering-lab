@@ -34,7 +34,9 @@ def main() -> None:
     p = config.params()["data"]
     passengers = make_passengers(p["n_passengers"], p["seed"])
     rng = np.random.default_rng()
-    producer = Producer({"bootstrap.servers": config.KAFKA_BOOTSTRAP, "linger.ms": 5})
+    # Idempotent producer: the broker de-duplicates retries, so a retry never writes a payment twice (acks=all).
+    producer = Producer({"bootstrap.servers": config.KAFKA_BOOTSTRAP, "linger.ms": 5,
+                         "enable.idempotence": True})
     print(f"Producing ~{TPS}/s to {config.TOPIC_TRANSACTIONS} on {config.KAFKA_BOOTSTRAP}")
 
     active = None

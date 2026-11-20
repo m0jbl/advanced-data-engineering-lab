@@ -1,5 +1,13 @@
 # Airport Payments: Spark + Kafka Lab
 
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/majlisofai/advanced-data-engineering-lab?quickstart=1)
+
+- Codespaces preselects the machine size (4-core, 16 GB); smaller machines are blocked.
+- The first start pulls the core images (including the ready-built Spark image), then runs `make setup`.
+- Other labs pull their extra images when you run `make up LAB=NN`.
+
+On a laptop, Docker needs at least 8 GB of memory for the core stack.
+
 Hands-on lab for the **Advanced Data Engineering** course. Every lab uses one dataset: card payments at
 an airport (tickets, duty free, currency exchange, food, car rental). Some are fraudulent. The lab builds a
 pipeline that lands, validates, enriches, scores, and monitors them, all on your laptop with Docker Compose.
@@ -10,27 +18,46 @@ stack (Feast, MLflow, DVC, FastAPI, Evidently) is replaced by Spark jobs and tra
 ## Quick start
 
 ```bash
+git clone https://github.com/majlisofai/advanced-data-engineering-lab.git
+cd advanced-data-engineering-lab
 make setup      # Python venv on the host (for the generator and the producer)
-make up         # start the stack and wait for health checks (first run pulls images: allow 10 minutes)
-make urls       # print the UIs
+make up         # start the core stack and wait for health checks (first run pulls images: allow 10 minutes)
+make urls       # print the UIs of the running services
 make test       # unit tests (no Docker needed)
-make smoke-delta # writes and removes isolated test tables on MinIO
+make smoke      # running services + topics, then Spark/Delta writes on isolated MinIO tables
 ```
 
-Allocate at least 12 GB to Docker for the full stack (8 GB is not enough for a reliable end-to-end run). Python 3.11 is recommended; 3.9+ works.
+Python 3.11+ is required (Prefect 3.9).
+
+## Per-lab stack
+
+`make up` starts the core stack. Labs that need more services add a Compose profile, so their images are
+downloaded only when you reach that lab:
+
+| Labs | Command | Adds | Docker memory |
+|---|---|---|---|
+| 01–07, 09, 12 | `make up` | (core only) | 8 GB |
+| 08 CDC | `make up LAB=08` | `cdc`: Postgres, Kafka Connect + Debezium | 8 GB |
+| 10 Observability | `make up LAB=10` | `monitoring`: Prometheus, Pushgateway, kafka-exporter, Grafana | 8 GB |
+| 11 Orchestration | `make up LAB=11` | `orchestration`: Prefect server | 8 GB |
+| all | `make up-all` | every profile | 12 GB |
+
+`make pull LAB=NN` pre-downloads only those images. `make down` stops everything, all profiles. Starting a
+second lab's profile keeps the first running; run `make down` between labs to free memory (volumes stay).
+Spark jobs push metrics to the Pushgateway only when it is running; otherwise they print a note and continue.
 
 ## What runs where
 
-| Component | Where | Port (host) | Role |
+| Component | Profile | Port (host) | Role |
 |---|---|---|---|
-| Kafka 3.9 (KRaft) | container | 9094 | Payment events, fraud alerts |
-| Kafka UI | container | 8080 | Browse topics and messages |
-| Schema Registry | container | 8081 | Contracts for topics (Lab 03) |
-| Postgres + Debezium (Kafka Connect) | containers | 5432 / 8083 | Blocklist changes as CDC events (Lab 08) |
-| MinIO (S3 API) | container | 9000 / 9001 | Bronze, silver, gold Delta tables |
-| Spark master + worker | containers | 7077 / 8082 | Batch and streaming jobs (`spark/jobs/`) |
-| Prefect | container | 4200 | Pipeline runs, schedule, retries (Lab 11) |
-| Prometheus, Pushgateway, kafka-exporter, Grafana | containers | 9090 / 9091 / 9308 / 3000 | Metrics and alerts (Lab 10) |
+| Kafka 4.4 (KRaft) | core | 9094 | Payment events, fraud alerts |
+| Kafka UI (kafbat) | core | 8080 | Browse topics and messages |
+| Schema Registry | core | 8081 | Contracts for topics (Lab 03) |
+| MinIO (S3 API) | core | 9000 / 9001 | Bronze, silver, gold Delta tables |
+| Spark master + worker | core | 7077 / 8082 | Batch and streaming jobs (`spark/jobs/`) |
+| Postgres + Debezium (Kafka Connect) | cdc | 5432 / 8083 | Blocklist changes as CDC events (Lab 08) |
+| Prometheus, Pushgateway, kafka-exporter, Grafana | monitoring | 9090 / 9091 / 9308 / 3000 | Metrics and alerts (Lab 10) |
+| Prefect | orchestration | 4200 | Pipeline runs, schedule, retries (Lab 11) |
 | Payment terminals (simulator) | host (`make stream-produce`) | - | Sends payments to Kafka |
 
 ## Data flow
@@ -109,10 +136,14 @@ params.yaml   simulation size and seed
 
 ## Versions to check before a class
 
-- Spark uses `apache/spark:3.5.3-python3`, built locally with pandas and PyArrow (`spark/Dockerfile`).
+- Versions: Kafka 4.4.0 (KRaft), Schema Registry 8.4.1, Debezium 3.7.1 (`quay.io/debezium/connect`), Postgres 16,
+  Spark 4.2.0 (Scala 2.13, Java 17) with Delta 4.4.1, Prometheus 3.16.0, Pushgateway 1.11.5, kafka-exporter 1.11.0,
+  Grafana 13.3.1, Prefect 3.9.4, Kafka UI `kafbat/kafka-ui` v1.5.0 (maintained fork of the archived provectus image).
+- Spark runs from `ghcr.io/majlisofai/advanced-data-engineering-spark:4.2.0`: JRE 17, PySpark 4.2.0, pandas/PyArrow, and the
+  Kafka, S3A and Delta jars baked in (`spark/Dockerfile`). If the image cannot be pulled, Compose builds it from `spark/`.
+  Delta 4.4.1 is built against Spark 4.2.0, so the image stays on 4.2.0 rather than 4.2.1.
   MinIO and its client use archived `bitnamilegacy` images: mirror these before a course; upstream images
-  can disappear. Before class, run `docker compose pull --ignore-buildable` and `docker compose build spark-master`.
-  Run `make up`, `make smoke-delta`, and `make batch` on the same machine/network learners will use.
-- The first Spark run downloads Kafka, Hadoop S3 and Delta jars from Maven. Offline classrooms need a
-  pre-warmed image/JAR cache. `make up` needs internet for images; check it *before* learners arrive.
-- Use the recommended 12 GB Docker allocation for the full stack. See [VALIDATION.md](VALIDATION.md) for runtime checks that passed and what still needs testing before class.
+  can disappear. Before class, run `make pull LAB=08`, `make pull LAB=10`, `make pull LAB=11` (each also pulls core).
+  Run `make up`, `make smoke`, and `make batch` on the same machine/network learners will use.
+- Spark jobs download nothing at run time (no `--packages`), so a pulled image works offline.
+- Docker memory: 8 GB for the core stack plus one lab profile; 12 GB for `make up-all`. See [VALIDATION.md](VALIDATION.md).
