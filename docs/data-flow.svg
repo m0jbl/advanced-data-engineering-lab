@@ -17,8 +17,8 @@
       .w{fill:none;stroke:#5C5C5C;stroke-width:1.5}
       .r{fill:none;stroke:#CC3A1C;stroke-width:2.5}
     </style>
-    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#5C5C5C"/></marker>
-    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#CC3A1C"/></marker>
+    <marker id="a" viewBox="0 0 10 10" refX="10" refY="5" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#5C5C5C"/></marker>
+    <marker id="ar" viewBox="0 0 10 10" refX="10" refY="5" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#CC3A1C"/></marker>
   </defs>
 
   <rect width="1440" height="540" fill="#FFFFFF"/>
@@ -61,11 +61,11 @@
   <rect x="896" y="130" width="150" height="60" class="n"/>
   <text x="910" y="156" class="sans h">features</text><text x="910" y="177" class="sans s">as of each day</text>
   <g class="w">
-    <line x1="350" y1="160" x2="370" y2="160" marker-end="url(#a)"/>
-    <line x1="524" y1="160" x2="544" y2="160" marker-end="url(#a)"/>
-    <line x1="698" y1="160" x2="718" y2="160" marker-end="url(#a)"/>
-    <line x1="872" y1="160" x2="892" y2="160" marker-end="url(#a)"/>
-    <line x1="1046" y1="160" x2="1086" y2="160" marker-end="url(#a)"/>
+    <line x1="350" y1="160" x2="374" y2="160" marker-end="url(#a)"/>
+    <line x1="524" y1="160" x2="548" y2="160" marker-end="url(#a)"/>
+    <line x1="698" y1="160" x2="722" y2="160" marker-end="url(#a)"/>
+    <line x1="872" y1="160" x2="896" y2="160" marker-end="url(#a)"/>
+    <line x1="1046" y1="160" x2="1089" y2="160" marker-end="url(#a)"/>
   </g>
 
   <!-- ===== CDC lane (centre y 270) ===== -->
@@ -78,10 +78,10 @@
   <rect x="722" y="240" width="150" height="60" class="n"/>
   <text x="736" y="266" class="sans h">blocklist</text><text x="736" y="287" class="sans s">silver, MERGE</text>
   <g class="w">
-    <line x1="350" y1="270" x2="370" y2="270" marker-end="url(#a)"/>
-    <line x1="524" y1="270" x2="544" y2="270" marker-end="url(#a)"/>
-    <line x1="698" y1="270" x2="718" y2="270" marker-end="url(#a)"/>
-    <line x1="872" y1="270" x2="1086" y2="270" marker-end="url(#a)"/>
+    <line x1="350" y1="270" x2="374" y2="270" marker-end="url(#a)"/>
+    <line x1="524" y1="270" x2="548" y2="270" marker-end="url(#a)"/>
+    <line x1="698" y1="270" x2="722" y2="270" marker-end="url(#a)"/>
+    <line x1="872" y1="270" x2="1089" y2="270" marker-end="url(#a)"/>
   </g>
 
   <!-- ===== score + outputs ===== -->
@@ -96,8 +96,8 @@
   <rect x="1254" y="240" width="146" height="60" class="n"/>
   <text x="1268" y="266" class="sans h">evaluate</text><text x="1268" y="287" class="sans s">vs ground truth</text>
   <g class="w">
-    <line x1="1230" y1="160" x2="1250" y2="160" marker-end="url(#a)"/>
-    <line x1="1327" y1="190" x2="1327" y2="236" marker-end="url(#a)"/>
+    <line x1="1231" y1="160" x2="1254" y2="160" marker-end="url(#a)"/>
+    <line x1="1327" y1="190" x2="1327" y2="240" marker-end="url(#a)"/>
   </g>
 
   <!-- ===== live lane (centre y 420) ===== -->
@@ -111,10 +111,10 @@
   <text x="736" y="386" class="sans h">fraud alerts</text><text x="736" y="406" class="mono sm">airport.fraud-alerts</text>
   <rect x="722" y="430" width="190" height="56" class="n"/>
   <text x="736" y="454" class="sans h">stream scores</text><text x="736" y="474" class="mono sm">gold/stream_scores</text>
-  <line x1="350" y1="420" x2="370" y2="420" class="r" marker-end="url(#ar)"/>
-  <line x1="524" y1="420" x2="544" y2="420" class="r" marker-end="url(#ar)"/>
-  <path d="M698,410 H706 V390 H718" class="r" marker-end="url(#ar)"/>
-  <path d="M698,430 H706 V458 H718" class="w" marker-end="url(#a)"/>
+  <line x1="350" y1="420" x2="374" y2="420" class="r" marker-end="url(#ar)"/>
+  <line x1="524" y1="420" x2="546.5" y2="420" class="r" marker-end="url(#ar)"/>
+  <path d="M699.5,410 H710 V390 H722" class="r" marker-end="url(#ar)"/>
+  <path d="M699.5,430 H710 V458 H722" class="w" marker-end="url(#a)"/>
 
   <!-- annotation -->
   <g class="hand" font-size="17" fill="#CC3A1C">
