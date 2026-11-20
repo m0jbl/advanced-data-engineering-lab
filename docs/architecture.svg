@@ -1,0 +1,218 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 890" width="1440" height="890" role="img" aria-labelledby="t d">
+  <title id="t">Advanced Data Engineering lab: architecture and the lab that uses each part</title>
+  <desc id="d">Payment terminals and a passenger database feed Kafka and Debezium. Spark runs a live scorer and batch jobs on a Delta lakehouse in MinIO. Alerts, scores and a masked dataset are served. Prefect, Prometheus and Grafana, CI and governance run underneath. Each part is tagged with its lab exercise.</desc>
+  <defs>
+    <style>
+      .sans{font-family:'IBM Plex Sans','Helvetica Neue',Arial,sans-serif}
+      .light{font-family:'IBM Plex Sans','Helvetica Neue',Arial,sans-serif;font-weight:300}
+      .cond{font-family:'IBM Plex Sans Condensed','Arial Narrow','Helvetica Neue',Arial,sans-serif;font-weight:600;letter-spacing:.08em}
+      .mono{font-family:'IBM Plex Mono',Menlo,Consolas,monospace}
+      .hand{font-family:'Architects Daughter','Bradley Hand','Segoe Print','Comic Sans MS',cursive}
+      .card{fill:#FFFFFF;stroke:#111111;stroke-width:1}
+      .addon{fill:#FFFFFF;stroke:#111111;stroke-width:1;stroke-dasharray:6 4}
+      .wire{fill:none;stroke:#5C5C5C;stroke-width:1.5}
+      .live{fill:none;stroke:#CC3A1C;stroke-width:2.5}
+      .kick{font-size:12px;fill:#5C5C5C}
+      .h{font-size:18px;font-weight:600;fill:#111111}
+      .b{font-size:14.5px;fill:#111111}
+      .m{font-size:13px;fill:#5C5C5C}
+      .tag{font-size:11px;fill:#FFFFFF;letter-spacing:.06em}
+    </style>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5C5C5C"/></marker>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#CC3A1C"/></marker>
+  </defs>
+
+  <rect width="1440" height="890" fill="#FFFFFF"/>
+  <rect x="16" y="16" width="1408" height="858" fill="none" stroke="#111111" stroke-width="3"/>
+
+  <!-- header -->
+  <text x="40" y="58" class="cond kick">ADVANCED DATA ENGINEERING · OPEN LAB</text>
+  <text x="40" y="100" class="light" font-size="38" fill="#111111">Every payment, from terminal to trusted decision</text>
+  <text x="40" y="128" class="sans" font-size="15" fill="#5C5C5C">One airport payments dataset · 12 hands-on labs · runs on a laptop or in GitHub Codespaces</text>
+
+  <!-- column labels -->
+  <g class="cond kick">
+    <text x="40" y="168">SOURCES</text>
+    <text x="256" y="168">INGEST</text>
+    <text x="512" y="168">PROCESS</text>
+    <text x="798" y="168">STORE</text>
+    <text x="1014" y="168">SERVE</text>
+  </g>
+  <line x1="40" y1="176" x2="1220" y2="176" stroke="#D9D9D9" stroke-width="0.5"/>
+
+  <!-- ===== SOURCES ===== -->
+  <rect x="40" y="196" width="180" height="128" class="card"/>
+  <text x="56" y="226" class="sans h">Payment terminals</text>
+  <text x="56" y="252" class="sans b">simulator, 10 airports</text>
+  <text x="56" y="274" class="sans b">7 business lines</text>
+  <rect x="56" y="292" width="104" height="20" fill="#111111"/><text x="64" y="306" class="cond tag">LAB 01 · 02</text>
+
+  <rect x="40" y="430" width="180" height="128" class="addon"/>
+  <text x="56" y="460" class="sans h">Passenger DB</text>
+  <text x="56" y="486" class="sans b">Postgres 16</text>
+  <text x="56" y="508" class="mono m">passenger_blocklist</text>
+  <rect x="56" y="526" width="64" height="20" fill="#111111"/><text x="64" y="540" class="cond tag">LAB 08</text>
+
+  <!-- ===== INGEST ===== -->
+  <rect x="256" y="196" width="220" height="128" class="card"/>
+  <text x="272" y="226" class="sans h">Kafka 4.4 · KRaft</text>
+  <text x="272" y="252" class="mono m">airport.transactions</text>
+  <text x="272" y="274" class="mono m">airport.fraud-alerts</text>
+  <rect x="272" y="292" width="64" height="20" fill="#111111"/><text x="280" y="306" class="cond tag">LAB 02</text>
+
+  <rect x="256" y="344" width="220" height="70" class="card"/>
+  <text x="272" y="372" class="sans h">Schema Registry 8.4</text>
+  <text x="272" y="396" class="sans b">payment contract</text>
+  <rect x="396" y="382" width="64" height="20" fill="#111111"/><text x="404" y="396" class="cond tag">LAB 03</text>
+
+  <rect x="256" y="430" width="220" height="128" class="addon"/>
+  <text x="272" y="460" class="sans h">Debezium 3.7</text>
+  <text x="272" y="486" class="sans b">change data capture</text>
+  <text x="272" y="508" class="sans b">Kafka Connect</text>
+  <rect x="272" y="526" width="64" height="20" fill="#111111"/><text x="280" y="540" class="cond tag">LAB 08</text>
+
+  <!-- ===== PROCESS (Spark) ===== -->
+  <rect x="512" y="196" width="250" height="128" fill="#FFFFFF" stroke="#CC3A1C" stroke-width="3"/>
+  <circle cx="530" cy="215" r="5" fill="#CC3A1C"/>
+  <text x="542" y="220" class="cond kick" style="fill:#CC3A1C">LIVE PATH</text>
+  <text x="528" y="248" class="sans h">Spark 4.2 live scorer</text>
+  <text x="528" y="272" class="sans b">7 rules · alert at score ≥ 50</text>
+  <rect x="528" y="292" width="64" height="20" fill="#111111"/><text x="536" y="306" class="cond tag">LAB 05</text>
+
+  <rect x="512" y="344" width="250" height="214" class="card"/>
+  <text x="528" y="374" class="sans h">Spark 4.2 batch jobs</text>
+  <g class="sans b">
+    <text x="528" y="402">validate → silver</text>
+    <text x="528" y="426">features, no leakage</text>
+    <text x="528" y="450">score → precision gate</text>
+    <text x="528" y="474">MERGE the blocklist</text>
+    <text x="528" y="498">mask for analysts</text>
+  </g>
+  <rect x="528" y="522" width="218" height="20" fill="#111111"/><text x="536" y="536" class="cond tag">LAB 04 · 06 · 07 · 08 · 12</text>
+
+  <!-- ===== STORE (lakehouse) ===== -->
+  <rect x="798" y="196" width="180" height="362" class="card"/>
+  <text x="814" y="226" class="sans h">Delta lakehouse</text>
+  <text x="814" y="248" class="sans m">Delta 4.4 on MinIO (S3)</text>
+  <g stroke="#D9D9D9" stroke-width="1">
+    <line x1="798" y1="264" x2="978" y2="264"/>
+    <line x1="798" y1="330" x2="978" y2="330"/>
+    <line x1="798" y1="396" x2="978" y2="396"/>
+  </g>
+  <text x="814" y="290" class="sans h" font-size="16">bronze</text><text x="814" y="314" class="sans m">raw files, as landed</text>
+  <text x="814" y="356" class="sans h" font-size="16">silver</text><text x="814" y="380" class="sans m">validated, deduplicated</text>
+  <text x="814" y="422" class="sans h" font-size="16">gold</text><text x="814" y="446" class="sans m">features, scores, masked</text>
+  <rect x="799" y="462" width="178" height="62" fill="#F5F5F5"/>
+  <line x1="798" y1="462" x2="978" y2="462" stroke="#D9D9D9"/>
+  <text x="814" y="488" class="sans h" font-size="16">quarantine</text><text x="814" y="510" class="sans m">rejected, with a reason</text>
+  <rect x="814" y="532" width="136" height="20" fill="#111111"/><text x="822" y="546" class="cond tag">LAB 04 · 06 · 07</text>
+
+  <!-- ===== SERVE ===== -->
+  <rect x="1014" y="196" width="206" height="110" class="card"/>
+  <text x="1030" y="226" class="sans h">Fraud alerts</text>
+  <text x="1030" y="250" class="sans b">to fraud operations</text>
+  <text x="1030" y="272" class="sans m">within seconds</text>
+  <rect x="1142" y="280" width="64" height="20" fill="#111111"/><text x="1150" y="294" class="cond tag">LAB 05</text>
+
+  <rect x="1014" y="322" width="206" height="110" class="card"/>
+  <text x="1030" y="352" class="sans h">Fraud scores</text>
+  <text x="1030" y="376" class="mono m">gold/fraud_scores</text>
+  <text x="1030" y="398" class="sans m">precision and recall</text>
+  <rect x="1142" y="406" width="64" height="20" fill="#111111"/><text x="1150" y="420" class="cond tag">LAB 06</text>
+
+  <rect x="1014" y="448" width="206" height="110" class="card"/>
+  <text x="1030" y="478" class="sans h">Analyst dataset</text>
+  <text x="1030" y="502" class="mono m">transactions_masked</text>
+  <text x="1030" y="524" class="sans m">no direct identifiers</text>
+  <rect x="1142" y="532" width="64" height="20" fill="#111111"/><text x="1150" y="546" class="cond tag">LAB 12</text>
+
+  <!-- ===== FLOWS ===== -->
+  <line x1="220" y1="250" x2="252" y2="250" class="wire" marker-end="url(#a)"/>
+  <line x1="476" y1="250" x2="508" y2="250" class="live" marker-end="url(#ar)"/>
+  <path d="M762,240 H785 V186 H1000 V240 H1010" class="live" marker-end="url(#ar)"/>
+  <path d="M762,300 H794" class="wire" marker-end="url(#a)"/>
+  <line x1="366" y1="324" x2="366" y2="344" stroke="#5C5C5C" stroke-width="1.5" stroke-dasharray="3 3"/>
+  <line x1="220" y1="494" x2="252" y2="494" class="wire" marker-end="url(#a)"/>
+  <line x1="476" y1="494" x2="508" y2="494" class="wire" marker-end="url(#a)"/>
+  <line x1="762" y1="430" x2="794" y2="430" class="wire" marker-start="url(#a)" marker-end="url(#a)"/>
+  <line x1="978" y1="377" x2="1010" y2="377" class="wire" marker-end="url(#a)"/>
+  <line x1="978" y1="503" x2="1010" y2="503" class="wire" marker-end="url(#a)"/>
+
+  <!-- ===== ANNOTATIONS (3) ===== -->
+  <g class="hand" font-size="17" fill="#CC3A1C">
+    <text x="40" y="590">block at 10:00, stopped seconds later</text>
+    <line x1="300" y1="576" x2="330" y2="562" stroke="#CC3A1C" stroke-width="1"/><circle cx="331" cy="560" r="3" fill="#CC3A1C"/>
+    <text x="566" y="590">one rule function, batch and live</text>
+    <line x1="640" y1="576" x2="640" y2="562" stroke="#CC3A1C" stroke-width="1"/><circle cx="640" cy="560" r="3" fill="#CC3A1C"/>
+    <text x="842" y="590">bad rows are kept, never dropped</text>
+    <line x1="964" y1="576" x2="964" y2="516" stroke="#CC3A1C" stroke-width="1"/><circle cx="964" cy="514" r="3" fill="#CC3A1C"/>
+  </g>
+
+  <!-- ===== UNDERCURRENTS ===== -->
+  <text x="40" y="632" class="cond kick">UNDERCURRENTS: HOW IT RUNS IN PRODUCTION</text>
+  <line x1="40" y1="640" x2="1220" y2="640" stroke="#D9D9D9" stroke-width="0.5"/>
+
+  <rect x="40" y="656" width="277" height="104" class="addon"/>
+  <text x="56" y="686" class="sans h">Orchestration</text>
+  <text x="56" y="710" class="sans b">Prefect 3.9 daily flow, retries</text>
+  <rect x="56" y="726" width="64" height="20" fill="#111111"/><text x="64" y="740" class="cond tag">LAB 11</text>
+
+  <rect x="341" y="656" width="277" height="104" class="addon"/>
+  <text x="357" y="686" class="sans h">Observability</text>
+  <text x="357" y="710" class="sans b">Prometheus 3.16 · Grafana 13.3</text>
+  <rect x="357" y="726" width="64" height="20" fill="#111111"/><text x="365" y="740" class="cond tag">LAB 10</text>
+
+  <rect x="642" y="656" width="277" height="104" class="card"/>
+  <text x="658" y="686" class="sans h">CI/CD and tests</text>
+  <text x="658" y="710" class="sans b">rule, contract and Spark tests</text>
+  <rect x="658" y="726" width="64" height="20" fill="#111111"/><text x="666" y="740" class="cond tag">LAB 09</text>
+
+  <rect x="943" y="656" width="277" height="104" class="card"/>
+  <text x="959" y="686" class="sans h">Governance</text>
+  <text x="959" y="710" class="sans b">classify, mask, trace lineage</text>
+  <rect x="959" y="726" width="64" height="20" fill="#111111"/><text x="967" y="740" class="cond tag">LAB 12</text>
+
+  <!-- ===== DRAWING TITLE ===== -->
+  <circle cx="56" cy="812" r="16" fill="none" stroke="#CC3A1C" stroke-width="1.5"/>
+  <text x="56" y="818" text-anchor="middle" class="cond" font-size="16" fill="#CC3A1C" style="letter-spacing:0">1</text>
+  <text x="84" y="808" class="cond" font-size="18" fill="#CC3A1C">LAB STACK · AIRPORT PAYMENTS</text>
+  <line x1="84" y1="816" x2="420" y2="816" stroke="#CC3A1C" stroke-width="1.5"/>
+  <text x="84" y="840" class="sans m">Docker Compose · principles and DataOps in Lab 01 · versions as tested, November 2026</text>
+
+  <!-- ===== TITLE BLOCK ===== -->
+  <line x1="1244" y1="16" x2="1244" y2="874" stroke="#111111" stroke-width="1"/>
+  <g transform="translate(1292,44) scale(1.25)">
+    <path d="M11.32,49.36 A27,27 0 1 1 52.68,49.36" fill="none" stroke="#111111" stroke-width="6"/>
+    <path d="M18.98,42.93 A17,17 0 1 1 45.02,42.93" fill="none" stroke="#111111" stroke-width="6"/>
+    <circle cx="32" cy="32" r="6" fill="#CC3A1C"/>
+  </g>
+  <text x="1334" y="152" text-anchor="middle" class="sans" font-size="13" font-weight="500" fill="#111111" style="letter-spacing:.18em">THE MAJLIS OF AI</text>
+  <text x="1334" y="172" text-anchor="middle" class="cond" font-size="12" fill="#CC3A1C">ACADEMY</text>
+
+  <g class="sans">
+    <line x1="1244" y1="196" x2="1424" y2="196" stroke="#111111"/>
+    <text x="1260" y="220" class="cond kick">COURSE</text>
+    <text x="1260" y="242" font-size="14.5" fill="#111111">Advanced Data</text>
+    <text x="1260" y="262" font-size="14.5" fill="#111111">Engineering</text>
+    <line x1="1244" y1="280" x2="1424" y2="280" stroke="#D9D9D9"/>
+    <text x="1260" y="304" class="cond kick">SHEET</text>
+    <text x="1260" y="326" font-size="14.5" fill="#111111">Lab architecture</text>
+    <line x1="1244" y1="344" x2="1424" y2="344" stroke="#D9D9D9"/>
+    <text x="1260" y="368" class="cond kick">KEY</text>
+    <line x1="1260" y1="392" x2="1300" y2="392" stroke="#111111" stroke-width="1.5"/><text x="1310" y="397" font-size="13" fill="#111111">make up</text>
+    <line x1="1260" y1="418" x2="1300" y2="418" stroke="#111111" stroke-width="1.5" stroke-dasharray="6 4"/><text x="1310" y="423" font-size="13" fill="#111111">make up LAB=NN</text>
+    <line x1="1260" y1="444" x2="1300" y2="444" stroke="#CC3A1C" stroke-width="2.5"/><text x="1310" y="449" font-size="13" fill="#111111">live path</text>
+    <rect x="1260" y="460" width="40" height="18" fill="#111111"/><text x="1310" y="474" font-size="13" fill="#111111">lab exercise</text>
+    <line x1="1244" y1="496" x2="1424" y2="496" stroke="#D9D9D9"/>
+    <text x="1260" y="520" class="cond kick">RUNS ON</text>
+    <text x="1260" y="542" font-size="14.5" fill="#111111">Laptop, 8 GB</text>
+    <text x="1260" y="562" font-size="14.5" fill="#111111">Codespaces, 4-core</text>
+    <line x1="1244" y1="580" x2="1424" y2="580" stroke="#D9D9D9"/>
+    <text x="1260" y="604" class="cond kick">DATE</text>
+    <text x="1260" y="626" font-size="14.5" fill="#111111">2026-11</text>
+  </g>
+  <rect x="1262" y="656" width="144" height="40" fill="none" stroke="#CC3A1C" stroke-width="1.5"/>
+  <text x="1334" y="682" text-anchor="middle" class="cond" font-size="15" fill="#CC3A1C">ISSUED</text>
+  <text x="1260" y="790" class="cond kick">SHEET NO.</text>
+  <text x="1258" y="848" class="light" font-size="56" fill="#111111">A1.0</text>
+</svg>

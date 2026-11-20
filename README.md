@@ -1,4 +1,6 @@
-# Airport Payments: Spark + Kafka Lab
+# Advanced Data Engineering Lab: Airport Payments with Kafka and Spark
+
+<p align="center"><img src="docs/architecture.svg" alt="Lab architecture: payment terminals and a passenger database feed Kafka and Debezium; Spark runs a live scorer and batch jobs on a Delta lakehouse in MinIO; alerts, scores and a masked dataset are served; Prefect, Prometheus and Grafana, CI and governance run underneath. Each part is tagged with the lab that uses it." width="100%"></p>
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/majlisofai/advanced-data-engineering-lab?quickstart=1)
 
