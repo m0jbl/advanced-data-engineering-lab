@@ -4,3 +4,5 @@ data/processed/
 __pycache__/
 .pytest_cache/
 .DS_Store
+# Customer/partner-branded decks (logos, templates) stay local, never in git
+pptx-*/
