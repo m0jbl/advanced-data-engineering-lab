@@ -44,8 +44,21 @@ downloaded only when you reach that lab:
 | 11 Orchestration | `make up LAB=11` | `orchestration`: Prefect server | 8 GB |
 | all | `make up-all` | every profile | 12 GB |
 
+```bash
+make up         # Labs 01–07, 09, 12 (core only)
+make up LAB=08  # Lab 08 CDC
+make up LAB=10  # Lab 10 Observability
+make up LAB=11  # Lab 11 Orchestration
+make up-all     # every profile
+```
+
 `make pull LAB=NN` pre-downloads only those images. `make down` stops everything, all profiles. Starting a
-second lab's profile keeps the first running; run `make down` between labs to free memory (volumes stay).
+second lab's profile keeps the first running; stop it between labs to free memory (volumes stay):
+
+```bash
+make down
+```
+
 Spark jobs push metrics to the Pushgateway only when it is running; otherwise they print a note and continue.
 
 ## What runs where
@@ -81,7 +94,13 @@ producer ──► airport.transactions ──► Spark Streaming ──► airp
 
 ## Commands
 
-Run `make help` for the full list. The main ones:
+For the full list, run:
+
+```bash
+make help
+```
+
+The main ones:
 
 | Command | What it does |
 |---|---|
@@ -107,6 +126,36 @@ Run `make help` for the full list. The main ones:
 | `make automate` | Serve the daily flow on a schedule |
 | `make down` / `make clean` | Stop (keep data) / stop and delete volumes |
 
+The same commands, ready to copy:
+
+```bash
+make generate
+make bronze
+make silver DATE=2026-11-18           # omit DATE to process all bronze rows
+make features
+make score DATE=2026-11-18
+make evaluate
+make batch
+make cdc-setup
+make block PASSENGER=42 REASON="stolen card"
+make blocklist
+make blocklist-changes
+make history
+make blocklist-version V=2
+make scenario-normal
+make scenario-drift
+make scenario-attack
+make stream-start
+make stream-logs
+make stream-produce DURATION=20       # omit DURATION to run until Ctrl+C
+make alerts
+make lag
+make pipeline DATE=2026-11-18         # omit DATE to use the latest silver day
+make automate
+make down                             # stop, keep data
+make clean                            # stop and delete volumes
+```
+
 ## Fraud rules
 
 Rules are in `spark/jobs/fraud_rules.py` and documented in the course. Each rule adds points; a payment
@@ -128,7 +177,13 @@ The labels never reach the pipeline. Only `make evaluate` reads them.
 
 `make scenario-normal` (baseline), `make scenario-drift` (holiday: bigger baskets, night flights), and
 `make scenario-attack` (card-testing ring: fraud rate rises several-fold). Switch them while the producer
-runs; the change takes effect on the next payment.
+runs; the change takes effect on the next payment:
+
+```bash
+make scenario-normal   # baseline
+make scenario-drift    # holiday: bigger baskets, night flights
+make scenario-attack   # card-testing ring: fraud rate rises several-fold
+```
 
 ## Layout
 
@@ -151,7 +206,17 @@ params.yaml   simulation size and seed
   Kafka, S3A and Delta jars baked in (`spark/Dockerfile`). If the image cannot be pulled, Compose builds it from `spark/`.
   Delta 4.4.1 is built against Spark 4.2.0, so the image stays on 4.2.0 rather than 4.2.1.
   MinIO and its client use archived `bitnamilegacy` images: mirror these before a course; upstream images
-  can disappear. Before class, run `make pull LAB=08`, `make pull LAB=10`, `make pull LAB=11` (each also pulls core).
-  Run `make up`, `make smoke`, and `make batch` on the same machine/network learners will use.
+  can disappear. Before class, pre-pull every profile (each also pulls core), then check the stack on the
+  same machine/network learners will use:
+
+  ```bash
+  make pull LAB=08
+  make pull LAB=10
+  make pull LAB=11
+  make up
+  make smoke
+  make batch
+  ```
+
 - Spark jobs download nothing at run time (no `--packages`), so a pulled image works offline.
 - Docker memory: 8 GB for the core stack plus one lab profile; 12 GB for `make up-all`. See [VALIDATION.md](VALIDATION.md).
