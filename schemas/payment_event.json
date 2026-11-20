@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PaymentEvent",
+  "description": "One airport payment on airport.transactions (Lab 03)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["transaction_id", "passenger_id", "event_timestamp", "airport", "merchant_category",
+               "amount", "hour_of_day", "is_international", "card_present", "minutes_to_departure"],
+  "properties": {
+    "transaction_id": {"type": "string"},
+    "passenger_id": {"type": "integer", "minimum": 1},
+    "event_timestamp": {"type": "string"},
+    "airport": {"type": "string", "enum": ["LIS", "OPO", "MAD", "BCN", "LHR", "CDG", "FRA", "AMS", "DXB", "JFK"]},
+    "merchant_category": {"type": "string", "enum": ["airline_ticket", "duty_free", "currency_exchange",
+                                                    "lounge", "food_beverage", "car_rental", "electronics"]},
+    "amount": {"type": "number", "exclusiveMinimum": 0},
+    "hour_of_day": {"type": "integer", "minimum": 0, "maximum": 23},
+    "is_international": {"type": "integer", "enum": [0, 1]},
+    "card_present": {"type": "integer", "enum": [0, 1]},
+    "minutes_to_departure": {"type": "number"},
+    "scenario": {"type": "string", "enum": ["normal", "drift", "attack"]}
+  }
+}

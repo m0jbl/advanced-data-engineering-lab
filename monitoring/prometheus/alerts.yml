@@ -1,0 +1,22 @@
+groups:
+  - name: airport-fraud
+    rules:
+      - alert: ConsumerLagHigh
+        expr: sum by (consumergroup, topic) (kafka_consumergroup_lag) > 1000
+        for: 2m
+        labels: {severity: warning}
+        annotations:
+          summary: "Consumer group {{ $labels.consumergroup }} is more than 1000 messages behind on {{ $labels.topic }}"
+      - alert: NoAlertsWhileTrafficFlows
+        expr: sum(rate(kafka_topic_partition_current_offset{topic="airport.transactions"}[5m])) > 1
+          and on() (sum(rate(kafka_topic_partition_current_offset{topic="airport.fraud-alerts"}[10m])) == 0)
+        for: 10m
+        labels: {severity: critical}
+        annotations:
+          summary: "Payments arrive but no fraud alerts are produced: the scoring job may be down"
+      - alert: BatchAlertRateHigh
+        expr: fraud_batch_alerts / fraud_batch_payments > 0.05
+        for: 1m
+        labels: {severity: warning}
+        annotations:
+          summary: "Batch alert rate above 5% for {{ $labels.day }}"

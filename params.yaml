@@ -1,0 +1,6 @@
+# Lab settings. Change values here, then re-run `make batch`.
+data:
+  seed: 42
+  n_passengers: 2000
+  history_days: 60
+  txn_per_day: 1200

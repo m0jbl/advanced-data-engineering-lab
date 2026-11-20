@@ -1,0 +1,23 @@
+dataset: airport.transactions
+version: "1.0.0"
+owner: {team: payments-platform, contact: "#payments-data"}
+consumers:
+  - {team: fraud-ops, sla: "alerts within 5 minutes of payment"}
+  - {team: finance, sla: "daily totals by 07:00"}
+schema_ref: schemas/payment_event.json
+classification:
+  transaction_id: {class: internal_id, access: standard}
+  passenger_id: {class: pii, access: restricted}
+  amount: {class: financial, access: standard}
+  airport: {class: operational, access: standard}
+  merchant_category: {class: operational, access: standard}
+  event_timestamp: {class: operational, access: standard}
+quality:
+  - {rule: NULL_KEY, severity: critical, action: quarantine}
+  - {rule: NON_POSITIVE_AMOUNT, severity: critical, action: quarantine}
+  - {rule: UNKNOWN_AIRPORT, severity: critical, action: quarantine}
+  - {rule: BAD_HOUR, severity: critical, action: quarantine}
+retention:
+  bronze_days: 90
+  silver_days: 730
+  alerts_days: 2555
