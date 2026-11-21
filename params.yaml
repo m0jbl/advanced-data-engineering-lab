@@ -1,4 +1,4 @@
-# Lab settings. Change values here, then re-run `make batch`.
+# Lab settings. Change values here, then re-run the batch jobs (README, Lab 01-05 commands).
 data:
   seed: 42
   n_passengers: 2000

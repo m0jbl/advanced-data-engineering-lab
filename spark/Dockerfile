@@ -1,6 +1,6 @@
 # Slim Spark 4.2 runtime for the Advanced Data Engineering lab.
 # JRE 17 + the PySpark wheel (it ships Spark's jars) + pinned Python libraries + connector jars baked in,
-# so jobs need no --packages download at run time. Keep versions in step with the Makefile.
+# so jobs need no --packages download at run time. Keep versions in step with README.md.
 FROM eclipse-temurin:17-jre-noble
 ARG HADOOP_VERSION=3.5.0
 ARG AWS_SDK_VERSION=2.35.4

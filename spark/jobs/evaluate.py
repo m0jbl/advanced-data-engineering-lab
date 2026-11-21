@@ -1,6 +1,6 @@
 """Compare batch alerts with the simulator's ground truth (labels never seen by the pipeline).
 
-Writes a driver-local report; make evaluate copies it to data/reports for the Prefect quality gate.
+Writes a driver-local report; `docker compose cp spark-master:/tmp/airport-evaluation.json data/reports/evaluation.json` copies it for the Prefect quality gate.
 """
 import argparse
 import json

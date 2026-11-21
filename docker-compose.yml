@@ -1,6 +1,6 @@
 # Airport payments: Spark + Kafka lab (laptop, Docker Compose).
-# Core (no profile, `make up`): Kafka, Schema Registry, Kafka UI, MinIO, Spark. Labs 01-07, 09, 12.
-# Profiles (pulled and started only when a lab needs them, `make up LAB=NN`):
+# Core (no profile, `docker compose up -d --wait`): Kafka, Schema Registry, Kafka UI, MinIO, Spark. Labs 01-07, 09, 12.
+# Profiles (pulled and started only when a lab needs them, `docker compose --profile <name> up -d --wait`):
 #   cdc (Lab 08): Postgres, Kafka Connect/Debezium · monitoring (Lab 10): Prometheus, Pushgateway, kafka-exporter, Grafana
 #   orchestration (Lab 11): Prefect server
 # Host ports: Kafka 9094 · Kafka UI 8080 · Schema Registry 8081 · Spark master UI 8082 · Connect 8083
@@ -33,7 +33,7 @@ services:
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
       KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: "false"
-      KAFKA_LOG_DIRS: /var/lib/kafka/data   # on the kafka_data volume, so `make down` keeps topics and offsets
+      KAFKA_LOG_DIRS: /var/lib/kafka/data   # on the kafka_data volume, so `docker compose down` keeps topics and offsets
     volumes: [kafka_data:/var/lib/kafka/data]
     healthcheck:
       test: ["CMD-SHELL", "/opt/kafka/bin/kafka-broker-api-versions.sh --bootstrap-server localhost:9092 >/dev/null 2>&1"]
@@ -205,6 +205,7 @@ services:
     volumes:
       - ./spark/jobs:/opt/spark-apps:ro
       - ./data:/opt/spark-data:ro
+      - ./spark/conf/spark-defaults.conf:/opt/spark/conf/spark-defaults.conf:ro   # settings for every spark-submit
     depends_on:
       minio-init: {condition: service_completed_successfully}
       kafka-init: {condition: service_completed_successfully}   # topics exist; also lets `up --wait` accept the one-shot exit

@@ -5,8 +5,8 @@
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/majlisofai/advanced-data-engineering-lab?quickstart=1)
 
 - Codespaces preselects the machine size (4-core, 16 GB); smaller machines are blocked.
-- The first start pulls the core images (including the ready-built Spark image), then runs `make setup`.
-- Other labs pull their extra images when you run `make up LAB=NN`.
+- The first start pulls the core images (including the ready-built Spark image), then runs `uv sync --locked`.
+- Other labs pull their extra images when you start them with `docker compose --profile <name> up -d --wait`.
 
 On a laptop, Docker needs at least 8 GB of memory for the core stack.
 
@@ -22,12 +22,18 @@ stack (Feast, MLflow, DVC, FastAPI, Evidently) is replaced by Spark jobs and tra
 ```bash
 git clone https://github.com/majlisofai/advanced-data-engineering-lab.git
 cd advanced-data-engineering-lab
-make setup      # uv installs Python 3.12 and the locked host dependencies into .venv (generator, producer, tests)
-make up         # start the core stack and wait for health checks (first run pulls images: allow 10 minutes)
-make urls       # print the UIs of the running services
-make test       # unit tests (no Docker needed)
-make smoke      # running services + topics, then Spark/Delta writes on isolated MinIO tables
+uv sync --locked                                   # uv installs Python 3.12 and the locked host dependencies into .venv
+docker compose up -d --wait                        # core stack, wait for health checks (first run pulls images: allow 10 minutes)
+scripts/services.sh urls                           # print the UIs of the running services
+PYTHONPATH=src uv run python -m pytest tests -q    # unit tests (no Docker needed)
+scripts/services.sh smoke                          # running services + topics
+docker compose exec -T spark-master /opt/spark/bin/spark-submit /opt/spark-apps/smoke_delta.py   # Spark/Delta writes on isolated MinIO tables
 ```
+
+Every Spark job runs the same way: `docker compose exec -T spark-master /opt/spark/bin/spark-submit /opt/spark-apps/<job>.py [args]`.
+`spark-submit` runs inside the `spark-master` container, where `spark/jobs/` is mounted at `/opt/spark-apps`.
+Its settings (master URL, driver and executor memory, Delta extensions) come from `spark/conf/spark-defaults.conf`,
+mounted read-only at `/opt/spark/conf/spark-defaults.conf`, so the command line carries only the job and its arguments.
 
 [uv](https://docs.astral.sh/uv/getting-started/installation/) is the only host prerequisite (`brew install uv`
 or `curl -LsSf https://astral.sh/uv/install.sh | sh`). It downloads the Python pinned in `.python-version` and
@@ -35,30 +41,30 @@ installs the versions locked in `uv.lock`; the Python already on your machine is
 
 ## Per-lab stack
 
-`make up` starts the core stack. Labs that need more services add a Compose profile, so their images are
+`docker compose up -d --wait` starts the core stack. Labs that need more services add a Compose profile, so their images are
 downloaded only when you reach that lab:
 
 | Labs | Command | Adds | Docker memory |
 |---|---|---|---|
-| 01–07, 09, 12 | `make up` | (core only) | 8 GB |
-| 08 CDC | `make up LAB=08` | `cdc`: Postgres, Kafka Connect + Debezium | 8 GB |
-| 10 Observability | `make up LAB=10` | `monitoring`: Prometheus, Pushgateway, kafka-exporter, Grafana | 8 GB |
-| 11 Orchestration | `make up LAB=11` | `orchestration`: Prefect server | 8 GB |
-| all | `make up-all` | every profile | 12 GB |
+| 01–07, 09, 12 | `docker compose up -d --wait` | (core only) | 8 GB |
+| 08 CDC | `docker compose --profile cdc up -d --wait` | `cdc`: Postgres, Kafka Connect + Debezium | 8 GB |
+| 10 Observability | `docker compose --profile monitoring up -d --wait` | `monitoring`: Prometheus, Pushgateway, kafka-exporter, Grafana | 8 GB |
+| 11 Orchestration | `docker compose --profile orchestration up -d --wait` | `orchestration`: Prefect server | 8 GB |
+| all | `docker compose --profile '*' up -d --wait` | every profile | 12 GB |
 
 ```bash
-make up         # Labs 01–07, 09, 12 (core only)
-make up LAB=08  # Lab 08 CDC
-make up LAB=10  # Lab 10 Observability
-make up LAB=11  # Lab 11 Orchestration
-make up-all     # every profile
+docker compose up -d --wait                           # Labs 01–07, 09, 12 (core only)
+docker compose --profile cdc up -d --wait             # Lab 08 CDC
+docker compose --profile monitoring up -d --wait      # Lab 10 Observability
+docker compose --profile orchestration up -d --wait   # Lab 11 Orchestration
+docker compose --profile '*' up -d --wait             # every profile
 ```
 
-`make pull LAB=NN` pre-downloads only those images. `make down` stops everything, all profiles. Starting a
+`docker compose --profile <name> pull` pre-downloads only those images. `docker compose --profile '*' down` stops everything, all profiles. Starting a
 second lab's profile keeps the first running; stop it between labs to free memory (volumes stay):
 
 ```bash
-make down
+docker compose --profile '*' down
 ```
 
 Spark jobs push metrics to the Pushgateway only when it is running; otherwise they print a note and continue.
@@ -75,7 +81,7 @@ Spark jobs push metrics to the Pushgateway only when it is running; otherwise th
 | Postgres + Debezium (Kafka Connect) | cdc | 5432 / 8083 | Blocklist changes as CDC events (Lab 08) |
 | Prometheus, Pushgateway, kafka-exporter, Grafana | monitoring | 9090 / 9091 / 9308 / 3000 | Metrics and alerts (Lab 10) |
 | Prefect | orchestration | 4200 | Pipeline runs, schedule, retries (Lab 11) |
-| Payment terminals (simulator) | host (`make stream-produce`) | - | Sends payments to Kafka |
+| Payment terminals (simulator) | host (`uv run python -m lab.producer`) | - | Sends payments to Kafka |
 
 ## Data flow
 
@@ -96,67 +102,87 @@ producer ──► airport.transactions ──► Spark Streaming ──► airp
 
 ## Commands
 
-For the full list, run:
+All commands run from the repo root. `PYTHONPATH=src` lets `uv run` find the `lab` package on the host.
 
-```bash
-make help
-```
-
-The main ones:
-
-| Command | What it does |
+| Step | What it does |
 |---|---|
-| `make generate` | Simulate 60 days of payments (labels written separately) |
-| `make bronze` | Upload the raw files to MinIO |
-| `make silver DATE=...` | Validate and write one UTC day (omit DATE to process all bronze rows) |
-| `make features` | Passenger features as of each day (no leakage) |
-| `make score DATE=2026-11-18` | Score one day with the rules |
-| `make evaluate` | Precision and recall against the ground truth |
-| `make batch` | Everything above, in order |
-| `make cdc-setup` | Create the blocklist table and register Debezium |
-| `make block PASSENGER=42 REASON="stolen card"` | Block a passenger (captured as CDC) |
-| `make blocklist` | MERGE CDC changes into the active blocklist (Delta) |
-| `make blocklist-changes` | Read the Delta change feed of the blocklist |
-| `make history` | Delta commit history of the features table |
-| `make blocklist-version V=2` | The blocklist as of an earlier Delta version |
-| `make scenario-normal / -drift / -attack` | Choose the live traffic pattern |
-| `make stream-start` / `make stream-logs` | Start the detached scorer and check when its Kafka queries are up |
-| `make stream-produce DURATION=20` | Send live payments for 20 seconds (omit DURATION to run until Ctrl+C) |
-| `make alerts` | Read `airport.fraud-alerts` from Kafka |
-| `make lag` | Consumer lag per group |
-| `make pipeline DATE=...` | Run the daily flow once against the local Prefect server (omit DATE to use the latest silver day) |
-| `make automate` | Serve the daily flow on a schedule |
-| `make down` / `make clean` | Stop (keep data) / stop and delete volumes |
+| `uv run python -m lab.generate` | Simulate 60 days of payments (labels written separately) |
+| `mc cp` to `local/bronze/` | Upload the raw files to MinIO |
+| `silver_transactions.py [--date d]` | Validate and write one UTC day (omit `--date` to process all bronze rows) |
+| `features_30d.py` | Passenger features as of each day (no leakage) |
+| `score_batch.py [--date d]` | Score one day with the rules (default: latest) |
+| `evaluate.py [--date d]` + `docker compose cp` | Precision and recall against the ground truth, copied to `data/reports/evaluation.json` |
+| Postgres table + Debezium connector | Create the blocklist table and register Debezium |
+| `INSERT INTO passenger_blocklist` | Block a passenger (captured as CDC) |
+| `blocklist_from_cdc.py` | MERGE CDC changes into the active blocklist (Delta) |
+| `blocklist_changes.py` | Read the Delta change feed of the blocklist |
+| `history.py` | Delta commit history of the features table |
+| `blocklist_version.py 2` | The blocklist as of an earlier Delta version |
+| `blocked_payments.py 42` | Scored payments of one passenger |
+| `mask_payments.py` | Analyst-safe dataset without direct identifiers |
+| `echo attack > control/scenario` | Choose the live traffic pattern (`normal`, `drift`, `attack`) |
+| `stream_fraud.py` (detached) + its log | Start the detached scorer and check when its Kafka queries are up |
+| `uv run python -m lab.producer --seconds 20` | Send live payments for 20 seconds (omit `--seconds` to run until Ctrl+C) |
+| `kafka-console-consumer.sh` | Read `airport.fraud-alerts` from Kafka |
+| `kafka-consumer-groups.sh` | Consumer lag per group |
+| `flows/pipeline.py [d]` | Run the daily flow once against the local Prefect server (omit the date to use the latest silver day) |
+| `flows/pipeline.py serve` | Serve the daily flow on a schedule |
+| `docker compose --profile '*' down [-v]` | Stop (keep data) / stop and delete volumes |
 
 The same commands, ready to copy:
 
 ```bash
-make generate
-make bronze
-make silver DATE=2026-11-18           # omit DATE to process all bronze rows
-make features
-make score DATE=2026-11-18
-make evaluate
-make batch
-make cdc-setup
-make block PASSENGER=42 REASON="stolen card"
-make blocklist
-make blocklist-changes
-make history
-make blocklist-version V=2
-make scenario-normal
-make scenario-drift
-make scenario-attack
-make stream-start
-make stream-logs
-make stream-produce DURATION=20       # omit DURATION to run until Ctrl+C
-make alerts
-make lag
-make pipeline DATE=2026-11-18         # omit DATE to use the latest silver day
-make automate
-make down                             # stop, keep data
-make clean                            # stop and delete volumes
+# Batch (Labs 01-05)
+PYTHONPATH=src uv run python -m lab.generate
+docker compose exec -T minio-client mc cp /data/raw/transactions.csv local/bronze/transactions/transactions.csv
+docker compose exec -T minio-client mc cp /data/raw/passengers.csv local/bronze/passengers/passengers.csv
+docker compose exec -T minio-client mc ls --recursive local/bronze/
+docker compose exec -T spark-master /opt/spark/bin/spark-submit /opt/spark-apps/silver_transactions.py --date 2026-11-18      # omit --date to process all bronze rows
+docker compose exec -T spark-master /opt/spark/bin/spark-submit /opt/spark-apps/features_30d.py
+docker compose exec -T spark-master /opt/spark/bin/spark-submit /opt/spark-apps/score_batch.py --date 2026-11-18
+docker compose exec -T spark-master /opt/spark/bin/spark-submit /opt/spark-apps/evaluate.py --date 2026-11-18
+mkdir -p data/reports
+docker compose cp spark-master:/tmp/airport-evaluation.json data/reports/evaluation.json
+
+# Delta (Lab 06)
+docker compose exec -T spark-master /opt/spark/bin/spark-submit /opt/spark-apps/history.py
+docker compose exec -T spark-master /opt/spark/bin/spark-submit /opt/spark-apps/blocklist_version.py 2
+docker compose exec -T spark-master /opt/spark/bin/spark-submit /opt/spark-apps/blocked_payments.py 42 --date 2026-11-18
+docker compose exec -T spark-master /opt/spark/bin/spark-submit /opt/spark-apps/mask_payments.py
+
+# CDC (Lab 08, needs --profile cdc)
+docker compose exec -T kafka /opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic fraud.public.passenger_blocklist --partitions 1 --replication-factor 1 --config retention.ms=-1
+docker compose exec -T postgres psql -v ON_ERROR_STOP=1 -U postgres -d airport -q < cdc/blocklist.sql
+uv run python -c 'import json;print(json.dumps(json.load(open("cdc/blocklist-connector.json"))["config"]))' | curl -fsS -X PUT -H "Content-Type: application/json" --data-binary @- http://localhost:8083/connectors/blocklist-connector/config
+curl -fsS http://localhost:8083/connectors/blocklist-connector/status
+docker compose exec -T postgres psql -U postgres -d airport -c "INSERT INTO passenger_blocklist VALUES (42, 'stolen card', (extract(epoch from clock_timestamp()) * 1000)::bigint, NULL) ON CONFLICT (passenger_id) DO UPDATE SET unblocked_at = NULL, reason = EXCLUDED.reason, blocked_at = EXCLUDED.blocked_at;"
+docker compose exec -T postgres psql -U postgres -d airport -c "UPDATE passenger_blocklist SET unblocked_at = (extract(epoch from clock_timestamp()) * 1000)::bigint WHERE passenger_id = 42;"
+docker compose exec -T spark-master /opt/spark/bin/spark-submit /opt/spark-apps/blocklist_from_cdc.py
+docker compose exec -T spark-master /opt/spark/bin/spark-submit /opt/spark-apps/blocklist_changes.py
+
+# Streaming (Labs 07, 09, 10)
+mkdir -p control
+echo normal > control/scenario
+docker compose exec -d spark-master bash -c '/opt/spark/bin/spark-submit /opt/spark-apps/stream_fraud.py > /tmp/stream-fraud.log 2>&1'
+docker compose exec -T spark-master tail -n 60 /tmp/stream-fraud.log
+PYTHONPATH=src uv run python -m lab.producer --seconds 20     # omit --seconds to run until Ctrl+C
+docker compose exec kafka /opt/kafka/bin/kafka-console-consumer.sh --bootstrap-server kafka:9092 --topic airport.fraud-alerts --from-beginning
+docker compose exec kafka /opt/kafka/bin/kafka-console-consumer.sh --bootstrap-server kafka:9092 --topic airport.transactions --group lab-lag-demo --from-beginning --consumer-property enable.auto.commit=true --consumer-property auto.commit.interval.ms=1000
+docker compose exec kafka /opt/kafka/bin/kafka-consumer-groups.sh --bootstrap-server kafka:9092 --all-groups --describe
+docker compose exec -T spark-master pkill -f stream_fraud.py
+
+# Orchestration (Lab 11, needs --profile orchestration)
+PREFECT_API_URL=http://localhost:4200/api uv run python flows/pipeline.py 2026-11-18   # omit the date to use the latest silver day
+PREFECT_API_URL=http://localhost:4200/api uv run python flows/pipeline.py serve
+
+# Stop
+docker compose --profile '*' down                                      # stop, keep data
+docker compose --profile '*' down -v                                   # stop and delete volumes
+rm -rf data/raw/*.csv data/reports control/scenario                    # delete generated data
 ```
+
+Any other job in `spark/jobs/` (for example `explore_silver.py`) runs with the same spark-submit pattern.
+`docker compose --profile '*' ps` lists the running containers.
 
 ## Fraud rules
 
@@ -173,18 +199,19 @@ at score 50 or more is an alert.
 | `NEW_ACCOUNT` | 10 | Account younger than 30 days |
 | `BLOCKED_PASSENGER` | 100 | Passenger on the blocklist |
 
-The labels never reach the pipeline. Only `make evaluate` reads them.
+The labels never reach the pipeline. Only `evaluate.py` reads them.
 
 ## Scenarios
 
-`make scenario-normal` (baseline), `make scenario-drift` (holiday: bigger baskets, night flights), and
-`make scenario-attack` (card-testing ring: fraud rate rises several-fold). Switch them while the producer
+`normal` (baseline), `drift` (holiday: bigger baskets, night flights), and
+`attack` (card-testing ring: fraud rate rises several-fold), written to `control/scenario`. Switch them while the producer
 runs; the change takes effect on the next payment:
 
 ```bash
-make scenario-normal   # baseline
-make scenario-drift    # holiday: bigger baskets, night flights
-make scenario-attack   # card-testing ring: fraud rate rises several-fold
+mkdir -p control
+echo normal > control/scenario   # baseline
+echo drift > control/scenario    # holiday: bigger baskets, night flights
+echo attack > control/scenario   # card-testing ring: fraud rate rises several-fold
 ```
 
 ## Layout
@@ -197,6 +224,7 @@ cdc/          blocklist table and Debezium connector definition
 monitoring/   Prometheus, alert rules, Grafana datasource
 tests/        unit tests for the rules and the simulator
 params.yaml   simulation size and seed
+spark/conf/   spark-defaults.conf for every spark-submit
 ```
 
 ## Versions to check before a class
@@ -212,13 +240,23 @@ params.yaml   simulation size and seed
   same machine/network learners will use:
 
   ```bash
-  make pull LAB=08
-  make pull LAB=10
-  make pull LAB=11
-  make up
-  make smoke
-  make batch
+  docker compose --profile cdc pull
+  docker compose --profile monitoring pull
+  docker compose --profile orchestration pull
+  docker compose up -d --wait
+  scripts/services.sh smoke
+  docker compose exec -T spark-master /opt/spark/bin/spark-submit /opt/spark-apps/smoke_delta.py
+  PYTHONPATH=src uv run python -m lab.generate
+  docker compose exec -T minio-client mc cp /data/raw/transactions.csv local/bronze/transactions/transactions.csv
+  docker compose exec -T minio-client mc cp /data/raw/passengers.csv local/bronze/passengers/passengers.csv
+  docker compose exec -T minio-client mc ls --recursive local/bronze/
+  docker compose exec -T spark-master /opt/spark/bin/spark-submit /opt/spark-apps/silver_transactions.py
+  docker compose exec -T spark-master /opt/spark/bin/spark-submit /opt/spark-apps/features_30d.py
+  docker compose exec -T spark-master /opt/spark/bin/spark-submit /opt/spark-apps/score_batch.py
+  docker compose exec -T spark-master /opt/spark/bin/spark-submit /opt/spark-apps/evaluate.py
+  mkdir -p data/reports
+  docker compose cp spark-master:/tmp/airport-evaluation.json data/reports/evaluation.json
   ```
 
 - Spark jobs download nothing at run time (no `--packages`), so a pulled image works offline.
-- Docker memory: 8 GB for the core stack plus one lab profile; 12 GB for `make up-all`. See [VALIDATION.md](VALIDATION.md).
+- Docker memory: 8 GB for the core stack plus one lab profile; 12 GB for `docker compose --profile '*' up -d --wait`. See [VALIDATION.md](VALIDATION.md).

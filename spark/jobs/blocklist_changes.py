@@ -1,6 +1,6 @@
 """Read the Delta Change Data Feed of silver/blocklist: every block (insert) and unblock (delete).
 
-Run: make blocklist-changes
+Run: docker compose exec -T spark-master /opt/spark/bin/spark-submit /opt/spark-apps/blocklist_changes.py
 """
 from pyspark.sql import functions as F
 

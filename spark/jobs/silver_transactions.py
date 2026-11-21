@@ -1,6 +1,6 @@
 """Bronze CSV -> silver Delta table. Rejected rows go to quarantine with the reason (Lab 07).
 
-Run: make silver
+Run: docker compose exec -T spark-master /opt/spark/bin/spark-submit /opt/spark-apps/silver_transactions.py
 """
 import argparse
 from datetime import date

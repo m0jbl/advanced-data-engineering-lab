@@ -1,5 +1,7 @@
 # Lab review and validation
 
+> **Note (2026-11-21):** the Makefile was removed. The results below were recorded with the equivalent `make` targets; the commands now follow [README.md](README.md) (explicit `docker compose`, `spark-submit`, and `uv run` commands).
+
 Last run: 2026-11-20, Docker 29.9.3 on an arm64 laptop with about 8 GB allocated to Docker. Fresh volumes (`docker compose down -v` first).
 
 Versions under test: Kafka 4.4.0 (KRaft), Schema Registry 8.4.1, Debezium 3.7.1.Final, Postgres 16, Spark 4.2.0 (Scala 2.13, Java 17) with Delta 4.4.1, spark-sql-kafka 4.2.0 and hadoop-aws 3.5.0, Prometheus 3.16.0, Pushgateway 1.11.5, kafka-exporter 1.11.0, Grafana 13.3.1, Prefect 3.9.4, kafbat/kafka-ui 1.5.0, host Python 3.12 (managed by uv, locked in uv.lock).

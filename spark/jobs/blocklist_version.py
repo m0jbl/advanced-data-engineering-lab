@@ -1,5 +1,5 @@
 """The active blocklist as it was at a Delta version (Lab 08 time travel).
-Run: make blocklist-version V=2
+Run: docker compose exec -T spark-master /opt/spark/bin/spark-submit /opt/spark-apps/blocklist_version.py 2
 """
 import sys
 from common import SILVER_BLOCKLIST, session

@@ -2,7 +2,7 @@
 
 silver/blocklist always holds the ACTIVE blocklist (one row per blocked passenger).
 The table has the Delta Change Data Feed on, so every block (insert) and unblock (delete)
-is also recorded as a table change. Run: make blocklist
+is also recorded as a table change. Run: docker compose exec -T spark-master /opt/spark/bin/spark-submit /opt/spark-apps/blocklist_from_cdc.py
 """
 from pyspark.sql import Window
 from pyspark.sql import functions as F

@@ -71,7 +71,7 @@ def ship_rules(spark: SparkSession) -> None:
 def push_metrics(job: str, lines: list) -> None:
     """Send metrics to the Pushgateway when PUSHGATEWAY_URL is set (Lab 10).
 
-    The Pushgateway runs only with the monitoring profile (`make up LAB=10`); when it is down, skip with a note.
+    The Pushgateway runs only with the monitoring profile (`docker compose --profile monitoring up -d --wait`); when it is down, skip with a note.
     """
     url = os.getenv("PUSHGATEWAY_URL")
     if not url:
@@ -82,7 +82,7 @@ def push_metrics(job: str, lines: list) -> None:
     try:
         urllib.request.urlopen(req, timeout=5)
     except (urllib.error.URLError, OSError) as exc:
-        print(f"metrics not pushed ({exc}); start the monitoring profile with `make up LAB=10` to collect them")
+        print(f"metrics not pushed ({exc}); start the monitoring profile with `docker compose --profile monitoring up -d --wait` to collect them")
 
 
 # CSV written by the batch generator (event_timestamp read as text, parsed with to_timestamp)

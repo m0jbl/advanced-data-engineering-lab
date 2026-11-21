@@ -36,17 +36,17 @@
 
   <!-- ===== lane labels ===== -->
   <text x="40" y="146" class="cond" font-size="15" fill="#111111">BATCH</text>
-  <text x="40" y="166" class="mono sm">make batch</text>
+  <text x="40" y="166" class="mono sm">batch jobs</text>
   <rect x="40" y="176" width="92" height="18" fill="#111111"/><text x="47" y="189" class="cond tag">LAB 04–07</text>
 
   <text x="40" y="256" class="cond" font-size="15" fill="#111111">CDC</text>
-  <text x="40" y="276" class="mono sm">make blocklist</text>
+  <text x="40" y="276" class="mono sm">blocklist_from_cdc.py</text>
   <rect x="40" y="286" width="62" height="18" fill="#111111"/><text x="47" y="299" class="cond tag">LAB 08</text>
 
   <line x1="40" y1="338" x2="1400" y2="338" stroke="#D9D9D9" stroke-width="0.5"/>
   <circle cx="45" cy="391" r="5" fill="#CC3A1C"/>
   <text x="56" y="396" class="cond" font-size="15" fill="#CC3A1C">LIVE</text>
-  <text x="40" y="416" class="mono sm">make stream-start</text>
+  <text x="40" y="416" class="mono sm">stream_fraud.py</text>
   <rect x="40" y="426" width="62" height="18" fill="#111111"/><text x="47" y="439" class="cond tag">LAB 05</text>
 
   <!-- ===== batch lane (centre y 160) ===== -->

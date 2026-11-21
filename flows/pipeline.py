@@ -1,8 +1,8 @@
 """Daily airport payments pipeline as a Prefect flow (Lab 11).
 
-Stages call the same `make` targets learners run by hand, so there is one definition of each step.
-Run once:            make pipeline DATE=2026-11-18
-Serve on a schedule: make automate
+Each task runs the same explicit command learners run by hand (README), so there is one definition of each step.
+Run once:            PREFECT_API_URL=http://localhost:4200/api uv run python flows/pipeline.py 2026-11-18
+Serve on a schedule: PREFECT_API_URL=http://localhost:4200/api uv run python flows/pipeline.py serve
 """
 import json
 import os
@@ -14,39 +14,51 @@ from prefect import flow, task, get_run_logger
 
 ROOT = Path(__file__).resolve().parents[1]
 MIN_PRECISION = 0.5          # quality gate on the scoring rules, measured against ground truth
+SPARK_SUBMIT = ["docker", "compose", "exec", "-T", "spark-master", "/opt/spark/bin/spark-submit"]
+MC = ["docker", "compose", "exec", "-T", "minio-client", "mc"]
 
 
-def make(target: str, **env: str) -> str:
-    result = subprocess.run(["make", "--no-print-directory", target], cwd=ROOT,
-                            capture_output=True, text=True, env={**os.environ, **env})
+def run(argv: list[str]) -> str:
+    result = subprocess.run(argv, cwd=ROOT, capture_output=True, text=True,
+                            env={**os.environ, "PYTHONPATH": "src"})
     if result.returncode != 0:
-        raise RuntimeError(f"make {target} failed:\n{result.stdout[-800:]}\n{result.stderr[-800:]}")
+        raise RuntimeError(f"{' '.join(argv)} failed:\n{result.stdout[-800:]}\n{result.stderr[-800:]}")
     return result.stdout
+
+
+def spark_job(job: str, *args: str) -> str:
+    return run([*SPARK_SUBMIT, f"/opt/spark-apps/{job}", *args])
+
+
+def date_arg(day: str) -> list[str]:
+    return ["--date", day] if day else []
 
 
 @task(retries=0)
 def generate_data() -> str:
-    return make("generate")
+    return run(["uv", "run", "python", "-m", "lab.generate"])
 
 
 @task(retries=2, retry_delay_seconds=30)
 def load_bronze() -> str:
-    return make("bronze")
+    out = run([*MC, "cp", "/data/raw/transactions.csv", "local/bronze/transactions/transactions.csv"])
+    out += run([*MC, "cp", "/data/raw/passengers.csv", "local/bronze/passengers/passengers.csv"])
+    return out + run([*MC, "ls", "--recursive", "local/bronze/"])
 
 
 @task(retries=2, retry_delay_seconds=30)
 def build_silver() -> str:
-    return make("silver")
+    return spark_job("silver_transactions.py")
 
 
 @task(retries=2, retry_delay_seconds=30)
 def build_features() -> str:
-    return make("features")
+    return spark_job("features_30d.py")
 
 
 @task(retries=2, retry_delay_seconds=30)
 def score_day(day: str) -> str:
-    return make("score", DATE=day)
+    return spark_job("score_batch.py", *date_arg(day))
 
 
 @task(retries=0)              # a failed gate is a decision, not a transient error: do not retry
@@ -55,7 +67,9 @@ def quality_gate(scored: str, min_precision: float) -> dict:
     day = next(line.split()[1].split("=", 1)[1] for line in scored.splitlines()
                if line.startswith("scored day="))
     logger = get_run_logger()
-    make("evaluate", DATE=day)
+    spark_job("evaluate.py", "--date", day)
+    (ROOT / "data" / "reports").mkdir(parents=True, exist_ok=True)
+    run(["docker", "compose", "cp", "spark-master:/tmp/airport-evaluation.json", "data/reports/evaluation.json"])
     report = json.loads((ROOT / "data" / "reports" / "evaluation.json").read_text())
     logger.info("evaluation for %s: %s", report["event_date"], report)
     if report["precision"] < min_precision:

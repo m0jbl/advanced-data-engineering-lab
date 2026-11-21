@@ -1,4 +1,4 @@
-"""Scored payments of blocked passengers (Lab 08). Run: make blocked-passengers PASSENGER=7"""
+"""Scored payments of blocked passengers (Lab 08). Run: docker compose exec -T spark-master /opt/spark/bin/spark-submit /opt/spark-apps/blocked_payments.py 7"""
 import argparse
 from pyspark.sql import functions as F
 from common import GOLD_SCORES, read_delta, session

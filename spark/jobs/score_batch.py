@@ -1,4 +1,4 @@
-"""Batch scoring of one day with the same rules as the stream. Run: make score DATE=2026-11-18
+"""Batch scoring of one day with the same rules as the stream. Run: docker compose exec -T spark-master /opt/spark/bin/spark-submit /opt/spark-apps/score_batch.py --date 2026-11-18
 
 Uses features as of that day, and the blocklist (silver) if it exists.
 """

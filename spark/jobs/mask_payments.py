@@ -1,6 +1,6 @@
 """Analyst-safe dataset: direct identifiers removed, passenger key pseudonymised (Lab 12).
 
-Run: make mask
+Run: docker compose exec -T spark-master /opt/spark/bin/spark-submit /opt/spark-apps/mask_payments.py
 """
 from pyspark.sql import functions as F
 

@@ -1,7 +1,8 @@
 """Real-time fraud scoring: Kafka airport.transactions -> rules -> airport.fraud-alerts (+ Delta).
 
 Features come from the latest daily snapshot (static, broadcast). The blocklist is read at start-up.
-Run detached: make stream-start    Stop: make stream-stop
+Run detached: docker compose exec -d spark-master bash -c '/opt/spark/bin/spark-submit /opt/spark-apps/stream_fraud.py > /tmp/stream-fraud.log 2>&1'
+Stop:         docker compose exec -T spark-master pkill -f stream_fraud.py
 """
 import fraud_rules as fr
 from pyspark.sql import functions as F

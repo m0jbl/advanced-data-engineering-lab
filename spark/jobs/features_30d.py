@@ -6,7 +6,7 @@ For each event_date D, features use only payments BEFORE D:
   distinct_airports_30d  airports used in the previous 30 days
   account_age_days       from the passenger file
 
-Output: gold/passenger_features partitioned by as_of. Run: make features
+Output: gold/passenger_features partitioned by as_of. Run: docker compose exec -T spark-master /opt/spark/bin/spark-submit /opt/spark-apps/features_30d.py
 """
 from pyspark.sql import functions as F
 
@@ -18,7 +18,7 @@ passengers = spark.read.option("header", "true").schema(PASSENGER_CSV_SCHEMA).cs
 days = silver.select(F.col("event_date").alias("as_of")).distinct().cache()
 n_days = days.count()
 if not n_days:
-    raise SystemExit("No valid days in silver; run make silver with valid transactions first.")
+    raise SystemExit("No valid days in silver; run silver_transactions.py with valid transactions first.")
 
 # Match each payment only to later snapshots within its 30-day lifetime.
 history = silver.select("passenger_id", "amount", "airport", "event_date").join(

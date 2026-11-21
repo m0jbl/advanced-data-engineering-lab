@@ -30,7 +30,7 @@ while IFS='|' read -r service label url check; do
 done <<<"$table"
 
 if [[ $mode == smoke ]]; then
-  grep -qx kafka <<<"$running" || { echo "FAIL kafka is not running: run make up"; exit 1; }
+  grep -qx kafka <<<"$running" || { echo "FAIL kafka is not running: run docker compose up -d --wait"; exit 1; }
   topics=$(docker compose exec -T kafka /opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --list)
   for t in airport.transactions airport.fraud-alerts; do
     grep -qx "$t" <<<"$topics" && echo "ok   topic $t" || { echo "FAIL topic $t"; failed=1; }

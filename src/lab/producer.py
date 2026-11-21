@@ -1,6 +1,6 @@
 """Airport payment terminals -> Kafka topic `airport.transactions` (key = passenger_id).
 
-Switch scenario live without restarting: make scenario-normal | scenario-drift | scenario-attack
+Switch scenario live without restarting: echo normal|drift|attack > control/scenario
 """
 import argparse
 import json
