@@ -2,8 +2,7 @@
 SHELL := /bin/bash
 .DEFAULT_GOAL := help
 export PYTHONPATH := src
-PY := .venv/bin/python
-PYTHON ?= python3
+PY := uv run --locked python
 # Kafka, S3A and Delta jars are baked into the Spark image (versions: spark/Dockerfile), so no --packages download.
 SPARK_CONF := --conf spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension --conf spark.sql.catalog.spark_catalog=org.apache.spark.sql.delta.catalog.DeltaCatalog --conf spark.driver.host=spark-master --conf spark.executor.memory=768m --conf spark.executor.cores=1 --conf spark.cores.max=1
 SPARK_SUBMIT := /opt/spark/bin/spark-submit --driver-memory 768m \
@@ -17,9 +16,8 @@ help: ## Show the commands
 	awk 'BEGIN {FS = ":.*## "} /^[a-zA-Z_-]+:.*## / {printf "  \033[36m%-18s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)
 
 # ───────── Setup and infrastructure ─────────
-setup: ## Create the Python venv and install lab dependencies (host)
-	$(PYTHON) -c 'import sys; assert sys.version_info >= (3, 11), "Python 3.11+ required (Prefect 3.9); run make setup PYTHON=python3.11"'
-	$(PYTHON) -m venv .venv && .venv/bin/pip install -q -r requirements.txt
+setup: ## Install Python and the locked lab dependencies into .venv with uv (host)
+	uv sync --locked
 	echo "venv ready: .venv"
 
 # Core services start with no profile. Labs that need more add a Compose profile (downloaded on first use).
@@ -112,7 +110,7 @@ cdc-setup: ## Create the blocklist table and topic, then register Debezium
 	  --topic fraud.public.passenger_blocklist --partitions 1 --replication-factor 1 --config retention.ms=-1
 	docker compose exec -T postgres psql -v ON_ERROR_STOP=1 -U postgres -d airport -q < cdc/blocklist.sql
 	@for i in $$(seq 1 60); do curl -fsS http://localhost:8083/connectors >/dev/null 2>&1 && break; sleep 2; done
-	python3 -c 'import json; print(json.dumps(json.load(open("cdc/blocklist-connector.json"))["config"]))' | \
+	$(PY) -c 'import json; print(json.dumps(json.load(open("cdc/blocklist-connector.json"))["config"]))' | \
 	curl -fsS -X PUT -H "Content-Type: application/json" --data-binary @- http://localhost:8083/connectors/blocklist-connector/config
 
 cdc-status: ## Show the connector state

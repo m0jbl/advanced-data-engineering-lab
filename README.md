@@ -22,14 +22,16 @@ stack (Feast, MLflow, DVC, FastAPI, Evidently) is replaced by Spark jobs and tra
 ```bash
 git clone https://github.com/majlisofai/advanced-data-engineering-lab.git
 cd advanced-data-engineering-lab
-make setup      # Python venv on the host (for the generator and the producer)
+make setup      # uv installs Python 3.12 and the locked host dependencies into .venv (generator, producer, tests)
 make up         # start the core stack and wait for health checks (first run pulls images: allow 10 minutes)
 make urls       # print the UIs of the running services
 make test       # unit tests (no Docker needed)
 make smoke      # running services + topics, then Spark/Delta writes on isolated MinIO tables
 ```
 
-Python 3.11+ is required (Prefect 3.9).
+[uv](https://docs.astral.sh/uv/getting-started/installation/) is the only host prerequisite (`brew install uv`
+or `curl -LsSf https://astral.sh/uv/install.sh | sh`). It downloads the Python pinned in `.python-version` and
+installs the versions locked in `uv.lock`; the Python already on your machine is not used.
 
 ## Per-lab stack
 
