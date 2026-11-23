@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 272" role="img" aria-labelledby="title desc">
+  <title id="title">The scored day does not belong in its history</title>
+  <desc id="desc">The clean 30-day window ends just before day D. The leaky join keeps the same lower bound but extends through all of day D, including the scored payment and any later same-day payments.</desc>
+  <rect width="880" height="272" fill="#ffffff"/>
+  <g font-family="IBM Plex Sans, Arial, sans-serif" fill="#111111">
+    <text x="24" y="28" font-size="14" font-weight="600" letter-spacing="2" fill="#5c5c5c">LAB 06</text>
+    <text x="24" y="60" font-size="27">The scored day does not belong in its history</text>
+    <path d="M24 74H856" stroke="#d9d9d9"/>
+    <g font-size="16" font-weight="600">
+      <text x="264" y="106">D−30</text><text x="632" y="106">Day D starts</text>
+      <text x="24" y="151">Clean: event_date &lt; D</text><text x="24" y="216">Leaky: event_date ≤ D</text>
+    </g>
+    <path d="M264 121V239M632 121V239M856 121V239" fill="none" stroke="#999999" stroke-dasharray="4 4"/>
+    <rect x="264" y="128" width="368" height="36" fill="#f5f5f5"/>
+    <rect x="264" y="193" width="368" height="36" fill="#f5f5f5"/>
+    <rect x="632" y="193" width="224" height="36" fill="#ffffff" stroke="#cc3a1c" stroke-width="3"/>
+    <g font-size="15">
+      <text x="280" y="151">Only earlier payments</text><text x="280" y="216">Earlier payments</text>
+      <text x="648" y="216">All same-day payments</text>
+      <text x="632" y="257" fill="#5c5c5c">Includes information not yet available.</text>
+    </g>
+  </g>
+</svg>

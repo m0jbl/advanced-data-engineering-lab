@@ -38,6 +38,15 @@ Follow the labs in order. Submit the evidence listed at the end of each runbook.
 1. [Lab 01 · Start the platform](docs/runbooks/lab-01-start-the-platform.md)
 2. [Lab 02 · Kafka keys, groups, and lag](docs/runbooks/lab-02-kafka-basics.md)
 3. [Lab 03 · The payment contract](docs/runbooks/lab-03-payment-contract.md)
+4. [Lab 04 · Batch silver payments](docs/runbooks/lab-04-spark-batch.md)
+5. [Lab 05 · Real-time fraud scoring](docs/runbooks/lab-05-spark-streaming.md)
+6. [Lab 06 · Delta tables, features, and leakage](docs/runbooks/lab-06-lakehouse.md)
+7. [Lab 07 · Quality checks and quarantine](docs/runbooks/lab-07-data-quality.md)
+8. [Lab 08 · A live passenger blocklist](docs/runbooks/lab-08-cdc.md)
+9. [Lab 09 · Test and tune the rules](docs/runbooks/lab-09-ci-cd.md)
+10. [Lab 10 · Monitor the pipeline](docs/runbooks/lab-10-observability.md)
+11. [Lab 11 · Orchestrate the daily pipeline](docs/runbooks/lab-11-orchestration.md)
+12. [Lab 12 · Govern the payment data](docs/runbooks/lab-12-governance.md)
 
 ## Quick start
 

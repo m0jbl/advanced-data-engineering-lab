@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 272" role="img" aria-labelledby="title desc">
+  <title id="title">Reject bad rows without losing the good payment</title>
+  <desc id="desc">The silver job reads five synthetic rows. It publishes one accepted row to silver and appends four rejected rows and their reasons to quarantine.</desc>
+  <defs><marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#111111"/></marker></defs>
+  <rect width="880" height="272" fill="#ffffff"/>
+  <g font-family="IBM Plex Sans, Arial, sans-serif" fill="#111111">
+    <text x="24" y="28" font-size="14" font-weight="600" letter-spacing="2" fill="#5c5c5c">LAB 07</text>
+    <text x="24" y="60" font-size="27">Reject bad rows without losing the good payment</text>
+    <path d="M24 74H856" stroke="#d9d9d9"/>
+    <rect x="24" y="126" width="248" height="84" fill="#f5f5f5"/>
+    <rect x="344" y="126" width="176" height="84" fill="#f5f5f5"/>
+    <rect x="616" y="96" width="240" height="64" fill="#f5f5f5"/>
+    <rect x="616" y="176" width="240" height="64" fill="#ffffff" stroke="#cc3a1c" stroke-width="3"/>
+    <path d="M536 168H560" stroke="#111111"/>
+    <g stroke="#111111" fill="none" marker-end="url(#arrow)"><path d="M288 168H328"/><path d="M560 168V128H600"/><path d="M560 168V208H600"/></g>
+    <g font-size="19" font-weight="600"><text x="40" y="162">Scratch Bronze</text><text x="360" y="162">Silver job</text><text x="632" y="123">Silver</text><text x="632" y="203">Quarantine</text></g>
+    <g font-size="15" fill="#5c5c5c"><text x="40" y="186">5 synthetic payment rows</text><text x="360" y="186">First failing rule</text><text x="632" y="146">1 accepted row</text><text x="632" y="226">4 rows with reasons</text></g>
+  </g>
+</svg>

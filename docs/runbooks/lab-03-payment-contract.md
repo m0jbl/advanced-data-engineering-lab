@@ -134,3 +134,5 @@ Submit one `lab-03-evidence.md` with your environment, training subject, and act
 | Rejected candidate | `is_compatible: false` with the registry's reason, HTTP `409`, and the unchanged version list. |
 
 In two sentences, explain why an old payment still fits version 2 but fails the candidate with the renamed amount field. A registry response checks schema evolution; it does not prove that Kafka validates every message sent by the lab's plain JSON producer.
+
+Next: [Lab 04 · Batch silver payments](lab-04-spark-batch.md).

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 272" role="img" aria-labelledby="title desc">
+  <title id="title">One unblock creates two different events</title>
+  <desc id="desc">Debezium captures the Postgres update and sends it to Kafka. Spark merges the latest event into the active Delta table. Its Change Data Feed records a delete.</desc>
+  <defs><marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#111111"/></marker></defs>
+  <rect width="880" height="272" fill="#ffffff"/>
+  <g font-family="IBM Plex Sans, Arial, sans-serif" fill="#111111">
+    <text x="24" y="28" font-size="14" font-weight="600" letter-spacing="2" fill="#5c5c5c">LAB 08</text>
+    <text x="24" y="60" font-size="27">One unblock creates two different events</text>
+    <path d="M24 74H856" stroke="#d9d9d9"/>
+    <g font-size="14" font-weight="600" letter-spacing="1.5" fill="#5c5c5c"><text x="24" y="112">SOURCE CDC</text><text x="632" y="112">TABLE CDC</text></g>
+    <rect x="24" y="128" width="224" height="88" fill="#f5f5f5"/>
+    <rect x="328" y="128" width="224" height="88" fill="#f5f5f5"/>
+    <rect x="632" y="128" width="224" height="88" fill="#ffffff" stroke="#cc3a1c" stroke-width="3"/>
+    <g stroke="#111111" fill="none" marker-end="url(#arrow)"><path d="M264 172H312"/><path d="M568 172H616"/></g>
+    <g font-size="19" font-weight="600"><text x="40" y="163">Postgres row</text><text x="344" y="163">Debezium → Kafka</text><text x="648" y="163">Delta change feed</text></g>
+    <g font-size="15" fill="#5c5c5c"><text x="40" y="188">Set unblocked_at</text><text x="344" y="188">Source operation: update</text><text x="648" y="188">Table change: delete</text><text x="24" y="248">Spark merges the latest event per passenger. The active table does not keep unblocked passengers.</text></g>
+  </g>
+</svg>
