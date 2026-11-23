@@ -1,12 +1,9 @@
 {
   "name": "Advanced Data Engineering lab",
-  // Alpine minirootfs with Docker, Compose and uv (see Dockerfile). Creating the codespace pulls no lab
-  // images and starts no containers: each trainee starts the stack a lab needs, when the lab starts.
+  // One small Alpine container (see Dockerfile), no Docker inside. Creating the codespace installs only the host
+  // Python; each lab starts its services with scripts/codespace.sh up [cdc|monitoring|orchestration], which
+  // installs them the first time.
   "build": { "dockerfile": "Dockerfile" },
-  "privileged": true,
-  "overrideCommand": false,
-  // Docker's own storage lives on a volume: overlay2 does not work on top of the container's overlay filesystem
-  "mounts": ["source=dind-var-lib-docker-${devcontainerId},target=/var/lib/docker,type=volume"],
   "hostRequirements": {
     "cpus": 4,
     "memory": "16gb",

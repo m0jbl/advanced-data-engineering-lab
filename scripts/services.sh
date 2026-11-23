@@ -1,9 +1,18 @@
 #!/usr/bin/env bash
 # URLs and health checks for the services that are running now (core and any started profiles).
+# Works on a laptop (Docker Compose) and in a codespace (services run in the container, scripts/codespace.sh).
 # Usage: scripts/services.sh urls | smoke
 set -euo pipefail
 mode=${1:?usage: services.sh urls|smoke}
-running=$(docker compose --profile '*' ps --services --status running)
+if command -v docker >/dev/null 2>&1; then
+  running=$(docker compose --profile '*' ps --services --status running)
+  run_in() { docker compose exec -T "$@"; }           # run_in <service> <command...>
+  start_hint="docker compose up -d --wait"
+else
+  running=$("$(dirname "$0")/codespace.sh" status)
+  run_in() { shift; "$@"; }                           # same command, run directly in the codespace
+  start_hint="scripts/codespace.sh up"
+fi
 
 # service | label | URL shown to learners | URL checked by smoke
 table='kafka-ui|Kafka UI|http://localhost:8080|http://localhost:8080
@@ -30,13 +39,13 @@ while IFS='|' read -r service label url check; do
 done <<<"$table"
 
 if [[ $mode == smoke ]]; then
-  grep -qx kafka <<<"$running" || { echo "FAIL kafka is not running: run docker compose up -d --wait"; exit 1; }
-  topics=$(docker compose exec -T kafka /opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --list)
+  grep -qx kafka <<<"$running" || { echo "FAIL kafka is not running: run $start_hint"; exit 1; }
+  topics=$(run_in kafka /opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --list)
   for t in airport.transactions airport.fraud-alerts; do
     grep -qx "$t" <<<"$topics" && echo "ok   topic $t" || { echo "FAIL topic $t"; failed=1; }
   done
   if grep -qx postgres <<<"$running"; then
-    docker compose exec -T postgres pg_isready -U postgres -d airport >/dev/null && echo "ok   Postgres" \
+    run_in postgres pg_isready -h localhost -U postgres -d airport >/dev/null && echo "ok   Postgres" \
       || { echo "FAIL Postgres"; failed=1; }
   fi
   exit $failed

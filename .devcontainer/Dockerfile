@@ -1,22 +1,17 @@
-# Lightweight dev container for GitHub Codespaces: the Alpine minirootfs image plus what the labs need.
-# No lab images are pulled or started when the codespace is created; trainees start each lab's stack
-# themselves with `docker compose ... up -d --wait` (see README, "Per-lab stack").
-FROM alpine:3.24
+# GitHub Codespaces: one small Alpine container, no Docker inside it.
+# The lab services (Kafka, Spark, MinIO, ...) run as processes in this container; scripts/codespace.sh
+# installs each stack the first time a lab starts it. On a laptop the same services run in Docker Compose.
+#
+# Alpine 3.22: its Python 3.12, pandas 2.2.3, numpy 2.2 and pyarrow 19.0.1 match the laptop Spark image.
+FROM alpine:3.22
 
-# docker, docker-cli-compose, iptables: Docker engine and Compose, run inside the container (Docker-in-Docker)
-# uv: installs the pinned Python and the locked host dependencies (`uv sync --locked`)
-# build tools, librdkafka-dev: confluent-kafka has no musl wheel, so uv builds it against Alpine's librdkafka.
-#   clang + compiler-rt, because uv's Python was built with clang and passes clang-only flags (--rtlib=compiler-rt);
-#   binutils for the linker, musl-dev for the C headers
-# bash, git, curl, libstdc++: the shell the labs use, and what the VS Code server needs on Alpine
+# bash, git, curl, procps, libstdc++: the shell and tools the labs use, and what the VS Code server needs
+# python3, python3-dev, build-base, librdkafka-dev: the host Python; confluent-kafka has no musl wheel,
+#   so uv builds it against Alpine's librdkafka (2.10, hence confluent-kafka 2.10.0 in pyproject.toml)
 RUN apk add --no-cache \
-        bash git curl ca-certificates libstdc++ \
-        docker docker-cli-compose iptables ip6tables \
-        uv clang compiler-rt binutils musl-dev librdkafka-dev
-ENV CC=clang
+        bash git curl ca-certificates procps libstdc++ \
+        python3 python3-dev build-base librdkafka-dev
 
-# dind: Moby's Docker-in-Docker wrapper (cgroup and mount setup), pinned to moby commit 8d9e350
-COPY dind start-docker.sh /usr/local/bin/
-
-ENTRYPOINT ["/usr/local/bin/start-docker.sh"]
-CMD ["sleep", "infinity"]
+# uv from its official image (Alpine 3.22's uv is too old for uv.lock); it uses the system Python 3.12
+COPY --from=ghcr.io/astral-sh/uv:0.11.19 /uv /uvx /usr/local/bin/
+ENV UV_PYTHON_DOWNLOADS=never UV_PYTHON_PREFERENCE=only-system

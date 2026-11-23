@@ -1,11 +1,13 @@
 """Daily airport payments pipeline as a Prefect flow (Lab 11).
 
-Each task runs the same explicit command learners run by hand (README), so there is one definition of each step.
+Each task runs the same explicit command learners run by hand (README), so there is one definition of each step:
+the Docker form on a laptop, the direct form in a codespace (no Docker; services run in the container).
 Run once:            PREFECT_API_URL=http://localhost:4200/api uv run python flows/pipeline.py 2026-11-18
 Serve on a schedule: PREFECT_API_URL=http://localhost:4200/api uv run python flows/pipeline.py serve
 """
 import json
 import os
+import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -14,8 +16,12 @@ from prefect import flow, task, get_run_logger
 
 ROOT = Path(__file__).resolve().parents[1]
 MIN_PRECISION = 0.5          # quality gate on the scoring rules, measured against ground truth
-SPARK_SUBMIT = ["docker", "compose", "exec", "-T", "spark-master", "/opt/spark/bin/spark-submit"]
-MC = ["docker", "compose", "exec", "-T", "minio-client", "mc"]
+ON_DOCKER = shutil.which("docker") is not None
+# Laptop: inside the compose containers. Codespace: the same tools, installed in the container by scripts/codespace.sh.
+SPARK_SUBMIT = (["docker", "compose", "exec", "-T", "spark-master"] if ON_DOCKER else []) + ["/opt/spark/bin/spark-submit"]
+MC = (["docker", "compose", "exec", "-T", "minio-client"] if ON_DOCKER else []) + ["mc"]
+EVALUATION_COPY = (["docker", "compose", "cp", "spark-master:/tmp/airport-evaluation.json"] if ON_DOCKER
+                   else ["cp", "/tmp/airport-evaluation.json"]) + ["data/reports/evaluation.json"]
 
 
 def run(argv: list[str]) -> str:
@@ -69,7 +75,7 @@ def quality_gate(scored: str, min_precision: float) -> dict:
     logger = get_run_logger()
     spark_job("evaluate.py", "--date", day)
     (ROOT / "data" / "reports").mkdir(parents=True, exist_ok=True)
-    run(["docker", "compose", "cp", "spark-master:/tmp/airport-evaluation.json", "data/reports/evaluation.json"])
+    run(EVALUATION_COPY)
     report = json.loads((ROOT / "data" / "reports" / "evaluation.json").read_text())
     logger.info("evaluation for %s: %s", report["event_date"], report)
     if report["precision"] < min_precision:
