@@ -101,3 +101,5 @@ Submit one `lab-01-evidence.md` with your environment (Codespace or laptop), the
 | Kafka payment | Topic `airport.transactions`, partition, offset, key, and the matching `passenger_id` from one new record |
 
 In one sentence, explain what the Kafka record proves that the producer's `queued` output does not.
+
+Next: [Lab 02 · Kafka keys, groups, and lag](lab-02-kafka-basics.md).
