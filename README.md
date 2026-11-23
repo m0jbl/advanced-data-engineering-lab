@@ -31,6 +31,12 @@ pipeline that lands, validates, enriches, scores, and monitors them, all on your
 Adapted from the local MLOps lab *Airport Real-Time Fraud Detection*. The simulator is reused as-is. The ML
 stack (Feast, MLflow, DVC, FastAPI, Evidently) is replaced by Spark jobs and transparent rules.
 
+## Trainee runbooks
+
+Follow the labs in order. Submit the evidence listed at the end of each runbook.
+
+1. [Lab 01 · Start the platform](docs/runbooks/lab-01-start-the-platform.md)
+
 ## Quick start
 
 **Codespace** (GitHub Codespaces: recommended for quick start, no setup needed)
