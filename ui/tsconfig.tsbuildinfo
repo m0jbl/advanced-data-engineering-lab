@@ -1,0 +1,1 @@
+{"root":["./src/app.tsx","./src/main.tsx","./src/components/aistageassistant.tsx","./src/components/stageinspector.tsx","./src/components/statusbadge.tsx","./src/components/workflowcanvas.tsx","./src/types/pipeline.ts"],"version":"5.9.3"}

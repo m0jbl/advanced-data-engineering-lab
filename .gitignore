@@ -14,3 +14,5 @@ pptx/
 *.pdf
 # Delivery packages hold customer information and exports: local only
 packages/
+ui/node_modules/
+ui/dist/

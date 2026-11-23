@@ -1,0 +1,634 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1140" width="1600" height="1140" role="img" aria-labelledby="title desc">
+  <title id="title">Advanced Data Engineering: 12 Lab Runbook Sheets</title>
+  <desc id="desc">3x4 grid of technical runbook frames covering Labs 01 to 12 across Days 1 to 4 of the airport payments fraud pipeline.</desc>
+  <defs>
+    <style>
+      .sans{font-family:'IBM Plex Sans','Helvetica Neue',Arial,sans-serif;fill:#111111}
+      .light{font-family:'IBM Plex Sans Light','IBM Plex Sans','Helvetica Neue',Arial,sans-serif;font-weight:300;fill:#111111}
+      .cond{font-family:'IBM Plex Sans Condensed','Arial Narrow','Helvetica Neue',Arial,sans-serif;font-weight:600;letter-spacing:.07em}
+      .mono{font-family:'IBM Plex Mono',Menlo,Consolas,monospace}
+      .frame{fill:#FFFFFF;stroke:#111111;stroke-width:1.5}
+      .node{fill:#FFFFFF;stroke:#111111;stroke-width:1}
+      .focal{fill:#FFFFFF;stroke:#CC3A1C;stroke-width:2.25}
+      .wire{fill:none;stroke:#5C5C5C;stroke-width:1.25}
+      .wred{fill:none;stroke:#CC3A1C;stroke-width:1.5}
+      .kick{font-size:10.5px;fill:#5C5C5C}
+      .fnum{font-size:18px;font-weight:300;fill:#CC3A1C}
+      .ftitle{font-size:15px;font-weight:600;fill:#111111}
+      .fsub{font-size:10.8px;fill:#5C5C5C}
+      .ntitle{font-size:10.8px;font-weight:600;fill:#111111}
+      .ncode{font-size:8.6px;fill:#111111}
+      .nfoot{font-size:9px;fill:#5C5C5C}
+      .nsub{font-size:9.2px;fill:#5C5C5C}
+      .check{font-size:9.6px;fill:#111111}
+      .tag{font-size:9.5px;fill:#FFFFFF;letter-spacing:.06em}
+    </style>
+    <marker id="arr" viewBox="0 0 8 8" refX="7" refY="4" markerUnits="userSpaceOnUse" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#5C5C5C"/>
+    </marker>
+    <marker id="arrr" viewBox="0 0 8 8" refX="7" refY="4" markerUnits="userSpaceOnUse" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#CC3A1C"/>
+    </marker>
+  </defs>
+
+  <!-- Sheet background & border -->
+  <rect width="1600" height="1140" fill="#FFFFFF"/>
+  <rect x="20" y="20" width="1560" height="1100" fill="none" stroke="#111111" stroke-width="2.5"/>
+
+  <!-- Header bar -->
+  <text x="48" y="54" class="cond kick">TECHNICAL RUNBOOK INDEX · 12 EXERCISES · AIRPORT PAYMENTS FRAUD PIPELINE</text>
+  <text x="48" y="96" class="light" font-size="34">Exercise Runbooks: Platform Setup to Governed Operations</text>
+  <text x="48" y="122" class="sans" font-size="13.5" fill="#5C5C5C">Each frame maps one lab's execution sequence (1→2→3→4), focal mechanism, compose profile, verify check, and artifact.</text>
+
+  <!-- Legend + Symbol top-right -->
+  <rect x="1080" y="42" width="380" height="82" fill="#F5F5F5" stroke="#D9D9D9" stroke-width="1"/>
+  <text x="1096" y="62" class="cond kick">RUNBOOK CONVENTIONS</text>
+  <rect x="1096" y="74" width="18" height="12" fill="#FFFFFF" stroke="#111111" stroke-width="1"/>
+  <text x="1122" y="84" class="sans" font-size="11">Step / stage</text>
+  <rect x="1206" y="74" width="18" height="12" fill="#FFFFFF" stroke="#CC3A1C" stroke-width="2.25"/>
+  <text x="1232" y="84" class="sans" font-size="11">Focal mechanism</text>
+  <rect x="1340" y="74" width="36" height="13" fill="#111111"/>
+  <text x="1345" y="84" class="cond" font-size="8.5" fill="#FFFFFF">DAY</text>
+  <text x="1384" y="84" class="sans" font-size="11">Schedule</text>
+  <text x="1096" y="108" class="mono" font-size="10.2" fill="#5C5C5C">VERIFY: observable check · OUT: artifact / UI port</text>
+
+  <!-- Majlis amphitheatre symbol -->
+  <g transform="translate(1492,46) scale(0.95)">
+    <path d="M11.32,49.36 A27,27 0 1 1 52.68,49.36" fill="none" stroke="#111111" stroke-width="6"/>
+    <path d="M18.98,42.93 A17,17 0 1 1 45.02,42.93" fill="none" stroke="#111111" stroke-width="6"/>
+    <circle cx="32" cy="32" r="6" fill="#CC3A1C"/>
+  </g>
+  <line x1="48" y1="142" x2="1552" y2="142" stroke="#111111" stroke-width="1.5"/>
+
+  <!-- LAB 01 -->
+  <g transform="translate(48,164)">
+    <rect x="0" y="0" width="358" height="280" class="frame"/>
+    <rect x="0.75" y="0.75" width="356.5" height="28" fill="#F5F5F5"/>
+    <line x1="0" y1="29" x2="358" y2="29" stroke="#111111" stroke-width="1"/>
+    <rect x="8" y="6" width="44" height="17" fill="#111111"/>
+    <text x="30" y="18" text-anchor="middle" class="cond tag">DAY 1</text>
+    <text x="60" y="19" class="cond kick">RUNBOOK RB-01</text>
+    <text x="348" y="19" text-anchor="end" class="mono nsub">core · 8 GB · 45m</text>
+    <text x="12" y="54" class="light fnum">01</text>
+    <text x="42" y="54" class="sans ftitle">Start the Platform</text>
+    <text x="12" y="72" class="sans fsub">Host venv, core containers, smoke test, first payment</text>
+    <line x1="12" y1="82" x2="346" y2="82" stroke="#D9D9D9" stroke-width="0.75"/>
+    <line x1="170" y1="120" x2="186" y2="120" class="wire" marker-end="url(#arr)"/>
+    <line x1="268" y1="148" x2="268" y2="164" class="wred" marker-end="url(#arrr)"/>
+    <line x1="188" y1="194" x2="172" y2="194" class="wred" marker-end="url(#arrr)"/>
+    <rect x="10" y="92" width="160" height="56" class="node"/>
+    <rect x="10" y="92" width="17" height="15" fill="#111111"/>
+    <text x="18.5" y="103" text-anchor="middle" class="cond" font-size="9.2" fill="#FFFFFF">1</text>
+    <text x="32" y="104.5" class="sans ntitle">Host + uv</text>
+    <text x="17" y="123" class="mono ncode">uv sync --locked</text>
+    <text x="17" y="139" class="sans nfoot">15 pytest pass</text>
+    <rect x="188" y="92" width="160" height="56" class="node"/>
+    <rect x="188" y="92" width="17" height="15" fill="#111111"/>
+    <text x="196.5" y="103" text-anchor="middle" class="cond" font-size="9.2" fill="#FFFFFF">2</text>
+    <text x="210" y="104.5" class="sans ntitle">Compose Up</text>
+    <text x="195" y="123" class="mono ncode">5 core services</text>
+    <text x="195" y="139" class="sans nfoot">kafka · minio · spark</text>
+    <rect x="188" y="166" width="160" height="56" class="focal"/>
+    <rect x="188" y="166" width="17" height="15" fill="#CC3A1C"/>
+    <text x="196.5" y="177" text-anchor="middle" class="cond" font-size="9.2" fill="#FFFFFF">3</text>
+    <text x="210" y="178.5" class="sans ntitle">Smoke Delta</text>
+    <text x="195" y="197" class="mono ncode">smoke_delta.py</text>
+    <text x="195" y="213" class="sans nfoot">S3A + Delta ok</text>
+    <rect x="10" y="166" width="160" height="56" class="node"/>
+    <rect x="10" y="166" width="17" height="15" fill="#111111"/>
+    <text x="18.5" y="177" text-anchor="middle" class="cond" font-size="9.2" fill="#FFFFFF">4</text>
+    <text x="32" y="178.5" class="sans ntitle">First Event</text>
+    <text x="17" y="197" class="mono ncode">lab.producer 10s</text>
+    <text x="17" y="213" class="sans nfoot">airport.transactions</text>
+    <line x1="0" y1="234" x2="358" y2="234" stroke="#D9D9D9" stroke-width="1"/>
+    <rect x="0.75" y="234.5" width="356.5" height="44.75" fill="#F5F5F5"/>
+    <text x="10" y="252" class="cond" font-size="9.5" fill="#CC3A1C">VERIFY</text>
+    <text x="54" y="252" class="mono check">services.sh smoke ok · Spark 1 worker ALIVE</text>
+    <text x="10" y="269" class="cond" font-size="9.5" fill="#5C5C5C">OUT</text>
+    <text x="54" y="269" class="mono nsub">UIs: :8080 :8082 :9001</text>
+  </g>
+  <!-- LAB 02 -->
+  <g transform="translate(430,164)">
+    <rect x="0" y="0" width="358" height="280" class="frame"/>
+    <rect x="0.75" y="0.75" width="356.5" height="28" fill="#F5F5F5"/>
+    <line x1="0" y1="29" x2="358" y2="29" stroke="#111111" stroke-width="1"/>
+    <rect x="8" y="6" width="44" height="17" fill="#111111"/>
+    <text x="30" y="18" text-anchor="middle" class="cond tag">DAY 1</text>
+    <text x="60" y="19" class="cond kick">RUNBOOK RB-02</text>
+    <text x="348" y="19" text-anchor="end" class="mono nsub">core · 8 GB · 60m</text>
+    <text x="12" y="54" class="light fnum">02</text>
+    <text x="42" y="54" class="sans ftitle">Kafka Fundamentals</text>
+    <text x="12" y="72" class="sans fsub">Keys decide partitions; groups share work and track lag</text>
+    <line x1="12" y1="82" x2="346" y2="82" stroke="#D9D9D9" stroke-width="0.75"/>
+    <line x1="170" y1="120" x2="186" y2="120" class="wire" marker-end="url(#arr)"/>
+    <line x1="268" y1="148" x2="268" y2="164" class="wred" marker-end="url(#arrr)"/>
+    <line x1="188" y1="194" x2="172" y2="194" class="wred" marker-end="url(#arrr)"/>
+    <rect x="10" y="92" width="160" height="56" class="node"/>
+    <rect x="10" y="92" width="17" height="15" fill="#111111"/>
+    <text x="18.5" y="103" text-anchor="middle" class="cond" font-size="9.2" fill="#FFFFFF">1</text>
+    <text x="32" y="104.5" class="sans ntitle">Producer</text>
+    <text x="17" y="123" class="mono ncode">key=passenger_id</text>
+    <text x="17" y="139" class="sans nfoot">3 partitions</text>
+    <rect x="188" y="92" width="160" height="56" class="node"/>
+    <rect x="188" y="92" width="17" height="15" fill="#111111"/>
+    <text x="196.5" y="103" text-anchor="middle" class="cond" font-size="9.2" fill="#FFFFFF">2</text>
+    <text x="210" y="104.5" class="sans ntitle">Topic</text>
+    <text x="195" y="123" class="mono ncode">airport.transactions</text>
+    <text x="195" y="139" class="sans nfoot">same key -&gt; same P</text>
+    <rect x="188" y="166" width="160" height="56" class="focal"/>
+    <rect x="188" y="166" width="17" height="15" fill="#CC3A1C"/>
+    <text x="196.5" y="177" text-anchor="middle" class="cond" font-size="9.2" fill="#FFFFFF">3</text>
+    <text x="210" y="178.5" class="sans ntitle">Groups</text>
+    <text x="195" y="197" class="mono ncode">demo-group (2x)</text>
+    <text x="195" y="213" class="sans nfoot">3P split, lag grows</text>
+    <rect x="10" y="166" width="160" height="56" class="node"/>
+    <rect x="10" y="166" width="17" height="15" fill="#111111"/>
+    <text x="18.5" y="177" text-anchor="middle" class="cond" font-size="9.2" fill="#FFFFFF">4</text>
+    <text x="32" y="178.5" class="sans ntitle">Replica</text>
+    <text x="17" y="197" class="mono ncode">analytics-replica</text>
+    <text x="17" y="213" class="sans nfoot">independent offsets</text>
+    <line x1="0" y1="234" x2="358" y2="234" stroke="#D9D9D9" stroke-width="1"/>
+    <rect x="0.75" y="234.5" width="356.5" height="44.75" fill="#F5F5F5"/>
+    <text x="10" y="252" class="cond" font-size="9.5" fill="#CC3A1C">VERIFY</text>
+    <text x="54" y="252" class="mono check">LAG grows stopped, drops to 0 on restart</text>
+    <text x="10" y="269" class="cond" font-size="9.5" fill="#5C5C5C">OUT</text>
+    <text x="54" y="269" class="mono nsub">kafka-consumer-groups --describe</text>
+  </g>
+  <!-- LAB 03 -->
+  <g transform="translate(812,164)">
+    <rect x="0" y="0" width="358" height="280" class="frame"/>
+    <rect x="0.75" y="0.75" width="356.5" height="28" fill="#F5F5F5"/>
+    <line x1="0" y1="29" x2="358" y2="29" stroke="#111111" stroke-width="1"/>
+    <rect x="8" y="6" width="44" height="17" fill="#111111"/>
+    <text x="30" y="18" text-anchor="middle" class="cond tag">DAY 1</text>
+    <text x="60" y="19" class="cond kick">RUNBOOK RB-03</text>
+    <text x="348" y="19" text-anchor="end" class="mono nsub">core · 8 GB · 45m</text>
+    <text x="12" y="54" class="light fnum">03</text>
+    <text x="42" y="54" class="sans ftitle">The Payment Contract</text>
+    <text x="12" y="72" class="sans fsub">Validate producer events and enforce BACKWARD schema rules</text>
+    <line x1="12" y1="82" x2="346" y2="82" stroke="#D9D9D9" stroke-width="0.75"/>
+    <line x1="170" y1="120" x2="186" y2="120" class="wire" marker-end="url(#arr)"/>
+    <line x1="268" y1="148" x2="268" y2="164" class="wred" marker-end="url(#arrr)"/>
+    <line x1="188" y1="194" x2="172" y2="194" class="wred" marker-end="url(#arrr)"/>
+    <rect x="10" y="92" width="160" height="56" class="node"/>
+    <rect x="10" y="92" width="17" height="15" fill="#111111"/>
+    <text x="18.5" y="103" text-anchor="middle" class="cond" font-size="9.2" fill="#FFFFFF">1</text>
+    <text x="32" y="104.5" class="sans ntitle">Contract</text>
+    <text x="17" y="123" class="mono ncode">payment_event.json</text>
+    <text x="17" y="139" class="sans nfoot">closed model</text>
+    <rect x="188" y="92" width="160" height="56" class="node"/>
+    <rect x="188" y="92" width="17" height="15" fill="#111111"/>
+    <text x="196.5" y="103" text-anchor="middle" class="cond" font-size="9.2" fill="#FFFFFF">2</text>
+    <text x="210" y="104.5" class="sans ntitle">Pytest</text>
+    <text x="195" y="123" class="mono ncode">test_contract.py</text>
+    <text x="195" y="139" class="sans nfoot">200 events checked</text>
+    <rect x="188" y="166" width="160" height="56" class="focal"/>
+    <rect x="188" y="166" width="17" height="15" fill="#CC3A1C"/>
+    <text x="196.5" y="177" text-anchor="middle" class="cond" font-size="9.2" fill="#FFFFFF">3</text>
+    <text x="210" y="178.5" class="sans ntitle">Registry</text>
+    <text x="195" y="197" class="mono ncode">BACKWARD :8081</text>
+    <text x="195" y="213" class="sans nfoot">v1 + optional gate_id</text>
+    <rect x="10" y="166" width="160" height="56" class="node"/>
+    <rect x="10" y="166" width="17" height="15" fill="#111111"/>
+    <text x="18.5" y="177" text-anchor="middle" class="cond" font-size="9.2" fill="#FFFFFF">4</text>
+    <text x="32" y="178.5" class="sans ntitle">Reject</text>
+    <text x="17" y="197" class="mono ncode">rename amount</text>
+    <text x="17" y="213" class="sans nfoot">HTTP 409 conflict</text>
+    <line x1="0" y1="234" x2="358" y2="234" stroke="#D9D9D9" stroke-width="1"/>
+    <rect x="0.75" y="234.5" width="356.5" height="44.75" fill="#F5F5F5"/>
+    <text x="10" y="252" class="cond" font-size="9.5" fill="#CC3A1C">VERIFY</text>
+    <text x="54" y="252" class="mono check">v2 is_compatible: true · breaking -&gt; false</text>
+    <text x="10" y="269" class="cond" font-size="9.5" fill="#5C5C5C">OUT</text>
+    <text x="54" y="269" class="mono nsub">subject: airport.transactions-value</text>
+  </g>
+  <!-- LAB 04 -->
+  <g transform="translate(1194,164)">
+    <rect x="0" y="0" width="358" height="280" class="frame"/>
+    <rect x="0.75" y="0.75" width="356.5" height="28" fill="#F5F5F5"/>
+    <line x1="0" y1="29" x2="358" y2="29" stroke="#111111" stroke-width="1"/>
+    <rect x="8" y="6" width="44" height="17" fill="#111111"/>
+    <text x="30" y="18" text-anchor="middle" class="cond tag">DAY 2</text>
+    <text x="60" y="19" class="cond kick">RUNBOOK RB-04</text>
+    <text x="348" y="19" text-anchor="end" class="mono nsub">core · 8 GB · 60m</text>
+    <text x="12" y="54" class="light fnum">04</text>
+    <text x="42" y="54" class="sans ftitle">Batch Silver Payments</text>
+    <text x="12" y="72" class="sans fsub">Simulate 60 days, land bronze, idempotent day Delta writes</text>
+    <line x1="12" y1="82" x2="346" y2="82" stroke="#D9D9D9" stroke-width="0.75"/>
+    <line x1="170" y1="120" x2="186" y2="120" class="wire" marker-end="url(#arr)"/>
+    <line x1="268" y1="148" x2="268" y2="164" class="wred" marker-end="url(#arrr)"/>
+    <line x1="188" y1="194" x2="172" y2="194" class="wred" marker-end="url(#arrr)"/>
+    <rect x="10" y="92" width="160" height="56" class="node"/>
+    <rect x="10" y="92" width="17" height="15" fill="#111111"/>
+    <text x="18.5" y="103" text-anchor="middle" class="cond" font-size="9.2" fill="#FFFFFF">1</text>
+    <text x="32" y="104.5" class="sans ntitle">Generate</text>
+    <text x="17" y="123" class="mono ncode">lab.generate</text>
+    <text x="17" y="139" class="sans nfoot">60d · 72k rows</text>
+    <rect x="188" y="92" width="160" height="56" class="node"/>
+    <rect x="188" y="92" width="17" height="15" fill="#111111"/>
+    <text x="196.5" y="103" text-anchor="middle" class="cond" font-size="9.2" fill="#FFFFFF">2</text>
+    <text x="210" y="104.5" class="sans ntitle">Bronze</text>
+    <text x="195" y="123" class="mono ncode">MinIO CSV files</text>
+    <text x="195" y="139" class="sans nfoot">labels stay out</text>
+    <rect x="188" y="166" width="160" height="56" class="focal"/>
+    <rect x="188" y="166" width="17" height="15" fill="#CC3A1C"/>
+    <text x="196.5" y="177" text-anchor="middle" class="cond" font-size="9.2" fill="#FFFFFF">3</text>
+    <text x="210" y="178.5" class="sans ntitle">Silver</text>
+    <text x="195" y="197" class="mono ncode">silver_transactions</text>
+    <text x="195" y="213" class="sans nfoot">replaceWhere(date)</text>
+    <rect x="10" y="166" width="160" height="56" class="node"/>
+    <rect x="10" y="166" width="17" height="15" fill="#111111"/>
+    <text x="18.5" y="177" text-anchor="middle" class="cond" font-size="9.2" fill="#FFFFFF">4</text>
+    <text x="32" y="178.5" class="sans ntitle">Inspect</text>
+    <text x="17" y="197" class="mono ncode">explore_silver.py</text>
+    <text x="17" y="213" class="sans nfoot">Spark UI :4040</text>
+    <line x1="0" y1="234" x2="358" y2="234" stroke="#D9D9D9" stroke-width="1"/>
+    <rect x="0.75" y="234.5" width="356.5" height="44.75" fill="#F5F5F5"/>
+    <text x="10" y="252" class="cond" font-size="9.5" fill="#CC3A1C">VERIFY</text>
+    <text x="54" y="252" class="mono check">bronze=72000 silver=72000 rejected=0</text>
+    <text x="10" y="269" class="cond" font-size="9.5" fill="#5C5C5C">OUT</text>
+    <text x="54" y="269" class="mono nsub">s3a://silver/transactions/ (60 parts)</text>
+  </g>
+  <!-- LAB 05 -->
+  <g transform="translate(48,466)">
+    <rect x="0" y="0" width="358" height="280" class="frame"/>
+    <rect x="0.75" y="0.75" width="356.5" height="28" fill="#F5F5F5"/>
+    <line x1="0" y1="29" x2="358" y2="29" stroke="#111111" stroke-width="1"/>
+    <rect x="8" y="6" width="44" height="17" fill="#111111"/>
+    <text x="30" y="18" text-anchor="middle" class="cond tag">DAY 2</text>
+    <text x="60" y="19" class="cond kick">RUNBOOK RB-05</text>
+    <text x="348" y="19" text-anchor="end" class="mono nsub">core · 8 GB · 75m</text>
+    <text x="12" y="54" class="light fnum">05</text>
+    <text x="42" y="54" class="sans ftitle">Live Fraud Scoring</text>
+    <text x="12" y="72" class="sans fsub">Structured Streaming scores Kafka events with broadcast features</text>
+    <line x1="12" y1="82" x2="346" y2="82" stroke="#D9D9D9" stroke-width="0.75"/>
+    <line x1="170" y1="120" x2="186" y2="120" class="wred" marker-end="url(#arrr)"/>
+    <line x1="268" y1="148" x2="268" y2="164" class="wred" marker-end="url(#arrr)"/>
+    <line x1="188" y1="194" x2="172" y2="194" class="wire" marker-end="url(#arr)"/>
+    <rect x="10" y="92" width="160" height="56" class="node"/>
+    <rect x="10" y="92" width="17" height="15" fill="#111111"/>
+    <text x="18.5" y="103" text-anchor="middle" class="cond" font-size="9.2" fill="#FFFFFF">1</text>
+    <text x="32" y="104.5" class="sans ntitle">Kafka In</text>
+    <text x="17" y="123" class="mono ncode">airport.transactions</text>
+    <text x="17" y="139" class="sans nfoot">live terminals</text>
+    <rect x="188" y="92" width="160" height="56" class="focal"/>
+    <rect x="188" y="92" width="17" height="15" fill="#CC3A1C"/>
+    <text x="196.5" y="103" text-anchor="middle" class="cond" font-size="9.2" fill="#FFFFFF">2</text>
+    <text x="210" y="104.5" class="sans ntitle">Stream</text>
+    <text x="195" y="123" class="mono ncode">stream_fraud.py</text>
+    <text x="195" y="139" class="sans nfoot">mapInPandas · &gt;=50</text>
+    <rect x="188" y="166" width="160" height="56" class="node"/>
+    <rect x="188" y="166" width="17" height="15" fill="#111111"/>
+    <text x="196.5" y="177" text-anchor="middle" class="cond" font-size="9.2" fill="#FFFFFF">3</text>
+    <text x="210" y="178.5" class="sans ntitle">Alerts</text>
+    <text x="195" y="197" class="mono ncode">airport.fraud-alerts</text>
+    <text x="195" y="213" class="sans nfoot">attack scenario</text>
+    <rect x="10" y="166" width="160" height="56" class="node"/>
+    <rect x="10" y="166" width="17" height="15" fill="#111111"/>
+    <text x="18.5" y="177" text-anchor="middle" class="cond" font-size="9.2" fill="#FFFFFF">4</text>
+    <text x="32" y="178.5" class="sans ntitle">Checkpoint</text>
+    <text x="17" y="197" class="mono ncode">s3a://checkpoints</text>
+    <text x="17" y="213" class="sans nfoot">offset resume</text>
+    <line x1="0" y1="234" x2="358" y2="234" stroke="#D9D9D9" stroke-width="1"/>
+    <rect x="0.75" y="234.5" width="356.5" height="44.75" fill="#F5F5F5"/>
+    <text x="10" y="252" class="cond" font-size="9.5" fill="#CC3A1C">VERIFY</text>
+    <text x="54" y="252" class="mono check">latency.py avg seconds · batch ids resume</text>
+    <text x="10" y="269" class="cond" font-size="9.5" fill="#5C5C5C">OUT</text>
+    <text x="54" y="269" class="mono nsub">gold/stream_scores + fraud-alerts</text>
+  </g>
+  <!-- LAB 06 -->
+  <g transform="translate(430,466)">
+    <rect x="0" y="0" width="358" height="280" class="frame"/>
+    <rect x="0.75" y="0.75" width="356.5" height="28" fill="#F5F5F5"/>
+    <line x1="0" y1="29" x2="358" y2="29" stroke="#111111" stroke-width="1"/>
+    <rect x="8" y="6" width="44" height="17" fill="#111111"/>
+    <text x="30" y="18" text-anchor="middle" class="cond tag">DAY 2</text>
+    <text x="60" y="19" class="cond kick">RUNBOOK RB-06</text>
+    <text x="348" y="19" text-anchor="end" class="mono nsub">core · 8 GB · 60m</text>
+    <text x="12" y="54" class="light fnum">06</text>
+    <text x="42" y="54" class="sans ftitle">Features &amp; Leakage</text>
+    <text x="12" y="72" class="sans fsub">Point-in-time joins vs future leakage and threshold trade-offs</text>
+    <line x1="12" y1="82" x2="346" y2="82" stroke="#D9D9D9" stroke-width="0.75"/>
+    <line x1="170" y1="120" x2="186" y2="120" class="wred" marker-end="url(#arrr)"/>
+    <line x1="268" y1="148" x2="268" y2="164" class="wred" marker-end="url(#arrr)"/>
+    <line x1="188" y1="194" x2="172" y2="194" class="wire" marker-end="url(#arr)"/>
+    <rect x="10" y="92" width="160" height="56" class="node"/>
+    <rect x="10" y="92" width="17" height="15" fill="#111111"/>
+    <text x="18.5" y="103" text-anchor="middle" class="cond" font-size="9.2" fill="#FFFFFF">1</text>
+    <text x="32" y="104.5" class="sans ntitle">Features</text>
+    <text x="17" y="123" class="mono ncode">features_30d.py</text>
+    <text x="17" y="139" class="sans nfoot">event &lt; as_of</text>
+    <rect x="188" y="92" width="160" height="56" class="focal"/>
+    <rect x="188" y="92" width="17" height="15" fill="#CC3A1C"/>
+    <text x="196.5" y="103" text-anchor="middle" class="cond" font-size="9.2" fill="#FFFFFF">2</text>
+    <text x="210" y="104.5" class="sans ntitle">Score</text>
+    <text x="195" y="123" class="mono ncode">score_batch.py</text>
+    <text x="195" y="139" class="sans nfoot">ALERT_THRESHOLD 50</text>
+    <rect x="188" y="166" width="160" height="56" class="node"/>
+    <rect x="188" y="166" width="17" height="15" fill="#111111"/>
+    <text x="196.5" y="177" text-anchor="middle" class="cond" font-size="9.2" fill="#FFFFFF">3</text>
+    <text x="210" y="178.5" class="sans ntitle">Evaluate</text>
+    <text x="195" y="197" class="mono ncode">evaluate.py</text>
+    <text x="195" y="213" class="sans nfoot">vs labels.csv</text>
+    <rect x="10" y="166" width="160" height="56" class="node"/>
+    <rect x="10" y="166" width="17" height="15" fill="#111111"/>
+    <text x="18.5" y="177" text-anchor="middle" class="cond" font-size="9.2" fill="#FFFFFF">4</text>
+    <text x="32" y="178.5" class="sans ntitle">Leak Test</text>
+    <text x="17" y="197" class="mono ncode">&lt; vs &lt;= + 30/70</text>
+    <text x="17" y="213" class="sans nfoot">precision / recall</text>
+    <line x1="0" y1="234" x2="358" y2="234" stroke="#D9D9D9" stroke-width="1"/>
+    <rect x="0.75" y="234.5" width="356.5" height="44.75" fill="#F5F5F5"/>
+    <text x="10" y="252" class="cond" font-size="9.5" fill="#CC3A1C">VERIFY</text>
+    <text x="54" y="252" class="mono check">history.py versions · evaluation.json</text>
+    <text x="10" y="269" class="cond" font-size="9.5" fill="#5C5C5C">OUT</text>
+    <text x="54" y="269" class="mono nsub">s3a://gold/passenger_features + scores</text>
+  </g>
+  <!-- LAB 07 -->
+  <g transform="translate(812,466)">
+    <rect x="0" y="0" width="358" height="280" class="frame"/>
+    <rect x="0.75" y="0.75" width="356.5" height="28" fill="#F5F5F5"/>
+    <line x1="0" y1="29" x2="358" y2="29" stroke="#111111" stroke-width="1"/>
+    <rect x="8" y="6" width="44" height="17" fill="#111111"/>
+    <text x="30" y="18" text-anchor="middle" class="cond tag">DAY 3</text>
+    <text x="60" y="19" class="cond kick">RUNBOOK RB-07</text>
+    <text x="348" y="19" text-anchor="end" class="mono nsub">core · 8 GB · 60m</text>
+    <text x="12" y="54" class="light fnum">07</text>
+    <text x="42" y="54" class="sans ftitle">Quality &amp; Quarantine</text>
+    <text x="12" y="72" class="sans fsub">Route bad rows with reasons, inspect evidence, design batch gate</text>
+    <line x1="12" y1="82" x2="346" y2="82" stroke="#D9D9D9" stroke-width="0.75"/>
+    <line x1="170" y1="120" x2="186" y2="120" class="wred" marker-end="url(#arrr)"/>
+    <line x1="268" y1="148" x2="268" y2="164" class="wred" marker-end="url(#arrr)"/>
+    <line x1="188" y1="194" x2="172" y2="194" class="wire" marker-end="url(#arr)"/>
+    <rect x="10" y="92" width="160" height="56" class="node"/>
+    <rect x="10" y="92" width="17" height="15" fill="#111111"/>
+    <text x="18.5" y="103" text-anchor="middle" class="cond" font-size="9.2" fill="#FFFFFF">1</text>
+    <text x="32" y="104.5" class="sans ntitle">Inject</text>
+    <text x="17" y="123" class="mono ncode">faulty.csv -&gt; bronze</text>
+    <text x="17" y="139" class="sans nfoot">4 bad rows</text>
+    <rect x="188" y="92" width="160" height="56" class="focal"/>
+    <rect x="188" y="92" width="17" height="15" fill="#CC3A1C"/>
+    <text x="196.5" y="103" text-anchor="middle" class="cond" font-size="9.2" fill="#FFFFFF">2</text>
+    <text x="210" y="104.5" class="sans ntitle">Validate</text>
+    <text x="195" y="123" class="mono ncode">4 silver rules</text>
+    <text x="195" y="139" class="sans nfoot">split good / bad</text>
+    <rect x="188" y="166" width="160" height="56" class="node"/>
+    <rect x="188" y="166" width="17" height="15" fill="#111111"/>
+    <text x="196.5" y="177" text-anchor="middle" class="cond" font-size="9.2" fill="#FFFFFF">3</text>
+    <text x="210" y="178.5" class="sans ntitle">Quarantine</text>
+    <text x="195" y="197" class="mono ncode">show_quarantine.py</text>
+    <text x="195" y="213" class="sans nfoot">reject_reason kept</text>
+    <rect x="10" y="166" width="160" height="56" class="node"/>
+    <rect x="10" y="166" width="17" height="15" fill="#111111"/>
+    <text x="18.5" y="177" text-anchor="middle" class="cond" font-size="9.2" fill="#FFFFFF">4</text>
+    <text x="32" y="178.5" class="sans ntitle">Recover</text>
+    <text x="17" y="197" class="mono ncode">rm faulty + rerun</text>
+    <text x="17" y="213" class="sans nfoot">rejected=0 · gate</text>
+    <line x1="0" y1="234" x2="358" y2="234" stroke="#D9D9D9" stroke-width="1"/>
+    <rect x="0.75" y="234.5" width="356.5" height="44.75" fill="#F5F5F5"/>
+    <text x="10" y="252" class="cond" font-size="9.5" fill="#CC3A1C">VERIFY</text>
+    <text x="54" y="252" class="mono check">rejected=4 on inject · 0 after recovery</text>
+    <text x="10" y="269" class="cond" font-size="9.5" fill="#5C5C5C">OUT</text>
+    <text x="54" y="269" class="mono nsub">s3a://quarantine/transactions/</text>
+  </g>
+  <!-- LAB 08 -->
+  <g transform="translate(1194,466)">
+    <rect x="0" y="0" width="358" height="280" class="frame"/>
+    <rect x="0.75" y="0.75" width="356.5" height="28" fill="#F5F5F5"/>
+    <line x1="0" y1="29" x2="358" y2="29" stroke="#111111" stroke-width="1"/>
+    <rect x="8" y="6" width="44" height="17" fill="#111111"/>
+    <text x="30" y="18" text-anchor="middle" class="cond tag">DAY 3</text>
+    <text x="60" y="19" class="cond kick">RUNBOOK RB-08</text>
+    <text x="348" y="19" text-anchor="end" class="mono nsub">cdc · 8 GB · 60m</text>
+    <text x="12" y="54" class="light fnum">08</text>
+    <text x="42" y="54" class="sans ftitle">Live CDC Blocklist</text>
+    <text x="12" y="72" class="sans fsub">Debezium captures Postgres changes into Delta MERGE + CDF</text>
+    <line x1="12" y1="82" x2="346" y2="82" stroke="#D9D9D9" stroke-width="0.75"/>
+    <line x1="170" y1="120" x2="186" y2="120" class="wire" marker-end="url(#arr)"/>
+    <line x1="268" y1="148" x2="268" y2="164" class="wred" marker-end="url(#arrr)"/>
+    <line x1="188" y1="194" x2="172" y2="194" class="wred" marker-end="url(#arrr)"/>
+    <rect x="10" y="92" width="160" height="56" class="node"/>
+    <rect x="10" y="92" width="17" height="15" fill="#111111"/>
+    <text x="18.5" y="103" text-anchor="middle" class="cond" font-size="9.2" fill="#FFFFFF">1</text>
+    <text x="32" y="104.5" class="sans ntitle">Postgres</text>
+    <text x="17" y="123" class="mono ncode">passenger_blocklist</text>
+    <text x="17" y="139" class="sans nfoot">wal_level=logical</text>
+    <rect x="188" y="92" width="160" height="56" class="node"/>
+    <rect x="188" y="92" width="17" height="15" fill="#111111"/>
+    <text x="196.5" y="103" text-anchor="middle" class="cond" font-size="9.2" fill="#FFFFFF">2</text>
+    <text x="210" y="104.5" class="sans ntitle">Debezium</text>
+    <text x="195" y="123" class="mono ncode">Kafka Connect :8083</text>
+    <text x="195" y="139" class="sans nfoot">CDC topic events</text>
+    <rect x="188" y="166" width="160" height="56" class="focal"/>
+    <rect x="188" y="166" width="17" height="15" fill="#CC3A1C"/>
+    <text x="196.5" y="177" text-anchor="middle" class="cond" font-size="9.2" fill="#FFFFFF">3</text>
+    <text x="210" y="178.5" class="sans ntitle">Delta MERGE</text>
+    <text x="195" y="197" class="mono ncode">blocklist_from_cdc</text>
+    <text x="195" y="213" class="sans nfoot">CDF + time travel</text>
+    <rect x="10" y="166" width="160" height="56" class="node"/>
+    <rect x="10" y="166" width="17" height="15" fill="#111111"/>
+    <text x="18.5" y="177" text-anchor="middle" class="cond" font-size="9.2" fill="#FFFFFF">4</text>
+    <text x="32" y="178.5" class="sans ntitle">Score</text>
+    <text x="17" y="197" class="mono ncode">BLOCKED_PASSENGER</text>
+    <text x="17" y="213" class="sans nfoot">+100 pts -&gt; alert</text>
+    <line x1="0" y1="234" x2="358" y2="234" stroke="#D9D9D9" stroke-width="1"/>
+    <rect x="0.75" y="234.5" width="356.5" height="44.75" fill="#F5F5F5"/>
+    <text x="10" y="252" class="cond" font-size="9.5" fill="#CC3A1C">VERIFY</text>
+    <text x="54" y="252" class="mono check">insert/delete in blocklist_changes.py</text>
+    <text x="10" y="269" class="cond" font-size="9.5" fill="#5C5C5C">OUT</text>
+    <text x="54" y="269" class="mono nsub">s3a://silver/blocklist (versioned)</text>
+  </g>
+  <!-- LAB 09 -->
+  <g transform="translate(48,768)">
+    <rect x="0" y="0" width="358" height="280" class="frame"/>
+    <rect x="0.75" y="0.75" width="356.5" height="28" fill="#F5F5F5"/>
+    <line x1="0" y1="29" x2="358" y2="29" stroke="#111111" stroke-width="1"/>
+    <rect x="8" y="6" width="44" height="17" fill="#111111"/>
+    <text x="30" y="18" text-anchor="middle" class="cond tag">DAY 3</text>
+    <text x="60" y="19" class="cond kick">RUNBOOK RB-09</text>
+    <text x="348" y="19" text-anchor="end" class="mono nsub">core · 8 GB · 45m</text>
+    <text x="12" y="54" class="light fnum">09</text>
+    <text x="42" y="54" class="sans ftitle">Test &amp; Tune Rules</text>
+    <text x="12" y="72" class="sans fsub">Rule unit tests, threshold sweep on host, GitHub Actions CI gap</text>
+    <line x1="12" y1="82" x2="346" y2="82" stroke="#D9D9D9" stroke-width="0.75"/>
+    <line x1="170" y1="120" x2="186" y2="120" class="wire" marker-end="url(#arr)"/>
+    <line x1="268" y1="148" x2="268" y2="164" class="wred" marker-end="url(#arrr)"/>
+    <line x1="188" y1="194" x2="172" y2="194" class="wred" marker-end="url(#arrr)"/>
+    <rect x="10" y="92" width="160" height="56" class="node"/>
+    <rect x="10" y="92" width="17" height="15" fill="#111111"/>
+    <text x="18.5" y="103" text-anchor="middle" class="cond" font-size="9.2" fill="#FFFFFF">1</text>
+    <text x="32" y="104.5" class="sans ntitle">Pytest</text>
+    <text x="17" y="123" class="mono ncode">test_fraud_rules.py</text>
+    <text x="17" y="139" class="sans nfoot">break &amp; revert rule</text>
+    <rect x="188" y="92" width="160" height="56" class="node"/>
+    <rect x="188" y="92" width="17" height="15" fill="#111111"/>
+    <text x="196.5" y="103" text-anchor="middle" class="cond" font-size="9.2" fill="#FFFFFF">2</text>
+    <text x="210" y="104.5" class="sans ntitle">Add Tests</text>
+    <text x="195" y="123" class="mono ncode">0 pts vs &gt;=35 pts</text>
+    <text x="195" y="139" class="sans nfoot">boundary assertions</text>
+    <rect x="188" y="166" width="160" height="56" class="focal"/>
+    <rect x="188" y="166" width="17" height="15" fill="#CC3A1C"/>
+    <text x="196.5" y="177" text-anchor="middle" class="cond" font-size="9.2" fill="#FFFFFF">3</text>
+    <text x="210" y="178.5" class="sans ntitle">Tune</text>
+    <text x="195" y="197" class="mono ncode">tune.py (30..70)</text>
+    <text x="195" y="213" class="sans nfoot">precision vs recall</text>
+    <rect x="10" y="166" width="160" height="56" class="node"/>
+    <rect x="10" y="166" width="17" height="15" fill="#111111"/>
+    <text x="18.5" y="177" text-anchor="middle" class="cond" font-size="9.2" fill="#FFFFFF">4</text>
+    <text x="32" y="178.5" class="sans ntitle">CI Gate</text>
+    <text x="17" y="197" class="mono ncode">.github/ci.yml</text>
+    <text x="17" y="213" class="sans nfoot">PR block + Spark gap</text>
+    <line x1="0" y1="234" x2="358" y2="234" stroke="#D9D9D9" stroke-width="1"/>
+    <rect x="0.75" y="234.5" width="356.5" height="44.75" fill="#F5F5F5"/>
+    <text x="10" y="252" class="cond" font-size="9.5" fill="#CC3A1C">VERIFY</text>
+    <text x="54" y="252" class="mono check">tests fail on &gt;=2 edit, pass after revert</text>
+    <text x="10" y="269" class="cond" font-size="9.5" fill="#5C5C5C">OUT</text>
+    <text x="54" y="269" class="mono nsub">threshold trade-off table</text>
+  </g>
+  <!-- LAB 10 -->
+  <g transform="translate(430,768)">
+    <rect x="0" y="0" width="358" height="280" class="frame"/>
+    <rect x="0.75" y="0.75" width="356.5" height="28" fill="#F5F5F5"/>
+    <line x1="0" y1="29" x2="358" y2="29" stroke="#111111" stroke-width="1"/>
+    <rect x="8" y="6" width="44" height="17" fill="#111111"/>
+    <text x="30" y="18" text-anchor="middle" class="cond tag">DAY 4</text>
+    <text x="60" y="19" class="cond kick">RUNBOOK RB-10</text>
+    <text x="348" y="19" text-anchor="end" class="mono nsub">monitoring · 8 GB · 60m</text>
+    <text x="12" y="54" class="light fnum">10</text>
+    <text x="42" y="54" class="sans ftitle">Observe the Pipeline</text>
+    <text x="12" y="72" class="sans fsub">Scrape lag and Pushgateway counters; alert on symptoms</text>
+    <line x1="12" y1="82" x2="346" y2="82" stroke="#D9D9D9" stroke-width="0.75"/>
+    <line x1="170" y1="120" x2="186" y2="120" class="wire" marker-end="url(#arr)"/>
+    <line x1="268" y1="148" x2="268" y2="164" class="wred" marker-end="url(#arrr)"/>
+    <line x1="188" y1="194" x2="172" y2="194" class="wred" marker-end="url(#arrr)"/>
+    <rect x="10" y="92" width="160" height="56" class="node"/>
+    <rect x="10" y="92" width="17" height="15" fill="#111111"/>
+    <text x="18.5" y="103" text-anchor="middle" class="cond" font-size="9.2" fill="#FFFFFF">1</text>
+    <text x="32" y="104.5" class="sans ntitle">Exporters</text>
+    <text x="17" y="123" class="mono ncode">kafka + Pushgateway</text>
+    <text x="17" y="139" class="sans nfoot">UP on :9090</text>
+    <rect x="188" y="92" width="160" height="56" class="node"/>
+    <rect x="188" y="92" width="17" height="15" fill="#111111"/>
+    <text x="196.5" y="103" text-anchor="middle" class="cond" font-size="9.2" fill="#FFFFFF">2</text>
+    <text x="210" y="104.5" class="sans ntitle">Metrics</text>
+    <text x="195" y="123" class="mono ncode">lag + alert_rate</text>
+    <text x="195" y="139" class="sans nfoot">batch push :9091</text>
+    <rect x="188" y="166" width="160" height="56" class="focal"/>
+    <rect x="188" y="166" width="17" height="15" fill="#CC3A1C"/>
+    <text x="196.5" y="177" text-anchor="middle" class="cond" font-size="9.2" fill="#FFFFFF">3</text>
+    <text x="210" y="178.5" class="sans ntitle">Alerts</text>
+    <text x="195" y="197" class="mono ncode">alerts.yml rules</text>
+    <text x="195" y="213" class="sans nfoot">ConsumerLagHigh</text>
+    <rect x="10" y="166" width="160" height="56" class="node"/>
+    <rect x="10" y="166" width="17" height="15" fill="#111111"/>
+    <text x="18.5" y="177" text-anchor="middle" class="cond" font-size="9.2" fill="#FFFFFF">4</text>
+    <text x="32" y="178.5" class="sans ntitle">Grafana</text>
+    <text x="17" y="197" class="mono ncode">2 panels (:3000)</text>
+    <text x="17" y="213" class="sans nfoot">+ stale-push rule</text>
+    <line x1="0" y1="234" x2="358" y2="234" stroke="#D9D9D9" stroke-width="1"/>
+    <rect x="0.75" y="234.5" width="356.5" height="44.75" fill="#F5F5F5"/>
+    <text x="10" y="252" class="cond" font-size="9.5" fill="#CC3A1C">VERIFY</text>
+    <text x="54" y="252" class="mono check">ConsumerLagHigh fires at &gt;1000 for 2m</text>
+    <text x="10" y="269" class="cond" font-size="9.5" fill="#5C5C5C">OUT</text>
+    <text x="54" y="269" class="mono nsub">Prometheus :9090/alerts + Grafana</text>
+  </g>
+  <!-- LAB 11 -->
+  <g transform="translate(812,768)">
+    <rect x="0" y="0" width="358" height="280" class="frame"/>
+    <rect x="0.75" y="0.75" width="356.5" height="28" fill="#F5F5F5"/>
+    <line x1="0" y1="29" x2="358" y2="29" stroke="#111111" stroke-width="1"/>
+    <rect x="8" y="6" width="44" height="17" fill="#111111"/>
+    <text x="30" y="18" text-anchor="middle" class="cond tag">DAY 4</text>
+    <text x="60" y="19" class="cond kick">RUNBOOK RB-11</text>
+    <text x="348" y="19" text-anchor="end" class="mono nsub">orchestration · 8 GB · 60m</text>
+    <text x="12" y="54" class="light fnum">11</text>
+    <text x="42" y="54" class="sans ftitle">Prefect Daily Flow</text>
+    <text x="12" y="72" class="sans fsub">Retries for Spark faults, zero-retry gate, 06:00 deployment</text>
+    <line x1="12" y1="82" x2="346" y2="82" stroke="#D9D9D9" stroke-width="0.75"/>
+    <line x1="170" y1="120" x2="186" y2="120" class="wire" marker-end="url(#arr)"/>
+    <line x1="268" y1="148" x2="268" y2="164" class="wred" marker-end="url(#arrr)"/>
+    <line x1="188" y1="194" x2="172" y2="194" class="wred" marker-end="url(#arrr)"/>
+    <rect x="10" y="92" width="160" height="56" class="node"/>
+    <rect x="10" y="92" width="17" height="15" fill="#111111"/>
+    <text x="18.5" y="103" text-anchor="middle" class="cond" font-size="9.2" fill="#FFFFFF">1</text>
+    <text x="32" y="104.5" class="sans ntitle">Run Flow</text>
+    <text x="17" y="123" class="mono ncode">flows/pipeline.py</text>
+    <text x="17" y="139" class="sans nfoot">6 ordered tasks</text>
+    <rect x="188" y="92" width="160" height="56" class="node"/>
+    <rect x="188" y="92" width="17" height="15" fill="#111111"/>
+    <text x="196.5" y="103" text-anchor="middle" class="cond" font-size="9.2" fill="#FFFFFF">2</text>
+    <text x="210" y="104.5" class="sans ntitle">Fault</text>
+    <text x="195" y="123" class="mono ncode">stop spark-worker</text>
+    <text x="195" y="139" class="sans nfoot">retries=2 recovers</text>
+    <rect x="188" y="166" width="160" height="56" class="focal"/>
+    <rect x="188" y="166" width="17" height="15" fill="#CC3A1C"/>
+    <text x="196.5" y="177" text-anchor="middle" class="cond" font-size="9.2" fill="#FFFFFF">3</text>
+    <text x="210" y="178.5" class="sans ntitle">Gate</text>
+    <text x="195" y="197" class="mono ncode">LAB_MIN_PRECISION</text>
+    <text x="195" y="213" class="sans nfoot">retries=0 fails fast</text>
+    <rect x="10" y="166" width="160" height="56" class="node"/>
+    <rect x="10" y="166" width="17" height="15" fill="#111111"/>
+    <text x="18.5" y="177" text-anchor="middle" class="cond" font-size="9.2" fill="#FFFFFF">4</text>
+    <text x="32" y="178.5" class="sans ntitle">Schedule</text>
+    <text x="17" y="197" class="mono ncode">serve 06:00 + alert</text>
+    <text x="17" y="213" class="sans nfoot">Failed automation</text>
+    <line x1="0" y1="234" x2="358" y2="234" stroke="#D9D9D9" stroke-width="1"/>
+    <rect x="0.75" y="234.5" width="356.5" height="44.75" fill="#F5F5F5"/>
+    <text x="10" y="252" class="cond" font-size="9.5" fill="#CC3A1C">VERIFY</text>
+    <text x="54" y="252" class="mono check">retry completes · gate fails once · UI :4200</text>
+    <text x="10" y="269" class="cond" font-size="9.5" fill="#5C5C5C">OUT</text>
+    <text x="54" y="269" class="mono nsub">deployment airport-payments-daily</text>
+  </g>
+  <!-- LAB 12 -->
+  <g transform="translate(1194,768)">
+    <rect x="0" y="0" width="358" height="280" class="frame"/>
+    <rect x="0.75" y="0.75" width="356.5" height="28" fill="#F5F5F5"/>
+    <line x1="0" y1="29" x2="358" y2="29" stroke="#111111" stroke-width="1"/>
+    <rect x="8" y="6" width="44" height="17" fill="#111111"/>
+    <text x="30" y="18" text-anchor="middle" class="cond tag">DAY 4</text>
+    <text x="60" y="19" class="cond kick">RUNBOOK RB-12</text>
+    <text x="348" y="19" text-anchor="end" class="mono nsub">core · 8 GB · 45m</text>
+    <text x="12" y="54" class="light fnum">12</text>
+    <text x="42" y="54" class="sans ftitle">Govern Payment Data</text>
+    <text x="12" y="72" class="sans fsub">Classify PII, salted hash masking, contract impact, retention</text>
+    <line x1="12" y1="82" x2="346" y2="82" stroke="#D9D9D9" stroke-width="0.75"/>
+    <line x1="170" y1="120" x2="186" y2="120" class="wred" marker-end="url(#arrr)"/>
+    <line x1="268" y1="148" x2="268" y2="164" class="wred" marker-end="url(#arrr)"/>
+    <line x1="188" y1="194" x2="172" y2="194" class="wire" marker-end="url(#arr)"/>
+    <rect x="10" y="92" width="160" height="56" class="node"/>
+    <rect x="10" y="92" width="17" height="15" fill="#111111"/>
+    <text x="18.5" y="103" text-anchor="middle" class="cond" font-size="9.2" fill="#FFFFFF">1</text>
+    <text x="32" y="104.5" class="sans ntitle">Classify</text>
+    <text x="17" y="123" class="mono ncode">airport-payments.yaml</text>
+    <text x="17" y="139" class="sans nfoot">GDPR + access tiers</text>
+    <rect x="188" y="92" width="160" height="56" class="focal"/>
+    <rect x="188" y="92" width="17" height="15" fill="#CC3A1C"/>
+    <text x="196.5" y="103" text-anchor="middle" class="cond" font-size="9.2" fill="#FFFFFF">2</text>
+    <text x="210" y="104.5" class="sans ntitle">Mask</text>
+    <text x="195" y="123" class="mono ncode">mask_payments.py</text>
+    <text x="195" y="139" class="sans nfoot">SHA-256 + salt</text>
+    <rect x="188" y="166" width="160" height="56" class="node"/>
+    <rect x="188" y="166" width="17" height="15" fill="#111111"/>
+    <text x="196.5" y="177" text-anchor="middle" class="cond" font-size="9.2" fill="#FFFFFF">3</text>
+    <text x="210" y="178.5" class="sans ntitle">Impact</text>
+    <text x="195" y="197" class="mono ncode">grep merchant_cat</text>
+    <text x="195" y="213" class="sans nfoot">5-step schema plan</text>
+    <rect x="10" y="166" width="160" height="56" class="node"/>
+    <rect x="10" y="166" width="17" height="15" fill="#111111"/>
+    <text x="18.5" y="177" text-anchor="middle" class="cond" font-size="9.2" fill="#FFFFFF">4</text>
+    <text x="32" y="178.5" class="sans ntitle">Retain</text>
+    <text x="17" y="197" class="mono ncode">retention_report.py</text>
+    <text x="17" y="213" class="sans nfoot">&gt;90d dry-run list</text>
+    <line x1="0" y1="234" x2="358" y2="234" stroke="#D9D9D9" stroke-width="1"/>
+    <rect x="0.75" y="234.5" width="356.5" height="44.75" fill="#F5F5F5"/>
+    <text x="10" y="252" class="cond" font-size="9.5" fill="#CC3A1C">VERIFY</text>
+    <text x="54" y="252" class="mono check">passenger_key 64-char · no raw IDs</text>
+    <text x="10" y="269" class="cond" font-size="9.5" fill="#5C5C5C">OUT</text>
+    <text x="54" y="269" class="mono nsub">s3a://gold/transactions_masked/</text>
+  </g>
+
+  <!-- Sheet Footer -->
+  <line x1="48" y1="1070" x2="1552" y2="1070" stroke="#111111" stroke-width="1"/>
+  <text x="48" y="1094" class="cond kick">SHEET R1.0 · ADVANCED DATA ENGINEERING LAB · ALL 12 RUNBOOKS</text>
+  <text x="980" y="1094" class="mono nsub">repo: advanced-data-engineering-lab · explicit commands · docker compose profiles</text>
+  <rect x="1450" y="1078" width="102" height="24" fill="none" stroke="#CC3A1C" stroke-width="1.5"/>
+  <text x="1501" y="1094" text-anchor="middle" class="cond" font-size="11" fill="#CC3A1C">ISSUED</text>
+</svg>

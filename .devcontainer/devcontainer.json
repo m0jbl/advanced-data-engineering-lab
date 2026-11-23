@@ -4,6 +4,8 @@
   // Python; each lab starts its services with scripts/codespace.sh up [cdc|monitoring|orchestration], which
   // installs them the first time.
   "build": { "dockerfile": "Dockerfile" },
+  // an init process as PID 1 reaps the services' child processes when they stop
+  "init": true,
   "hostRequirements": {
     "cpus": 4,
     "memory": "16gb",

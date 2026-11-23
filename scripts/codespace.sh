@@ -123,7 +123,8 @@ install_service() {
 }
 
 # ---------- processes ----------
-pid_of() { [ -f "$RUN/$1.pid" ] && kill -0 "$(cat "$RUN/$1.pid")" 2>/dev/null && cat "$RUN/$1.pid"; }
+alive() { case $(ps -o stat= -p "$1" 2>/dev/null) in ''|Z*) return 1 ;; esac; }   # a zombie (exited, not reaped) is not alive
+pid_of() { [ -f "$RUN/$1.pid" ] && alive "$(cat "$RUN/$1.pid")" && cat "$RUN/$1.pid"; }
 running() { pid_of "$1" >/dev/null; }
 
 launch() {   # service command...: background process in its own session, log in $LOGS/<service>.log
@@ -246,7 +247,7 @@ EOF
 stop_service() {
   local pid; pid=$(pid_of "$1") || return 0
   kill -TERM -- "-$pid" 2>/dev/null || kill -TERM "$pid" 2>/dev/null || true
-  for _ in $(seq 30); do kill -0 "$pid" 2>/dev/null || break; sleep 1; done
+  for _ in $(seq 30); do alive "$pid" || break; sleep 1; done
   kill -KILL -- "-$pid" 2>/dev/null || true
   rm -f "$RUN/$1.pid"; echo "  stopped $1"
 }
