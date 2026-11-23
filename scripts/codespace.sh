@@ -73,20 +73,23 @@ install_minio() {
 }
 
 install_spark() {
-  [ -x /opt/spark/bin/spark-submit ] && return
+  local installed="/opt/spark-venv/.installed-$SPARK-$DELTA"
+  [ -f "$installed" ] && [ -x /opt/spark/bin/spark-submit ] && return
   install_java; say "Installing Spark $SPARK with Delta $DELTA and the Kafka/S3A jars"
   # pandas, numpy, pyarrow from Alpine (pyarrow has no musl wheel): the versions the laptop Spark image pins
-  apk_add py3-pandas py3-numpy py3-pyarrow
+  apk_add py3-pandas py3-numpy py3-pyarrow py3-setuptools py3-wheel py3-importlib-metadata
   python3 -m venv --system-site-packages /opt/spark-venv
-  /opt/spark-venv/bin/pip install -q --no-cache-dir "pyspark==$SPARK"
-  /opt/spark-venv/bin/pip install -q --no-cache-dir --no-deps "delta-spark==$DELTA"
+  # Install from hash-pinned release files without querying the PyPI index.
+  /opt/spark-venv/bin/pip install --no-index --no-deps --no-build-isolation --timeout 60 \
+    -r "$REPO/spark/codespace-requirements.txt"
   ln -sfn "$(/opt/spark-venv/bin/python -c 'import os, pyspark; print(os.path.dirname(pyspark.__file__))')" /opt/spark
   SPARK_HOME=/opt/spark LAB_SPARK_EXCLUDES="software.amazon.awssdk:bundle" \
   LAB_SPARK_PACKAGES="org.apache.spark:spark-sql-kafka-0-10_2.13:$SPARK,io.delta:delta-spark_2.13:$DELTA,org.apache.hadoop:hadoop-aws:$HADOOP,software.amazon.awssdk:s3:$AWS_SDK,software.amazon.awssdk:s3-transfer-manager:$AWS_SDK,software.amazon.awssdk:sts:$AWS_SDK,software.amazon.awssdk:apache-client:$AWS_SDK" \
-    /opt/spark-venv/bin/python "$REPO/spark/bake_jars.py" | grep -c '^added' | xargs -I{} echo "  {} jars added"
+    /opt/spark-venv/bin/python "$REPO/spark/bake_jars.py" | awk '/^added/ {n++} END {print "  " n+0 " jars added"}'
   mkdir -p /opt/spark/conf
   ln -sf "$REPO/spark/conf/spark-defaults.conf" /opt/spark/conf/spark-defaults.conf
   echo "export PYSPARK_PYTHON=/opt/spark-venv/bin/python" > /opt/spark/conf/spark-env.sh
+  touch "$installed"
 }
 
 install_postgres() {

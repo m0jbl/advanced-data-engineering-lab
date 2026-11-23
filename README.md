@@ -10,6 +10,8 @@
   is installed and nothing starts, so it opens in a few minutes.
 - Each lab starts its services with `scripts/codespace.sh up [cdc|monitoring|orchestration|all]`. The first
   run installs them (the core stack downloads about 1.3 GB: allow 10 minutes). See [Per-lab stack](#per-lab-stack).
+  If an existing codespace failed at `pyspark==4.2.0`, pull the latest `main` in the lab repo and rerun `scripts/codespace.sh up`.
+  Spark installs from pinned release files without querying the PyPI package index. No dev container rebuild is needed.
 - Other commands: `scripts/codespace.sh down` (stop, keep data), `clean` (stop and delete data), `status`,
   `logs <service>`, `restart <service>`, `stop <service>`, `start <service>`.
 - Host names (`kafka`, `minio`, `spark-master`, `postgres`, …), ports and paths (`/opt/kafka/bin`, `/opt/spark-apps`,
