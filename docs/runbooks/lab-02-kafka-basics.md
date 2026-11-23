@@ -6,6 +6,8 @@
 
 Use payment records to explain partitioning by passenger, how one consumer group shares partitions, and what unprocessed records look like in Kafka. You do not need the Spark fraud scorer for this lab.
 
+![Illustrative Kafka lag: a committed offset of 42 and a log end of 45 leave three records to read.](lab-02-kafka.svg)
+
 ## Playbook
 
 ### 1. Follow passenger keys into partitions
@@ -116,3 +118,5 @@ Submit one `lab-02-evidence.md` with your environment and the following actual r
 | Lag measurements | `CURRENT-OFFSET`, `LOG-END-OFFSET`, and `LAG` for all three partitions at baseline, behind, and caught up. |
 
 Explain in two or three sentences how a stopped consumer can increase the delay before a fraud decision reaches an operator.
+
+Next: [Lab 03 · The payment contract](lab-03-payment-contract.md).

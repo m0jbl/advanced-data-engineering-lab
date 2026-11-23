@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 272" role="img" aria-labelledby="title desc">
+  <title id="title">Prove the platform on two independent paths</title>
+  <desc id="desc">The payment producer writes a keyed record into Kafka. A separate Spark job proves a Delta write to MinIO. The fraud scorer is not running.</desc>
+  <defs><marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#111111"/></marker></defs>
+  <rect width="880" height="272" fill="#ffffff"/>
+  <g font-family="IBM Plex Sans, Arial, sans-serif" fill="#111111">
+    <text x="24" y="28" font-size="14" font-weight="600" letter-spacing="2" fill="#5c5c5c">MAJLIS ACADEMY / LAB 01</text>
+    <text x="24" y="60" font-size="27">Prove the platform on two independent paths</text>
+    <path d="M24 74H856" stroke="#d9d9d9"/>
+    <g fill="#f5f5f5"><rect x="24" y="96" width="280" height="64"/><rect x="24" y="176" width="280" height="64"/><rect x="400" y="176" width="456" height="64"/></g>
+    <rect x="400" y="96" width="456" height="64" fill="#ffffff" stroke="#cc3a1c" stroke-width="3"/>
+    <g stroke="#111111" marker-end="url(#arrow)"><path d="M320 128H384"/><path d="M320 208H384"/></g>
+    <g font-size="19" font-weight="600"><text x="40" y="123">Payment producer</text><text x="416" y="123">Kafka · airport.transactions</text><text x="40" y="203">Spark worker</text><text x="416" y="203">MinIO · isolated Delta table</text></g>
+    <g font-size="15" fill="#5c5c5c"><text x="40" y="146">Key = passenger_id</text><text x="416" y="146">Evidence: partition, offset, and stored key</text><text x="40" y="226">Run the Delta smoke job</text><text x="416" y="226">Evidence: ALIVE worker and Delta PASS</text></g>
+  </g>
+</svg>

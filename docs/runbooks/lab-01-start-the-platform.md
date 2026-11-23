@@ -6,6 +6,8 @@
 
 Start the airport payments platform. Prove that Kafka receives a payment and that a Spark worker can run a Delta job against MinIO. These are separate checks: this lab does not start the fraud scorer.
 
+![Two paths to verify the platform: a keyed payment stored in Kafka, and an isolated Spark Delta write to MinIO.](lab-01-platform.svg)
+
 ## Playbook
 
 ### 1. Open the lab environment

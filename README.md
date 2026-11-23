@@ -37,6 +37,7 @@ Follow the labs in order. Submit the evidence listed at the end of each runbook.
 
 1. [Lab 01 · Start the platform](docs/runbooks/lab-01-start-the-platform.md)
 2. [Lab 02 · Kafka keys, groups, and lag](docs/runbooks/lab-02-kafka-basics.md)
+3. [Lab 03 · The payment contract](docs/runbooks/lab-03-payment-contract.md)
 
 ## Quick start
 
