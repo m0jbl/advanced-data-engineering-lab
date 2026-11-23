@@ -3,7 +3,7 @@
   <desc id="desc">On an illustrative Kafka partition, a stopped group has committed 42 while the log end is 45. Records 42 through 44 are three records behind. Each group tracks its own offset.</desc>
   <rect width="880" height="288" fill="#ffffff"/>
   <g font-family="IBM Plex Sans, Arial, sans-serif" fill="#111111">
-    <text x="24" y="28" font-size="14" font-weight="600" letter-spacing="2" fill="#5c5c5c">MAJLIS ACADEMY / LAB 02</text>
+    <text x="24" y="28" font-size="14" font-weight="600" letter-spacing="2" fill="#5c5c5c">LAB 02</text>
     <text x="24" y="60" font-size="27">A backlog is a gap between two offsets</text>
     <path d="M24 74H856" stroke="#d9d9d9"/>
     <text x="24" y="106" font-size="16" fill="#5c5c5c">Illustrative partition · each group commits its own position</text>
