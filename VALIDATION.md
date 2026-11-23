@@ -64,4 +64,4 @@ Run with `make up LAB=08` and no `spark_ivy` volume. The container runs as `spar
 - `make automate` (Prefect serve) was not run; `make pipeline` was.
 - If Kafka data is wiped but `checkpoints` in MinIO are kept (for example, deleting only the Kafka volume), the stream stops with `KafkaIllegalStateException: Some data may have been lost`. `make clean` wipes both. To reset only the stream, delete `checkpoints/fraud_*` in MinIO.
 - `make up-all` (every profile together) was not run on 8 GB; use 12 GB for it.
-- The Codespaces prebuild itself (docker-in-docker `make pull`) was not run here; only the configuration was validated.
+- Codespaces: the Alpine dev container (`.devcontainer/`) was built and run locally as Codespaces runs it (privileged, Docker storage on a volume): Docker starts empty, `uv sync --locked` builds confluent-kafka 2.14.2 against Alpine's librdkafka 2.14.1, the unit tests pass, and a nested container and `docker compose config` work. It was not run in a real codespace.

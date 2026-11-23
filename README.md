@@ -5,8 +5,11 @@
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/majlisofai/advanced-data-engineering-lab?quickstart=1)
 
 - Codespaces preselects the machine size (4-core, 16 GB); smaller machines are blocked.
-- The first start pulls the core images (including the ready-built Spark image), then runs `uv sync --locked`.
-- Other labs pull their extra images when you start them with `docker compose --profile <name> up -d --wait`.
+- The codespace is a small Alpine Linux container with Docker, Docker Compose and uv. Creating it runs only
+  `uv sync --locked`: no lab images are pulled and no containers start, so it opens in a few minutes.
+- You start the stack yourself, when the lab needs it: `docker compose up -d --wait` for the core stack
+  (the first run pulls its images: allow 10 minutes), and `docker compose --profile <name> up -d --wait`
+  for the labs that need more services (see [Per-lab stack](#per-lab-stack)).
 
 On a laptop, Docker needs at least 8 GB of memory for the core stack.
 

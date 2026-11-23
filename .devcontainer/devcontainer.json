@@ -1,18 +1,17 @@
 {
   "name": "Advanced Data Engineering lab",
-  "image": "mcr.microsoft.com/devcontainers/python:3.12",
-  "features": {
-    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
-    "ghcr.io/va-h/devcontainers-features/uv:1": {}
-  },
+  // Alpine minirootfs with Docker, Compose and uv (see Dockerfile). Creating the codespace pulls no lab
+  // images and starts no containers: each trainee starts the stack a lab needs, when the lab starts.
+  "build": { "dockerfile": "Dockerfile" },
+  "privileged": true,
+  "overrideCommand": false,
+  // Docker's own storage lives on a volume: overlay2 does not work on top of the container's overlay filesystem
+  "mounts": ["source=dind-var-lib-docker-${devcontainerId},target=/var/lib/docker,type=volume"],
   "hostRequirements": {
     "cpus": 4,
     "memory": "16gb",
     "storage": "32gb"
   },
-  // Prebuilds cache this step: pull the core images; build the Spark image only if it cannot be pulled.
-  // Other labs pull their extra images on `docker compose --profile <name> up -d --wait`.
-  "onCreateCommand": "docker compose pull --ignore-pull-failures && (docker image inspect ghcr.io/majlisofai/advanced-data-engineering-spark:4.2.0 >/dev/null 2>&1 || docker compose build spark-master)",
   "postCreateCommand": "uv sync --locked",
   "forwardPorts": [8080, 8082, 9001, 8081, 3000, 9090, 4200],
   "portsAttributes": {
