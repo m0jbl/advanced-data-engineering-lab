@@ -12,8 +12,9 @@
     "storage": "32gb"
   },
   "postCreateCommand": "uv sync --locked",
-  "forwardPorts": [8080, 8082, 9001, 8081, 3000, 9090, 4200],
+  "forwardPorts": [3030, 8080, 8082, 9001, 8081, 3000, 9090, 4200],
   "portsAttributes": {
+    "3030": {"label": "Lab control panel"},
     "8080": {"label": "Kafka UI"},
     "8082": {"label": "Spark master UI"},
     "9001": {"label": "MinIO console"},

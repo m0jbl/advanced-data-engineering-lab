@@ -3,10 +3,11 @@ import fs from "node:fs";
 import http from "node:http";
 import path from "node:path";
 import type { PipelineUIMessage, StageId } from "../src/types/pipeline.ts";
+import { control } from "./control.ts";
 import { buildDiagnosticReport, inspectPipeline } from "./inspect.ts";
 
 const PORT = Number(process.env.PORT ?? 3030);
-const DIST_DIR = path.resolve(import.meta.dirname, "../dist");
+const DIST_DIR = path.resolve(process.env.LAB_UI_DIST_DIR ?? path.join(import.meta.dirname, "../dist"));
 
 const MIME: Record<string, string> = {
   ".html": "text/html; charset=utf-8",
@@ -69,6 +70,11 @@ function sendJson(res: http.ServerResponse, status: number, payload: unknown): v
 
 const server = http.createServer(async (req, res) => {
   const urlPath = (req.url ?? "/").split("?")[0];
+
+  if (urlPath === "/api/control" || urlPath.startsWith("/api/control/")) {
+    await control(req, res, urlPath);
+    return;
+  }
 
   if (req.method === "GET" && urlPath === "/api/pipeline") {
     const snapshot = await inspectPipeline();

@@ -65,3 +65,10 @@ Run with `make up LAB=08` and no `spark_ivy` volume. The container runs as `spar
 - If Kafka data is wiped but `checkpoints` in MinIO are kept (for example, deleting only the Kafka volume), the stream stops with `KafkaIllegalStateException: Some data may have been lost`. `make clean` wipes both. To reset only the stream, delete `checkpoints/fraud_*` in MinIO.
 - `make up-all` (every profile together) was not run on 8 GB; use 12 GB for it.
 - Codespaces (one Alpine 3.22 container, no Docker; `scripts/codespace.sh`): built and run locally on arm64 (Codespaces is x86_64). Checked: `uv sync --locked` builds confluent-kafka 2.10.0 against Alpine's librdkafka 2.10.0, unit tests pass; `up` (core), `up cdc`, `up monitoring`, `up orchestration` all healthy and `scripts/services.sh smoke` ok for all 13 services; the labs' codespace commands ran for bronze upload, Spark/Delta smoke, silver, features, batch scoring (`mapInPandas` on Alpine's pandas 2.2.3 / pyarrow 19.0.1), evaluate + `cp`, the streaming scorer with the producer (alerts published), Lab 08 CDC (connector RUNNING, `blocklist_from_cdc.py`), Lab 10 targets and Grafana health, and the Lab 11 flow end to end; `stop`/`start`/`down` work. The first `up` of the core stack downloads about 1.3 GB (23 minutes on the test connection; Kafka comes from the Apache CDN). Not yet run in a real codespace.
+
+## Lab control panel
+
+- The production SPA built with the local Node.js install and with Node.js 22 on Alpine 3.22.
+- In a browser against the laptop Compose stack, the setup check reported an active Spark worker, the file check counted 72,000 generated payments, and the bronze check listed the MinIO CSV objects.
+- The dashboard's bounded streaming action exited with code 0. Spark reported 98 Kafka input rows per query; the alert query emitted 9 rows. Follow-up checks showed new Kafka offsets and sample messages, and new Parquet files in MinIO.
+- The Python catalog was checked in both runtime modes; the complete dashboard was not run in a hosted Codespace.

@@ -63,6 +63,36 @@ In the codespace, run `/opt/spark/bin/spark-submit /opt/spark-apps/<job>.py [arg
 or `curl -LsSf https://astral.sh/uv/install.sh | sh`). It downloads the Python pinned in `.python-version` and
 installs the versions locked in `uv.lock`; the Python already on your machine is not used.
 
+## Lab control panel
+
+Use the browser to run lab steps in order and inspect the evidence they produce. The panel shows the command,
+live output and exit status. The **Check** actions read real CSV files, Kafka, MinIO, Spark and service APIs.
+Each stage names the related labs and explains what to look for in the results.
+
+The panel uses the same Python jobs and native Codespace or Compose commands as the lab. It runs one action at a time.
+Batch and streaming actions operate on the current lab data; use the **Check** actions to inspect it without writing.
+The streaming action sends 20 seconds of traffic using `control/scenario`. Spark startup and drain take longer.
+Stop any manually started scorer before running this action; both use the same checkpoints.
+
+In a Codespace, install Node.js to build and serve the web interface. On a laptop, use Node.js 22.12 or later.
+
+```bash
+apk add --no-cache nodejs npm                            # Codespace only
+```
+
+From the lab repo root:
+
+```bash
+uv sync --locked
+npm --prefix ui ci
+npm --prefix ui run build
+npm --prefix ui start
+```
+
+Open [localhost:3030](http://127.0.0.1:3030) on a laptop, or **Lab control panel** (port 3030) in the Codespace
+**Ports** tab. If the port is absent, forward it there. Keep the port **Private**: the panel can run lab jobs and
+change your training data. Leave the terminal running while the dashboard is open.
+
 ## Per-lab stack
 
 `docker compose up -d --wait` starts the core stack. Labs that need more services add a Compose profile, so their images are

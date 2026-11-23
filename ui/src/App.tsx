@@ -1,12 +1,14 @@
 import { RefreshCw, Server, Sparkles } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
+import { ControlPanel } from "./ControlPanel";
 import { AiStageAssistant } from "./components/AiStageAssistant";
 import { StageInspector } from "./components/StageInspector";
 import { StatusBadge } from "./components/StatusBadge";
 import { WorkflowCanvas } from "./components/WorkflowCanvas";
 import type { PipelineSnapshot, StageId } from "./types/pipeline";
+import "./control-panel.css";
 
-export default function App() {
+function PipelineDiagnostics() {
   const [snapshot, setSnapshot] = useState<PipelineSnapshot | null>(null);
   const [selectedStageId, setSelectedStageId] = useState<StageId>("ingestion");
   const [loading, setLoading] = useState(true);
@@ -37,10 +39,9 @@ export default function App() {
   const selectedStage = snapshot?.stages.find((s) => s.id === selectedStageId) ?? snapshot?.stages[0];
 
   return (
-    <div className="min-h-screen bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-900 via-slate-950 to-black text-slate-100">
-      <div className="mx-auto max-w-[1440px] space-y-5 px-4 py-5 sm:px-6">
-        {/* Top Command Header */}
-        <header className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-slate-800/90 bg-slate-900/70 px-5 py-4 shadow-lg shadow-black/30 backdrop-blur">
+    <div className="bg-slate-950 text-slate-100">
+      <div className="space-y-5 px-4 py-5 sm:px-6">
+        <header className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-700 pb-4">
           <div>
             <div className="flex items-center gap-2.5">
               <span className="inline-flex h-6 items-center rounded-md bg-orange-500/15 px-2 font-mono text-[11px] font-semibold text-orange-300 ring-1 ring-orange-500/30">
@@ -48,9 +49,9 @@ export default function App() {
               </span>
               {snapshot && <StatusBadge status={snapshot.overallStatus} />}
             </div>
-            <h1 className="mt-1.5 text-lg font-semibold tracking-tight text-white sm:text-xl">
-              Workflow Stage Control · Ingestion to Serve
-            </h1>
+            <h2 className="mt-1.5 text-lg font-semibold tracking-tight text-white sm:text-xl">
+              Pipeline diagnostics
+            </h2>
             <p className="text-xs text-slate-400">
               Live stage diagnostics across Kafka, Schema Registry, MinIO Delta Lakehouse, Spark Fraud Rules, and
               Prefect / Prometheus.
@@ -94,8 +95,8 @@ export default function App() {
         </header>
 
         {error && (
-          <div className="rounded-xl border border-rose-500/40 bg-rose-500/10 px-4 py-3 text-xs text-rose-200">
-            Could not load pipeline status ({error}). Start the API server with <code className="font-mono">npm run dev:server</code> inside <code className="font-mono">ui/</code>.
+          <div role="alert" className="rounded-xl border border-rose-500/40 bg-rose-500/10 px-4 py-3 text-xs text-rose-200">
+            Could not load pipeline status ({error}). Check the lab server and select Refresh Probes.
           </div>
         )}
 
@@ -136,5 +137,24 @@ export default function App() {
         ) : null}
       </div>
     </div>
+  );
+}
+
+export default function App() {
+  const [diagnosticsOpened, setDiagnosticsOpened] = useState(false);
+
+  return (
+    <main className="lab-control">
+      <ControlPanel />
+      <details
+        className="lab-diagnostics"
+        onToggle={({ currentTarget }) => {
+          if (currentTarget.open) setDiagnosticsOpened(true);
+        }}
+      >
+        <summary>Pipeline diagnostics and assistant</summary>
+        {diagnosticsOpened && <PipelineDiagnostics />}
+      </details>
+    </main>
   );
 }
