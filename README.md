@@ -10,7 +10,10 @@
   is installed and nothing starts, so it opens in a few minutes.
 - Each lab starts its services with `scripts/codespace.sh up [cdc|monitoring|orchestration|all]`. The first
   run installs them (the core stack downloads about 1.3 GB: allow 10 minutes). See [Per-lab stack](#per-lab-stack).
-  If an existing codespace failed at `pyspark==4.2.0`, pull the latest `main` in the lab repo and rerun `scripts/codespace.sh up`.
+  **Spark installation:** `scripts/codespace.sh` automatically detects if PySpark is already installed in the
+  project venv (via `uv sync`) and uses it, skipping the lengthy source build. If this fails, the script falls back
+  to building an isolated Spark venv. If an existing codespace failed at `pyspark==4.2.0`, pull the latest `main`
+  in the lab repo and rerun `scripts/codespace.sh up`.
   Spark installs from pinned release files without querying the PyPI package index. No dev container rebuild is needed.
 - Other commands: `scripts/codespace.sh down` (stop, keep data), `clean` (stop and delete data), `status`,
   `logs <service>`, `restart <service>`, `stop <service>`, `start <service>`.
@@ -30,38 +33,54 @@ stack (Feast, MLflow, DVC, FastAPI, Evidently) is replaced by Spark jobs and tra
 
 ## Quick start
 
+**Codespace** (GitHub Codespaces: recommended for quick start, no setup needed)
+
+The repo is already cloned and `uv sync --locked` has run when the codespace opens. Just start the services:
+
+```bash
+scripts/codespace.sh up                            # core stack (first run installs it: 5-10 min)
+scripts/services.sh urls                           # print the UIs
+PYTHONPATH=src uv run python -m pytest tests -q    # unit tests
+scripts/services.sh smoke                          # health check
+/opt/spark/bin/spark-submit /opt/spark-apps/smoke_delta.py   # Spark/Delta test
+```
+
+Access dashboards from the **Ports** tab:
+- Kafka UI: http://localhost:8080
+- Spark Master: http://localhost:8082
+- MinIO: http://localhost:9001 (minioadmin / minioadmin)
+- Grafana (Lab 10): http://localhost:3000 (admin / admin) — requires `scripts/codespace.sh up monitoring`
+
 **Laptop (Docker)**
+
+Install [uv](https://docs.astral.sh/uv/getting-started/installation/) (`brew install uv` or `curl -LsSf https://astral.sh/uv/install.sh | sh`), then:
 
 ```bash
 git clone https://github.com/majlisofai/advanced-data-engineering-lab.git
 cd advanced-data-engineering-lab
-uv sync --locked                                   # uv installs Python 3.12 and the locked host dependencies into .venv
-docker compose up -d --wait                        # core stack, wait for health checks (first run pulls images: allow 10 minutes)
-scripts/services.sh urls                           # print the UIs of the running services
-PYTHONPATH=src uv run python -m pytest tests -q    # unit tests (no Docker needed)
-scripts/services.sh smoke                          # running services + topics
-docker compose exec -T spark-master /opt/spark/bin/spark-submit /opt/spark-apps/smoke_delta.py   # Spark/Delta writes on isolated MinIO tables
-```
-
-**Codespace** (the repo is already cloned and `uv sync --locked` has run)
-
-```bash
-scripts/codespace.sh up                            # core stack (first run installs it, about 1.3 GB: allow 10 minutes)
-scripts/services.sh urls                           # print the UIs of the running services
+uv sync --locked                                   # install Python 3.12 and dependencies into .venv
+docker compose up -d --wait                        # core stack (first run: 10 min)
+scripts/services.sh urls                           # print the UIs
 PYTHONPATH=src uv run python -m pytest tests -q    # unit tests
-scripts/services.sh smoke                          # running services + topics
-/opt/spark/bin/spark-submit /opt/spark-apps/smoke_delta.py   # Spark/Delta writes on isolated MinIO tables
+scripts/services.sh smoke                          # health check
+docker compose exec -T spark-master /opt/spark/bin/spark-submit /opt/spark-apps/smoke_delta.py   # test
 ```
 
-Every Spark job runs the same way: `docker compose exec -T spark-master /opt/spark/bin/spark-submit /opt/spark-apps/<job>.py [args]`.
-`spark-submit` runs inside the `spark-master` container, where `spark/jobs/` is mounted at `/opt/spark-apps`.
-Its settings (master URL, driver and executor memory, Delta extensions) come from `spark/conf/spark-defaults.conf`,
-mounted read-only at `/opt/spark/conf/spark-defaults.conf`, so the command line carries only the job and its arguments.
-In the codespace, run `/opt/spark/bin/spark-submit /opt/spark-apps/<job>.py [args]` directly: the same paths and settings file exist there.
+Same dashboards:
+- Kafka UI: http://localhost:8080
+- Spark Master: http://localhost:8082
+- MinIO: http://localhost:9001 (minioadmin / minioadmin)
+- Grafana (Lab 10): http://localhost:3000 (admin / admin) — requires `docker compose --profile monitoring up -d --wait`
 
-[uv](https://docs.astral.sh/uv/getting-started/installation/) is the only host prerequisite (`brew install uv`
-or `curl -LsSf https://astral.sh/uv/install.sh | sh`). It downloads the Python pinned in `.python-version` and
-installs the versions locked in `uv.lock`; the Python already on your machine is not used.
+---
+
+Every Spark job runs the same way on both platforms:
+
+| Codespace | Laptop (Docker) |
+|-----------|-----------------|
+| `/opt/spark/bin/spark-submit /opt/spark-apps/<job>.py [args]` | `docker compose exec -T spark-master /opt/spark/bin/spark-submit /opt/spark-apps/<job>.py [args]` |
+
+Both use the same settings file (`/opt/spark/conf/spark-defaults.conf`) and paths (`/opt/spark-apps`, `/data`).
 
 ## Lab control panel
 
@@ -106,6 +125,8 @@ downloaded only when you reach that lab:
 | 11 Orchestration | `docker compose --profile orchestration up -d --wait` | `scripts/codespace.sh up orchestration` | `orchestration`: Prefect server | 8 GB |
 | all | `docker compose --profile '*' up -d --wait` | `scripts/codespace.sh up all` | every profile | 12 GB |
 
+See [Monitoring Dashboard](MONITORING_DASHBOARD.md) for Lab 10 dashboard setup and troubleshooting.
+
 **Laptop (Docker)**
 
 ```bash
@@ -142,6 +163,53 @@ scripts/codespace.sh down
 ```
 
 Spark jobs push metrics to the Pushgateway only when it is running; otherwise they print a note and continue.
+
+## Dashboards
+
+Access live dashboards from the **Ports** tab (Codespace) or via `localhost` (Laptop).
+
+| Dashboard | Port | URL | Purpose | Setup |
+|-----------|------|-----|---------|-------|
+| **Kafka UI** | 8080 | http://localhost:8080 | Browse topics, messages, consumer groups | Included in core (all labs) |
+| **Spark Master** | 8082 | http://localhost:8082 | Job status, worker nodes, executor details | Included in core (all labs) |
+| **MinIO Console** | 9001 | http://localhost:9001 | Browse S3 buckets (bronze/silver/gold) | Included in core (all labs) |
+| **Prometheus** | 9090 | http://localhost:9090 | Query metrics, view scrape targets, alerts | `up monitoring` / `--profile monitoring` |
+| **Grafana** | 3000 | http://localhost:3000 | Pre-built dashboards, alerts, visualizations | `up monitoring` / `--profile monitoring` |
+| **Prefect** | 4200 | http://localhost:4200 | Pipeline runs, task execution, scheduling | `up orchestration` / `--profile orchestration` |
+
+**Codespace quick start:**
+
+```bash
+# Core dashboards (all labs)
+scripts/codespace.sh up
+scripts/services.sh urls
+
+# Lab 10 dashboards (Observability)
+scripts/codespace.sh up monitoring
+# Grafana: http://localhost:3000 (admin / admin)
+
+# Lab 11 dashboard (Orchestration)
+scripts/codespace.sh up orchestration
+# Prefect: http://localhost:4200
+```
+
+**Laptop quick start:**
+
+```bash
+# Core dashboards (all labs)
+docker compose up -d --wait
+scripts/services.sh urls
+
+# Lab 10 dashboards (Observability)
+docker compose --profile monitoring up -d --wait
+# Grafana: http://localhost:3000 (admin / admin)
+
+# Lab 11 dashboard (Orchestration)
+docker compose --profile orchestration up -d --wait
+# Prefect: http://localhost:4200
+```
+
+See [Monitoring Dashboard](MONITORING_DASHBOARD.md) (Lab 10) and [Codespace Quickstart](CODESPACE_QUICKSTART.md) for detailed guides.
 
 ## What runs where
 

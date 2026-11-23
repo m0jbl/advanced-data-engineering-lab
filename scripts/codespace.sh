@@ -75,6 +75,30 @@ install_minio() {
 install_spark() {
   local installed="/opt/spark-venv/.installed-$SPARK-$DELTA"
   [ -f "$installed" ] && [ -x /opt/spark/bin/spark-submit ] && return
+  
+  # Check if Spark is already installed in the project venv (from uv sync)
+  local project_venv="$REPO/.venv"
+  if [ -d "$project_venv" ]; then
+    local pyspark_path; pyspark_path=$("$project_venv/bin/python" -c 'import os, pyspark; print(os.path.dirname(pyspark.__file__))' 2>/dev/null) || true
+    if [ -n "$pyspark_path" ]; then
+      say "Using Spark $SPARK from project venv ($project_venv)"
+      mkdir -p /opt/spark/conf
+      ln -sfn "$pyspark_path" /opt/spark
+      ln -sf "$REPO/spark/conf/spark-defaults.conf" /opt/spark/conf/spark-defaults.conf
+      echo "export PYSPARK_PYTHON=$project_venv/bin/python" > /opt/spark/conf/spark-env.sh
+      touch "$installed"
+      
+      # Try to bake jars if available, otherwise continue without them (some labs don't need Kafka/S3A)
+      if [ -f "$REPO/spark/bake_jars.py" ]; then
+        SPARK_HOME=/opt/spark LAB_SPARK_EXCLUDES="software.amazon.awssdk:bundle" \
+        LAB_SPARK_PACKAGES="org.apache.spark:spark-sql-kafka-0-10_2.13:$SPARK,io.delta:delta-spark_2.13:$DELTA,org.apache.hadoop:hadoop-aws:$HADOOP,software.amazon.awssdk:s3:$AWS_SDK,software.amazon.awssdk:s3-transfer-manager:$AWS_SDK,software.amazon.awssdk:sts:$AWS_SDK,software.amazon.awssdk:apache-client:$AWS_SDK" \
+          "$project_venv/bin/python" "$REPO/spark/bake_jars.py" 2>/dev/null | awk '/^added/ {n++} END {if (n+0 > 0) print "  " n+0 " jars added"}' || true
+      fi
+      return
+    fi
+  fi
+  
+  # Fallback: install in isolated venv
   install_java; say "Installing Spark $SPARK with Delta $DELTA and the Kafka/S3A jars"
   # pandas, numpy, pyarrow from Alpine (pyarrow has no musl wheel): the versions the laptop Spark image pins
   apk_add py3-pandas py3-numpy py3-pyarrow py3-setuptools py3-wheel py3-importlib-metadata
@@ -107,8 +131,9 @@ install_kafka_connect() {
 
 install_gh_tarball() {   # name url dir binary
   [ -x "$3/$4" ] && return
-  say "Installing $1"; fetch "$2" /tmp/$1.tgz
-  mkdir -p "$3" && tar -xzf /tmp/$1.tgz -C "$3" --strip-components=1 && rm /tmp/$1.tgz
+  say "Installing $1"
+  fetch "$2" /tmp/$1.tgz || { echo "  WARNING: Failed to download $1, skipping"; return 1; }
+  mkdir -p "$3" && tar -xzf /tmp/$1.tgz -C "$3" --strip-components=1 && rm /tmp/$1.tgz || return 1
 }
 install_prometheus() { install_gh_tarball prometheus "https://github.com/prometheus/prometheus/releases/download/v$PROMETHEUS/prometheus-$PROMETHEUS.linux-$GOARCH.tar.gz" /opt/prometheus prometheus; }
 install_pushgateway() { install_gh_tarball pushgateway "https://github.com/prometheus/pushgateway/releases/download/v$PUSHGATEWAY/pushgateway-$PUSHGATEWAY.linux-$GOARCH.tar.gz" /opt/pushgateway pushgateway; }

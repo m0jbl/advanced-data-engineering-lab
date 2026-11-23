@@ -1,6 +1,8 @@
 # Lab review and validation
 
 > **Note (2026-11-21):** the Makefile was removed. The results below were recorded with the equivalent `make` targets; the commands now follow [README.md](README.md) (explicit `docker compose`, `spark-submit`, and `uv run` commands).
+> 
+> **Note (2026-11-23):** Codespace Spark installation has been optimized. `scripts/codespace.sh` now automatically detects if PySpark is already installed in the project venv (via `uv sync`) and uses it directly, avoiding the slow source build. If Spark is not found in the venv, the script falls back to building an isolated Spark venv as before. This significantly speeds up `scripts/codespace.sh up` for first-time runs in codespaces.
 
 Last run: 2026-11-20, Docker 29.9.3 on an arm64 laptop with about 8 GB allocated to Docker. Fresh volumes (`docker compose down -v` first).
 
