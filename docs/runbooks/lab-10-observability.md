@@ -8,41 +8,23 @@ Measure consumer lag and batch alert rate. Follow a lag alert from pending to fi
 
 ![Kafka offset metrics and Spark batch counts reach Prometheus by different routes.](lab-10-observability.svg)
 
-## Playbook
+## Codespace playbook
 
 ### 1. Start monitoring and check the scrape targets
-
-**Codespaces**
 
 ```bash
 scripts/codespace.sh up monitoring
 ```
 
-**Compose only**
-
-```bash
-docker compose --profile monitoring up -d --wait
-```
-
-Open port **9090** via the Codespaces **Ports** tab and append `/targets`. On a laptop, open `http://localhost:9090/targets`. Wait for both `kafka` and `pushgateway` to show `UP`. This checks collection, not whether scoring works.
+Open port **9090** via the Codespaces **Ports** tab and append `/targets`. Wait for both `kafka` and `pushgateway` to show `UP`. This checks collection, not whether scoring works.
 
 ### 2. Create a private exercise topic and commit offsets
 
 Use a fresh topic and group so the running fraud stream and previous Kafka data stay untouched. Define these helpers in the same shell for the rest of the exercise.
 
-**Codespaces**
-
 ```bash
 kafka_cli() { "/opt/kafka/bin/kafka-$1.sh" "${@:2}"; }
 ```
-
-**Compose only**
-
-```bash
-kafka_cli() { docker compose exec -T kafka "/opt/kafka/bin/kafka-$1.sh" "${@:2}"; }
-```
-
-**Both environments**
 
 ```bash
 TOPIC="lab10-lag-$(date +%s)-$$"
@@ -110,16 +92,8 @@ runpy.run_path('/opt/spark-apps/score_batch.py', run_name='__main__')
 PY
 ```
 
-**Codespaces**
-
 ```bash
 PUSHGATEWAY_URL=http://localhost:9091 /opt/spark/bin/spark-submit "/opt/spark-data/processed/$TOPIC.py" "$TOPIC"
-```
-
-**Compose only**
-
-```bash
-docker compose exec -T spark-master /opt/spark/bin/spark-submit "/opt/spark-data/processed/$TOPIC.py" "$TOPIC"
 ```
 
 **Checkpoint:** record the `scored day=…` line. After the next scrape, query `fraud_batch_payments`, `fraud_batch_alerts`, and `fraud_batch_alerts / fraud_batch_payments`. Match the `day` label to the scoring log. Explain why the fraction of payments flagged is not precision. If the series is missing, inspect `curl -fsS http://localhost:9091/metrics | grep fraud_batch` and check the target again.
@@ -128,7 +102,7 @@ docker compose exec -T spark-master /opt/spark/bin/spark-submit "/opt/spark-data
 
 On `/alerts`, find `ConsumerLagHigh`, `NoAlertsWhileTrafficFlows`, and `BatchAlertRateHigh`. Record each expression, its `for` interval, and the first check you would perform. Distinguish a dead scorer from a healthy period with few fraud alerts.
 
-Open port **3000** in Codespaces, or `http://localhost:3000` on a laptop. Sign in with the training credentials `admin` / `admin`. If prompted to change the password, keep the service private and do not record the password in your evidence.
+Open port **3000** in Codespaces. Sign in with the training credentials `admin` / `admin`. If prompted to change the password, keep the service private and do not record the password in your evidence.
 
 1. Go to **Dashboards → New → New dashboard → Add visualization**. Select **Prometheus**.
 2. Choose **Time series**. Switch the query editor to **Code** and enter the step 3 query for your topic. Name the panel **Demo consumer lag**.
@@ -156,16 +130,8 @@ cat >> "$RULES" <<'YAML'
 YAML
 ```
 
-**Codespaces**
-
 ```bash
 scripts/codespace.sh restart prometheus
-```
-
-**Compose only**
-
-```bash
-docker compose --profile monitoring restart prometheus
 ```
 
 **Checkpoint:** `/alerts` lists `BatchMetricsStale`. Query `time() - push_time_seconds{job="fraud_batch"}` to check the age in seconds. A recent push should keep the rule inactive; do not wait a day to test it. If the rule fails to load, inspect the Prometheus logs and restore the backup before proceeding.
@@ -174,7 +140,45 @@ docker compose --profile monitoring restart prometheus
 cp "$BACKUP" "$RULES"
 ```
 
-Repeat your environment's restart command. Confirm the training rule is gone and both scrape targets are `UP`. Leave the core stack running. Do not delete topics, checkpoints, or score tables from prior labs.
+Restart Prometheus again:
+
+```bash
+scripts/codespace.sh restart prometheus
+```
+
+Confirm the training rule is gone and both scrape targets are `UP`. Leave the core stack running. Do not delete topics, checkpoints, or score tables from prior labs.
+
+## Laptop (Docker) playbook
+
+Use the complete Codespace playbook above with these replacements:
+
+**Step 1 — start monitoring**
+
+```bash
+docker compose --profile monitoring up -d --wait
+```
+
+Open `http://localhost:9090/targets`.
+
+**Step 2 — define the Kafka helper**
+
+```bash
+kafka_cli() { docker compose exec -T kafka "/opt/kafka/bin/kafka-$1.sh" "${@:2}"; }
+```
+
+**Step 4 — run batch scoring**
+
+```bash
+docker compose exec -T spark-master /opt/spark/bin/spark-submit "/opt/spark-data/processed/$TOPIC.py" "$TOPIC"
+```
+
+**Step 6 — restart Prometheus both times**
+
+```bash
+docker compose --profile monitoring restart prometheus
+```
+
+Open <http://localhost:9090/targets> for Prometheus and <http://localhost:3000> for Grafana. The remaining commands, queries, checkpoints, and evidence are unchanged.
 
 ## Output evidence to submit
 

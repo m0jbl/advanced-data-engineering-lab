@@ -8,26 +8,16 @@ Build point-in-time Delta features, score a fixed day, and evaluate only after s
 
 ![The clean feature window ends before the scored day; the leaky window also includes the scored day.](lab-06-lakehouse.svg)
 
-## Playbook
+## Codespace playbook
 
 ### 1. Build clean features and record the Delta version
 
 Read [`features_30d.py`](../../spark/jobs/features_30d.py). Find the history join with `event_date < as_of` and the lower bound `date_sub(as_of, 30)`. For day D, the 30-day average uses dates D−30 through D−1, not D. The seven-day count applies a shorter bound to the same join.
 
-**Codespaces**
-
 ```bash
 spark06() { /opt/spark/bin/spark-submit "$@"; }
 mc06() { mc "$@"; }
 copy06() { cp /tmp/airport-evaluation.json "$1"; }
-```
-
-**Compose only — use these functions instead**
-
-```bash
-spark06() { docker compose exec -T spark-master /opt/spark/bin/spark-submit "$@"; }
-mc06() { docker compose exec -T minio-client mc "$@"; }
-copy06() { docker compose cp spark-master:/tmp/airport-evaluation.json "$1"; }
 ```
 
 Use the day recorded by Lab 04. Create a fresh local evidence directory and use its name as an isolated object prefix for the leakage experiment.
@@ -137,6 +127,18 @@ spark06 "$APP06/thresholds.py" "$DAY" 2>&1 | tee "$RUN06/thresholds.log"
 ```
 
 **Checkpoint:** the threshold-50 row should match the clean report, allowing for rounding. Alerts cannot increase as the threshold rises on a fixed set of scores. Compare false positives and false negatives across the three cuts; do not assume precision always increases. Keep the clean features and scores for the next labs. There is no config change to revert: retain only your run's isolated leaky tables and logs as experiment evidence; never use those tables as input for a later lab.
+
+## Laptop (Docker) playbook
+
+Use the complete Codespace playbook above. In Step 1, define these wrappers instead:
+
+```bash
+spark06() { docker compose exec -T spark-master /opt/spark/bin/spark-submit "$@"; }
+mc06() { docker compose exec -T minio-client mc "$@"; }
+copy06() { docker compose cp spark-master:/tmp/airport-evaluation.json "$1"; }
+```
+
+The remaining steps and evidence requirements are unchanged.
 
 ## Output evidence to submit
 

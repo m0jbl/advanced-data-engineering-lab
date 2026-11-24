@@ -8,20 +8,12 @@ Run the six-task batch flow in Prefect. Observe a successful retry and a failed 
 
 ![The flow orders six tasks; a retry handles a transient task error, while a failed precision gate fails the whole run.](lab-11-orchestration.svg)
 
-## Playbook
+## Codespace playbook
 
 ### 1. Start Prefect and prepare an isolated run
 
-**Codespaces**
-
 ```bash
 scripts/codespace.sh up orchestration
-```
-
-**Compose only**
-
-```bash
-docker compose --profile orchestration up -d --wait
 ```
 
 ```bash
@@ -29,7 +21,7 @@ export PREFECT_API_URL=http://localhost:4200/api
 curl -fsS "$PREFECT_API_URL/health"
 ```
 
-Open port **4200** via the Codespaces **Ports** tab. On a laptop, open `http://localhost:4200`. Leave the other services running.
+Open port **4200** via the Codespaces **Ports** tab. Leave the other services running.
 
 The stock flow regenerates CSV files and overwrites feature snapshots. Make an exercise copy that uses fresh paths for all writes. The copy keeps the stock tasks and their dependencies. It skips the optional CDC blocklist by pointing to an unused path and does not replace the Lab 10 metrics.
 
@@ -144,17 +136,8 @@ printf 'LAB=%s\n' "$LAB"
 
 Open a second terminal at the repository root. Set `LAB` to the printed value (for example `LAB=lab11-Ab12Cd`). Start the receiver there and leave it running so you can see the incoming POST.
 
-**Codespaces**
-
 ```bash
 python3 "data/processed/$LAB/notify.py"
-```
-
-**Compose only**
-
-```bash
-docker compose --profile orchestration cp "data/processed/$LAB/notify.py" "prefect-server:/tmp/$LAB-notify.py"
-docker compose --profile orchestration exec prefect-server python "/tmp/$LAB-notify.py"
 ```
 
 Back in the main shell, create the automation. Its trigger matches only failed runs of your lab flow. The automation makes a POST from the Prefect server to its own loopback interface.
@@ -188,6 +171,27 @@ LAB_MIN_PRECISION=1.01 uv run --locked python "$WORK/pipeline.py"
 **Checkpoint:** the command exits nonzero. Confirm that scoring completed and that `quality_gate` failed once, with the measured precision below `1.01`. The receiver should log the failed run ID and `POST /lab11` with HTTP `204`. Match this ID to the failed run; an enabled automation alone does not establish delivery. If no request arrives, inspect the automation's events and verify that the receiver is still running next to the Prefect server.
 
 Disable only your `…-failed-run` automation via the **Automations** page. Stop the local receiver with Ctrl+C after collecting its output. Preserve your isolated report and prior lab data. The gate fails the flow; it does not roll back scores already written by the upstream task.
+
+## Laptop (Docker) playbook
+
+Use the complete Codespace playbook above with these replacements:
+
+**Step 1 — start orchestration and open Prefect**
+
+```bash
+docker compose --profile orchestration up -d --wait
+```
+
+Open <http://localhost:4200>.
+
+**Step 5 — run the receiver beside Prefect**
+
+```bash
+docker compose --profile orchestration cp "data/processed/$LAB/notify.py" "prefect-server:/tmp/$LAB-notify.py"
+docker compose --profile orchestration exec prefect-server python "/tmp/$LAB-notify.py"
+```
+
+All other commands, checkpoints, and evidence are unchanged.
 
 ## Output evidence to submit
 

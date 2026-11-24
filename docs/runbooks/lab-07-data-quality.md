@@ -8,26 +8,17 @@ Run the silver job against a clean payment and four faulty payments. Read the re
 
 ![One valid payment goes to silver; four invalid payments go to quarantine with reasons.](lab-07-data-quality.svg)
 
-## Playbook
+## Codespace playbook
 
 ### 1. Find the checks and isolate the run
 
 Open [`spark/jobs/silver_transactions.py`](../../spark/jobs/silver_transactions.py). Find the first four rules in `CHECKS`. Trace how rule order selects one `reject_reason` and how the job appends rejected rows to quarantine. Find what happens when there are no accepted rows.
 
-Define the commands for your environment. All remaining blocks are shared.
-
-**Codespaces**
+Define the commands for the Codespace environment.
 
 ```bash
 spark_run() { /opt/spark/bin/spark-submit "$@"; }
 store() { mc "$@"; }
-```
-
-**Compose only**
-
-```bash
-spark_run() { docker compose exec -T spark-master /opt/spark/bin/spark-submit "$@"; }
-store() { docker compose exec -T minio-client mc "$@"; }
 ```
 
 Create a scratch runner under the mounted jobs directory. It runs the real job against separate Bronze, Silver, and quarantine paths. It does not edit existing scripts or tables.
@@ -117,6 +108,17 @@ rmdir "$WORK"
 Propose a rejection-rate threshold and denominator. State which side of the threshold stops publication, who gets notified, and whether an operator can override it. Explain how you would handle retries without counting duplicate quarantine rows as new rejects.
 
 Read `quality_gate` in [`flows/pipeline.py`](../../flows/pipeline.py). Compare its input metric, dependency on labels, and position after scoring with your proposed pre-publication check. A failed flow does not roll back outputs already written by earlier tasks.
+
+## Laptop (Docker) playbook
+
+Use the complete Codespace playbook above. In Step 1, define these wrappers instead:
+
+```bash
+spark_run() { docker compose exec -T spark-master /opt/spark/bin/spark-submit "$@"; }
+store() { docker compose exec -T minio-client mc "$@"; }
+```
+
+All subsequent commands, checkpoints, and evidence requirements are unchanged.
 
 ## Output evidence to submit
 

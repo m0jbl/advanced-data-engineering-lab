@@ -8,7 +8,7 @@ Validate payment records against the JSON Schema. Use Schema Registry to accept 
 
 ![Backward compatibility accepts an optional gate field but rejects a rename of the required amount field.](lab-03-contract.svg)
 
-## Playbook
+## Codespace playbook
 
 ### 1. Read the existing contract
 
@@ -122,6 +122,16 @@ curl -fsS "$REG/subjects/$SUB/versions"
 ```
 
 **Checkpoint:** the compatibility check returns `false`, registration returns HTTP `409`, and the version list remains `[1,2]`. Keep the stack running for Lab 04. This exercise does not change the tracked schema or any production subject.
+
+## Laptop (Docker) playbook
+
+Run the full Codespace playbook above. If the core stack is not already running, start it first:
+
+```bash
+docker compose up -d --wait
+```
+
+The commands in Steps 1–5 are identical in the laptop environment. Use `http://localhost:8081` for `REG`, as shown in Step 3.
 
 ## Output evidence to submit
 

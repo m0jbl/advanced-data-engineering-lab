@@ -8,22 +8,13 @@ Classify payment fields, build and inspect a pseudonymised analyst view, check t
 
 ![The analyst view drops direct identifiers, but the stable passenger key still permits linkage and needs access controls.](lab-12-governance.svg)
 
-## Playbook
+## Codespace playbook
 
 ### 1. Start the stack and classify the fields
-
-**Codespaces**
 
 ```bash
 scripts/codespace.sh up
 spark_lab12() { /opt/spark/bin/spark-submit "$@"; }
-```
-
-**Compose only**
-
-```bash
-docker compose up -d --wait
-spark_lab12() { docker compose exec -T spark-master /opt/spark/bin/spark-submit "$@"; }
 ```
 
 Read [`contracts/airport-payments.yaml`](../../contracts/airport-payments.yaml). Record the owner and intended consumers. List the `class` and `access` for each classified field. Consider which fields could relate to an identifiable person if these were real payments. Explain why a numeric `passenger_id` can still be personal data. Check what happens if someone can join a transaction reference, timestamp, and airport with another record.
@@ -161,6 +152,17 @@ spark_lab12 "$SPARK_WORK/retention_report.py" --as-of "$FUTURE" --days 90 --labe
 ```
 
 **Checkpoint:** record each cutoff, candidate count, and observed partition dates. An empty list is a valid result. Explain why deletion requires a separate, approved job with audit evidence and checks for holds and downstream dependencies. Explain why removing object-store files directly can invalidate a Delta snapshot. Do not run `DELETE`, `VACUUM`, or `mc rm`.
+
+## Laptop (Docker) playbook
+
+Use the complete Codespace playbook above. In Step 1, start the Compose stack and define this Spark wrapper instead:
+
+```bash
+docker compose up -d --wait
+spark_lab12() { docker compose exec -T spark-master /opt/spark/bin/spark-submit "$@"; }
+```
+
+All remaining commands, checkpoints, and evidence requirements are unchanged.
 
 ## Output evidence to submit
 

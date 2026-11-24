@@ -8,7 +8,7 @@ Land the historical CSVs in bronze and build a date-partitioned Delta table in s
 
 ![A replay replaces just the selected day; all other date partitions remain in the table.](lab-04-spark-batch.svg)
 
-## Playbook
+## Codespace playbook
 
 ### 1. Generate and land the batch input
 
@@ -21,18 +21,9 @@ head -n 1 data/raw/transactions.csv
 head -n 1 data/raw/labels.csv
 ```
 
-**Codespaces**
-
 ```bash
 spark04() { /opt/spark/bin/spark-submit "$@"; }
 mc04() { mc "$@"; }
-```
-
-**Compose only — use these functions instead**
-
-```bash
-spark04() { docker compose exec -T spark-master /opt/spark/bin/spark-submit "$@"; }
-mc04() { docker compose exec -T minio-client mc "$@"; }
 ```
 
 Copy the two input files to MinIO. Keep `labels.csv` on the mounted local data path for evaluation in Lab 06.
@@ -47,7 +38,7 @@ mc04 ls --recursive local/bronze/
 
 ### 2. Build silver and inspect the Spark write
 
-In Codespaces, open **Ports → 4040 → Open in Browser** while the job runs. Forward port `4040` first if it is not listed. On Compose, open <http://localhost:4040>. Start the job and refresh the application UI when it comes up.
+Open **Ports → 4040 → Open in Browser** while the job runs. Forward port `4040` first if it is not listed. Start the job and refresh the application UI when it comes up.
 
 ```bash
 mkdir -p data/reports
@@ -59,7 +50,7 @@ mc04 ls local/silver/transactions/ | head
 
 ### 3. Explore the Delta snapshot
 
-Create a read-only Spark probe under `data/reports/`, which is available to the driver as `/opt/spark-data/reports/` in both environments. The first run records the table version and proposes the most recent day for replay.
+Create a read-only Spark probe under `data/reports/`, which is available to the Codespace driver as `/opt/spark-data/reports/`. The first run records the table version and proposes the most recent day for replay.
 
 ```bash
 cat > data/reports/lab04-inspect.py <<'PY'
@@ -121,6 +112,17 @@ spark04 /opt/spark-data/reports/lab04-inspect.py "$VERSION" "$DAY" 2>&1 | tee da
 **Checkpoint:** the replay summary covers only the selected day. The new Delta commit lists an overwrite predicate for that date. The row-level comparison should report zero additions and removals both for the replayed day and for all other days. Equal counts alone would not detect a changed value.
 
 Read [`silver_transactions.py`](../../spark/jobs/silver_transactions.py) and `write_delta_partitions` in [`common.py`](../../spark/jobs/common.py). Find the transaction-key deduplication and `replaceWhere` predicate. Keep the stack, bronze and silver for Lab 05.
+
+## Laptop (Docker) playbook
+
+Use the complete Codespace playbook above. In Step 1, define these Docker wrappers instead of the Codespace wrappers; every later `spark04` and `mc04` command then remains unchanged:
+
+```bash
+spark04() { docker compose exec -T spark-master /opt/spark/bin/spark-submit "$@"; }
+mc04() { docker compose exec -T minio-client mc "$@"; }
+```
+
+Open <http://localhost:4040> when Step 2 starts the Spark job. The `data/reports/` directory is available to the Compose driver as `/opt/spark-data/reports/`. The remaining steps, commands, checkpoints, and evidence are identical.
 
 ## Output evidence to submit
 

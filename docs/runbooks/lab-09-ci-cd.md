@@ -8,7 +8,7 @@ See a boundary test stop a rule regression. Add two behavior checks, measure an 
 
 ![Tests protect the rule boundary; a threshold sweep measures the cost of changing alert behavior.](lab-09-ci-cd.svg)
 
-## Playbook
+## Codespace playbook
 
 ### 1. Run the same tests as CI
 
@@ -148,6 +148,10 @@ cat .github/workflows/ci.yml
 List the paths that trigger `lab-ci` and the actual setup and test commands. Explain the effect of pytest failure on the check. A failed check blocks merge only when repository rules require it; the workflow file does not configure that policy. Identify one failure the host suite would miss in a Spark job. Propose an integration check, name the fixture and pass condition, and explain the expected CI time cost.
 
 Keep your scratch directory until you have saved your test code and output. Do not copy the deliberately broken rule into the repository. Leave the platform ready for the next lab.
+
+## Laptop (Docker) playbook
+
+No service or Docker command is required. Run the complete Codespace playbook above from a Bash terminal at the laptop repository root; every command is identical.
 
 ## Output evidence to submit
 

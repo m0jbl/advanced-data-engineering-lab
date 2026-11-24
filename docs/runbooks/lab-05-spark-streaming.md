@@ -8,24 +8,15 @@ Score payments from Kafka with Spark Structured Streaming. Compare alerts for no
 
 ![Kafka payments join a static feature snapshot; scores and alerts have separate checkpoints.](lab-05-spark-streaming.svg)
 
-## Playbook
+## Codespace playbook
 
 ### 1. Build the static features and prepare the two terminals
 
 In **A**, define `spark05` and `mc05`. Define the same functions in **B** for later checks.
 
-**Codespaces**
-
 ```bash
 spark05() { /opt/spark/bin/spark-submit "$@"; }
 mc05() { mc "$@"; }
-```
-
-**Compose only — use these functions instead**
-
-```bash
-spark05() { docker compose exec -T spark-master /opt/spark/bin/spark-submit "$@"; }
-mc05() { docker compose exec -T minio-client mc "$@"; }
 ```
 
 In **A**, build features and write the dashboard's existing stream supervisor to the mounted reports directory. This uses the same scorer and checkpoints as the dashboard. The supervisor waits for all three queries to initialize and drains them before stopping.
@@ -144,7 +135,7 @@ done
 printf 'normal\n' > control/scenario
 ```
 
-While traffic runs, open **Ports → 4040 → Open in Browser** in Codespaces (forward `4040` if needed). On Compose, open <http://localhost:4040>. In **Structured Streaming**, capture a completed batch with input rows and duration. Check that all three snapshots exist and the producer logs show the intended modes. The simulator changes the traffic mix in `drift` without raising the fraud probability. The synthetic `attack` mode raises that probability. Neither producer mode sends labels.
+While traffic runs, open **Ports → 4040 → Open in Browser** in Codespaces (forward `4040` if needed). In **Structured Streaming**, capture a completed batch with input rows and duration. Check that all three snapshots exist and the producer logs show the intended modes. The simulator changes the traffic mix in `drift` without raising the fraud probability. The synthetic `attack` mode raises that probability. Neither producer mode sends labels.
 
 ### 3. Drain and compare alerts and latency
 
@@ -234,6 +225,17 @@ spark05 "$APP05/latency.py" "$APP05/after-restart.ids.jsonl" 2>&1 | tee "$RUN05/
 ```
 
 **Checkpoint:** the checkpoint ID is unchanged and the commit list has advanced. Compare the payment offsets in the last committed batches with the Kafka next offsets in the `first-drained` and `after-restart` snapshots. Both new cohorts have scores; the three original cohorts have no additional Delta score rows. The Kafka alert sink is at least once, not exactly once: compare total and unique alerted IDs and explain why a retry could publish an alert twice. Keep the checkpoints and core services running. Leave the scorer and producer stopped and `control/scenario` set to `normal`.
+
+## Laptop (Docker) playbook
+
+Run the full Codespace playbook above in the same two terminals. In both terminals, define these wrappers instead of the Codespace wrappers:
+
+```bash
+spark05() { docker compose exec -T spark-master /opt/spark/bin/spark-submit "$@"; }
+mc05() { docker compose exec -T minio-client mc "$@"; }
+```
+
+Use <http://localhost:4040> instead of the Codespaces **Ports** tab. All other commands, checkpoints, and evidence are unchanged.
 
 ## Output evidence to submit
 

@@ -8,11 +8,9 @@ Capture a Postgres block and unblock with Debezium. Merge each change into a Del
 
 ![Postgres changes travel through Debezium and Kafka to an active Delta list. Delta records its own changes.](lab-08-cdc.svg)
 
-## Playbook
+## Codespace playbook
 
 ### 1. Start CDC and allocate an isolated run
-
-**Codespaces**
 
 ```bash
 scripts/codespace.sh up cdc
@@ -20,17 +18,7 @@ pg() { psql -v ON_ERROR_STOP=1 -U postgres -d airport "$@"; }
 kafka_tool() { local tool=$1; shift; "/opt/kafka/bin/$tool.sh" "$@"; }
 spark_run() { /opt/spark/bin/spark-submit "$@"; }
 ```
-
-**Compose only**
-
-```bash
-docker compose --profile cdc up -d --wait
-pg() { docker compose exec -T postgres psql -v ON_ERROR_STOP=1 -U postgres -d airport "$@"; }
-kafka_tool() { local tool=$1; shift; docker compose exec -T kafka "/opt/kafka/bin/$tool.sh" "$@"; }
-spark_run() { docker compose exec -T spark-master /opt/spark/bin/spark-submit "$@"; }
-```
-
-Use the shared steps from here on. Check the stack and record the run ID. Each run uses its own table, topic, connector, slot, publication, blocklist, and batch-score output.
+Check the stack and record the run ID. Each run uses its own table, topic, connector, slot, publication, blocklist, and batch-score output.
 
 ```bash
 scripts/services.sh smoke
@@ -195,6 +183,19 @@ curl -fsS -X DELETE "$CONNECT/$RUN" &&
   pg -c "DROP PUBLICATION IF EXISTS $RUN; DROP TABLE public.$TABLE;" &&
   rm "$WORK/cdc_run.py" && rmdir "$WORK"
 ```
+
+## Laptop (Docker) playbook
+
+Use the complete Codespace playbook above. In Step 1, start the CDC profile and define these wrappers instead:
+
+```bash
+docker compose --profile cdc up -d --wait
+pg() { docker compose exec -T postgres psql -v ON_ERROR_STOP=1 -U postgres -d airport "$@"; }
+kafka_tool() { local tool=$1; shift; docker compose exec -T kafka "/opt/kafka/bin/$tool.sh" "$@"; }
+spark_run() { docker compose exec -T spark-master /opt/spark/bin/spark-submit "$@"; }
+```
+
+All remaining commands, checkpoints, and evidence requirements are unchanged.
 
 ## Output evidence to submit
 
